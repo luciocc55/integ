@@ -1,0 +1,28 @@
+.app-splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+}
+
+
+
+.app-label {
+  margin-top: 32px;
+  font-size: 2.5em;
+}
+
+.app-splash-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

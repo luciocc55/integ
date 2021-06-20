@@ -1,0 +1,29 @@
+<div class="flex flex-1 justify-center items-center min-h-screen">
+  <div class="flex flex1 flex-col space-y-3 bg-primary-accent dark:bg-accent-accent rounded-md p-14 mobile:w-full"
+    style="min-width: 50%;">
+    <div class="flex flex-1 justify-center">
+      <span class="text-4xl font-medium">{{'login.title'|transloco}}</span>
+    </div>
+    <form [formGroup]="loginForm" class="flex flex-col flex-none pt-8 space-y-4" (ngSubmit)="login()">
+      <mat-form-field class="flex flex-1 text-base">
+        <mat-label>{{'login.user'|transloco}}</mat-label>
+        <input matInput formControlName="usuario" matInputAutofocus>
+        <mat-error *ngIf="loginForm.controls.usuario.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="flex flex-1 text-base">
+        <mat-label>{{'login.password'|transloco}}</mat-label>
+        <input autocomplete="off" type="password" matInput formControlName="password">
+        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+      <div class="flex flex-1 mt-4 justify-end">
+        <button matRipple class="p-4 rounded-lg w-40 text-lg bg-accent-300  text-white ">
+          {{'login.submit'|transloco}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

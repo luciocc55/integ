@@ -1,1 +1,246 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+$mat-primary: (
+    50 : #e1f4ed,
+    100 : #b3e5d3,
+    200 : #80d3b5,
+    300 : #4dc197,
+    400 : #27b481,
+    500 : #01a76b,
+    600 : #019f63,
+    700 : #019658,
+    800 : #018c4e,
+    900 : #007c3c,
+    A100 : #a9ffcc,
+    A200 : #76ffad,
+    A400 : #43ff8f,
+    A700 : #2aff80,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$mat-accent: (
+    50 : #e2eee8,
+    100 : #b6d4c5,
+    200 : #86b89e,
+    300 : #559b77,
+    400 : #30855a,
+    500 : #0c703d,
+    600 : #0a6837,
+    700 : #085d2f,
+    800 : #065327,
+    900 : #03411a,
+    A100 : #76ff9d,
+    A200 : #43ff79,
+    A400 : #10ff54,
+    A700 : #00f646,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$consolidador-primary: mat.define-palette($mat-primary);
+$consolidador-accent: mat.define-palette($mat-accent, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$consolidador-warn: mat.define-palette(mat.$red-palette, A200, A100, A100);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$consolidador-theme: mat.define-light-theme((
+  color: (
+    primary: $consolidador-primary,
+    accent: $consolidador-accent,
+    warn: $consolidador-warn,
+  )
+));
+$consolidador-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $consolidador-accent,
+    accent:  $consolidador-primary,
+    warn: $consolidador-warn,
+  )
+));
+
+.light{
+  @include mat.all-component-themes($consolidador-theme);
+}
+
+.dark {
+  @include mat.all-component-colors($consolidador-dark-theme);
+}
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button{
+  outline: none !important;
+}
+
+.mat-form-field-wrapper{
+  width: 100% !important;
+}
+.mat-snack-bar-container{
+  padding: 0px !important;
+  min-height: unset !important;
+  background-color: transparent !important;
+  border-radius: unset !important;
+  max-width: unset !important;
+  min-width: unset !important;
+  width: auto !important;
+  height: auto !important;
+  background: unset !important;
+}
+
+
+
+
+table {
+  width:100%;
+}
+table tr:last-child td{
+  border:0
+}
+.mat-table
+{
+  background-color:transparent!important;
+}
+// Mat table responsive para celular
+@media screen and (max-width: 960px) {
+  th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: 0px !important;
+  }
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+    padding-right: 0px !important;
+  }
+  .mat-sort-header-arrow {
+    margin: 0px  !important;
+  }
+  .mat-sort-header-content {
+    margin-left: 0px !important;
+  }
+	.mat-elevation-z8 {
+	  background: transparent;
+	  box-shadow: none;
+	}
+
+	.mat-header-row {
+	  display: none;
+	}
+
+	tbody {
+	  display: block;
+	  width: 100%;
+	}
+
+	.mat-table {
+	  background: transparent;
+	  * {
+		box-sizing: border-box;
+	  }
+
+	  .mat-row {
+		display: block;
+		overflow: hidden;
+		height: auto;
+		position: relative;
+		clear: both;
+		box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+
+		border-radius: 3px;
+		+ .mat-row {
+		  margin-top: 24px;
+		}
+	  }
+
+	  .mat-cell {
+		display: block;
+		width: 100%;
+		margin: 16px 0;
+		border: 0 none;
+		&:first-child {
+		  &:before {
+			display: none;
+		  }
+		}
+		&.m-card-sub-title {
+		  margin-top: -8px;
+		  padding: 0 48px 0 16px;
+
+		}
+	  }
+
+	  .has_label_on_mobile {
+		padding: 0 48px 0 16px;
+		display: block;
+		width: 100%;
+		padding: 0 16px;
+		margin: 16px 0;
+		border: 0 none;
+		&:before {
+		  content: attr(data-label);
+		  display: inline;
+		}
+	  }
+
+	  .mat-column-star {
+		width: auto;
+		padding: 8px 0 0 !important;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		right: 0;
+		&:before {
+		  display: none;
+		}
+	  }
+	}}
+  th, td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+
+  }

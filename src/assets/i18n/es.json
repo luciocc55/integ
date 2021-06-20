@@ -1,0 +1,52 @@
+{
+  "sidenav": {
+    "estatus": "Estatus Services",
+    "matchear": "Matchear",
+    "matcheados": "Matcheados",
+    "profesionales": "Profesionales",
+    "estudios": "Estudios",
+    "equipos": "Equipos",
+    "especialidades": "Especialidades",
+    "instituciones": "Instituciones",
+    "os": "Obras Sociales",
+    "cuentas": "Cuentas",
+    "roles": "Roles",
+    "usuarios": "Usuarios",
+    "importaciones": "Importacion",
+    "general": "Ver ultimas importaciones",
+    "direcciones": "Direcciones",
+    "logout": "Cerrar Sesion",
+    "home": "Home"
+  },
+  "login": {
+    "title": "Login",
+    "subTitle": "Bienvenido",
+    "user": "Usuario",
+    "password": "Password",
+    "submit": "Ingresar"
+  },
+  "campo": "Debe completar este campo para continuar",
+  "mergeo": {
+    "table": {
+      "id": "ID",
+      "descripcion": "Descripcion",
+      "origen": "Origen",
+      "acciones": "Acciones",
+      "masterAccion": "Elegir como master",
+      "remMasterAccion": "Remover como master",
+      "delete": "Eliminar"
+    },
+    "aceptar": "Aceptar mergeo",
+    "tooltipAceptar": "Debe seleccionar al menos un registro y un master"
+  },
+  "search": "Buscar",
+  "pagination": {
+    "pagina": "Pagina",
+    "title": "Registros por {{pagination.pagina}}",
+    "ultima": "Ultima {{pagination.pagina}}",
+    "primer": "Primer {{pagination.pagina}}",
+    "siguiente": "Siguiente {{pagination.pagina}}",
+    "anterior": "{{pagination.pagina}} anterior",
+    "guia": "{{pagination.pagina}} {{actual}} de {{totalPage}} (Total: {{total}})"
+  }
+}

@@ -1,0 +1,31 @@
+<ng-container *ngIf="selected$|async as Selected">
+  <div class="flex flex-1 border-primary-500 border-l-4 pl-3 my-1" *ngFor="let registro of Selected">
+    <div class="flex flex-col flex-1">
+      <span class="text-lg font-medium">
+       <mat-icon class="text-lg w-auto h-auto" *ngIf="registro.master">star</mat-icon>
+        {{registro.descripcion| titlecase}}
+      </span>
+      <span>
+        {{registro.origen}} {{registro.idOrigen}}
+      </span>
+    </div>
+    <div class="flex flex-none items-center">
+      <button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{item:registro}" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<mat-menu #menu="matMenu">
+  <ng-template matMenuContent let-item="item">
+    <button mat-menu-item (click)='selectMaster(item.id, !item.master)'>
+      <mat-icon>star</mat-icon>
+      <span>{{(item.master? 'mergeo.table.remMasterAccion': 'mergeo.table.masterAccion')|transloco}}</span>
+    </button>
+    <button mat-menu-item (click)='unselect(item.id)'>
+      <mat-icon>delete</mat-icon>
+      <span>{{'mergeo.table.delete'|transloco}}</span>
+    </button>
+  </ng-template>
+</mat-menu>
