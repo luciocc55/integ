@@ -6,6 +6,29 @@ import * as urls from './url-backend';
 })
 export class ProfesionalesService {
   constructor(private http: HttpClient) {}
+  BusMatcheados(search: string, page = '1', pageSize = '25') {
+    return this.http.post<any>(
+      urls.profesionalesMatcheos,
+      {
+        profesional: search,
+      },
+      {
+        params: {
+          page,
+          perPage: pageSize,
+        },
+      }
+    );
+  }
+  unMatchProf(profesional:number) {
+    return this.http.get<any>(urls.removerProfFromMaster + profesional + '/');
+  }
+  getMaster(idMaster: number) {
+    return this.http.get<any>(urls.profesionalesMatcheos + idMaster + '/');
+  }
+  deleteMaster(idMaster:number) {
+    return this.http.get<any>(urls.removeMasterProf + idMaster + '/');
+  }
   BusParaMerge(search: string, page = '1', pageSize = '25') {
     return this.http.post<any>(
       urls.BusProfesionales,

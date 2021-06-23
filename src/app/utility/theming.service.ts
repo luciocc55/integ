@@ -7,7 +7,7 @@ import { themes } from './themes';
 export class ThemingService {
   theme = new BehaviorSubject(themes[1]);
   storageWatch = new BehaviorSubject(false);
-  base = 'consolidador';
+  base = 'integrador';
   constructor(private ref: ApplicationRef, private store: Store) {
     const localSetting = localStorage.getItem(this.base)
       ? localStorage.getItem(this.base)

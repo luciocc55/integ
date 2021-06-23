@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslocoService } from '@ngneat/transloco';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
+import { ToastPreguntaComponent } from 'src/app/components/globales/toast-pregunta/toast-pregunta.component';
 import { ToastComponent } from 'src/app/components/globales/toast/toast.component';
 import { GlobalActions } from './global.actions';
 
@@ -35,7 +36,10 @@ export class GlobalState {
       return false;
     }
   }
-  constructor(private snackBar: MatSnackBar, private translocoService: TranslocoService) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private translocoService: TranslocoService
+  ) {}
   @Action(GlobalActions.UpdateScroll)
   updScroll(
     { getState, setState }: StateContext<GlobalStateModel>,
@@ -47,15 +51,39 @@ export class GlobalState {
 
   @Action(GlobalActions.OpenAlert)
   OpenAlert(
-    { getState, setState }: StateContext<GlobalStateModel>
+    {  }: StateContext<GlobalStateModel>,
+    { errorMsg }: GlobalActions.OpenAlert
   ) {
     this.snackBar.openFromComponent(ToastComponent, {
-      data:{headerClass:'bg-red-500', header:'Error',texto:'mensaje de error'},
-      panelClass:['mobile:w-full','border-xl'],
+      data: {
+        headerClass: 'bg-red-500  text-white',
+        header: 'toast.errorTitle',
+        texto: errorMsg,
+      },
+      panelClass: ['mobile:w-full', 'shadow-none'],
+      duration: 3000,
       verticalPosition: 'top',
-      horizontalPosition:"right"
-    })
+      horizontalPosition: 'right',
+    });
   }
+  @Action(GlobalActions.OpenSuccess)
+  OpenSuccess(
+    { }: StateContext<GlobalStateModel>,
+    { successMsg }: GlobalActions.OpenSuccess
+  ) {
+    this.snackBar.openFromComponent(ToastComponent, {
+      data: {
+        headerClass: 'bg-green-500 text-white',
+        header: 'toast.successTitle',
+        texto: successMsg,
+      },
+      panelClass: ['mobile:w-full', 'shadow-none'],
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+    });
+  }
+
   @Action(GlobalActions.ChangeSideMode)
   sideMode({ getState, setState }: StateContext<GlobalStateModel>) {
     const state = getState();

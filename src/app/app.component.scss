@@ -6,3 +6,10 @@
 ::ng-deep div.mat-expansion-panel-body {
   padding: 0px !important;
 }
+::ng-deep .mat-expansion-indicator::after{
+  border-color: black ;
+}
+
+::ng-deep .dark .mat-expansion-indicator::after{
+  border-color: white ;
+}

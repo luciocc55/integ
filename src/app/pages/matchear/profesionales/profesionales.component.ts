@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { MergeosActions } from 'src/app/store/mergeos/mergeos.actions';
 
 @Component({
@@ -10,7 +10,10 @@ import { MergeosActions } from 'src/app/store/mergeos/mergeos.actions';
   styleUrls: ['./profesionales.component.scss'],
 })
 export class ProfesionalesComponent implements OnInit {
-  search: FormControl = new FormControl('');
+  @Select((state: any) => state.mergeos.searchString)
+  search$!: Observable<string>;
+  @Select((state: any) => state.mergeos.noResults)
+  noResults$!: Observable<string>;
   constructor(
     private store: Store,
     private router: Router,
@@ -22,23 +25,33 @@ export class ProfesionalesComponent implements OnInit {
       const page = params.get('page') || '1';
       const pageSize = params.get('pageSize') || '25';
       const search = params.get('search') || '';
-      this.search.setValue(search);
-      this.store.dispatch(
-        new MergeosActions.LoadProfesionales(search, page, pageSize)
-      );
+      this.store.dispatch([
+        new MergeosActions.UpdateSearch(search),
+        new MergeosActions.LoadProfesionales(page, pageSize),
+      ]);
+    });
+    this.noResults$.subscribe((result) => {
+      if (result) {
+        const params = this.route.snapshot.queryParams;
+        const page = params.page || '1';
+        const pageSize = params.pageSize || '25';
+        this.store.dispatch(
+          new MergeosActions.LoadProfesionales(page, pageSize)
+        );
+      }
+    });
+    this.search$.subscribe((value) => {
+      this.updateParams({search: value, page:1})
     });
   }
   deleteProf(id: number) {
     this.store.dispatch(new MergeosActions.DeleteProfesional(id));
   }
-  paginar(data: { page: number; pageSize: number }) {
-    this.updateParams({ page: data.page, pageSize: data.pageSize });
-  }
-  buscar() {
-    this.updateParams({ search: this.search.value });
-  }
   aceptarMerge() {
     this.store.dispatch(new MergeosActions.MergeProfesionales());
+  }
+  paginar(data: { page: number; pageSize: number }) {
+    this.updateParams({ page: data.page, pageSize: data.pageSize });
   }
   updateParams(params: any) {
     this.router.navigate([], {

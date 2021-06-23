@@ -24,6 +24,12 @@ const routes: Routes = [
       import('./pages/matchear/matchear.module').then((m) => m.MatchearModule),
   },
   {
+    path: 'matcheos',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/matcheos/matcheos.module').then((m) => m.MatchearModule),
+  },
+  {
     path: 'logout',
     canActivate: [AuthGuard],
     loadChildren: () =>

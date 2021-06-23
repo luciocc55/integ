@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MergeosActions } from 'src/app/store/mergeos/mergeos.actions';
@@ -30,8 +29,6 @@ export class MergeoTableComponent implements OnInit {
   @Output() delete = new EventEmitter<any>(false);
   @Output() paginacion = new EventEmitter<any>(false);
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private store: Store
   ) {}
 

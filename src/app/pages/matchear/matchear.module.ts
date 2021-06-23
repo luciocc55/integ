@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatchearComponent } from './matchear.component';
-import { MatchearRoutingModule } from './app-routing.module';
+import { MatchearRoutingModule } from './matchear-routing.module';
 import { MergeosState } from 'src/app/store/mergeos/mergeos.state';
 import { NgxsModule } from '@ngxs/store';
 

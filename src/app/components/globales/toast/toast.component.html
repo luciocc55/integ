@@ -1,7 +1,7 @@
-<div class="flex flex-1 flex-col  w-80 mobile:w-full bg-transparent">
-  <div [class]="'flex flex-1 px-5 py-1 items-center   '+data.headerClass ">
+<div class="flex flex-1 flex-col  w-80 mobile:w-full bg-transparent ">
+  <div [class]="'flex flex-1 px-5 py-1 items-center rounded-t-md shadow-lg '+data.headerClass ">
     <div class="flex flex-1">
-      {{data.header}}
+      <span class="font-semibold text-base">{{data.header|transloco}}</span>
     </div>
     <div class="flex flex-none self-end  ">
       <button (click)='close()' matRipple class="flex rounded-lg flex-none">
@@ -9,7 +9,7 @@
       </button>
     </div>
   </div>
-  <div class="flex flex1 p-5 dark:bg-gray-300 bg-gray-50 bg-opacity-50 blur  text-black">
-    {{data.mensaje}}
+  <div class="flex flex1 p-5 shadow-lg rounded-b-md dark:bg-black-shade-100 bg-gray-50 bg-opacity-50 blur dark:text-white text-black text-base">
+    {{data.texto|transloco}}
   </div>
 </div>

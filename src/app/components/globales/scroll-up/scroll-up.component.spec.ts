@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorSnackComponent } from './error-snack.component';
+import { ScrollUpComponent } from './scroll-up.component';
 
-describe('ErrorSnackComponent', () => {
-  let component: ErrorSnackComponent;
-  let fixture: ComponentFixture<ErrorSnackComponent>;
+describe('ScrollUpComponent', () => {
+  let component: ScrollUpComponent;
+  let fixture: ComponentFixture<ScrollUpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorSnackComponent ]
+      declarations: [ ScrollUpComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorSnackComponent);
+    fixture = TestBed.createComponent(ScrollUpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

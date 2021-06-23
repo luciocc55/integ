@@ -2,6 +2,9 @@
   <div class="flex flex1 flex-col space-y-3 bg-primary-accent dark:bg-accent-accent rounded-md p-14 mobile:w-full"
     style="min-width: 50%;">
     <div class="flex flex-1 justify-center">
+      <img class="w-20 mobile:w-14" src="assets/icon.svg">
+    </div>
+    <div class="flex flex-1 justify-center">
       <span class="text-4xl font-medium">{{'login.title'|transloco}}</span>
     </div>
     <form [formGroup]="loginForm" class="flex flex-col flex-none pt-8 space-y-4" (ngSubmit)="login()">

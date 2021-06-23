@@ -9,6 +9,7 @@ import {
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
+import { GlobalActions } from '../global/global.actions';
 import { MergeosActions } from './mergeos.actions';
 
 function actSelected(
@@ -87,12 +88,16 @@ export class MergeosStateModel {
   public pagination?: Pagination;
   public toMerge!: ToMerge[];
   public selected!: ToMerge[];
+  public searchString!: string;
+  public noResults!: boolean;
 }
 
 const defaults = {
   token: null,
   toMerge: [],
   selected: [],
+  searchString: '',
+  noResults: false,
 };
 
 @State<MergeosStateModel>({
@@ -138,9 +143,20 @@ export class MergeosState {
   ) {
     setState(actSelected(true, false, id));
   }
+  @Action(MergeosActions.UpdateSearch)
+  newSearch(
+    { setState }: StateContext<MergeosStateModel>,
+    { newSearch }: MergeosActions.UpdateSearch
+  ) {
+    setState(patch({ searchString: newSearch }));
+  }
 
   @Action(MergeosActions.MergeProfesionales)
-  MergeProfesionales({ getState, setState }: StateContext<MergeosStateModel>) {
+  MergeProfesionales({
+    getState,
+    setState,
+    dispatch,
+  }: StateContext<MergeosStateModel>) {
     const state = getState();
     const master = state.selected.find((item) => item.master);
     if (master) {
@@ -160,11 +176,19 @@ export class MergeosState {
                 (item) => !ids.includes(item.id)
               );
               const newSelect: ToMerge[] = [];
+              const noResults = newMerge.length > 1 ? false : true;
               setState(
-                patch({ ...getState(), toMerge: newMerge, selected: newSelect })
+                patch({
+                  ...getState(),
+                  toMerge: newMerge,
+                  selected: newSelect,
+                  noResults: noResults,
+                })
               );
+              dispatch(new GlobalActions.OpenSuccess('toast.mergeoExito'));
             },
             (err) => {
+              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
               throw err.error?.error;
             }
           )
@@ -175,41 +199,47 @@ export class MergeosState {
   @Action(MergeosActions.LoadProfesionales)
   loadProfs(
     { getState, setState }: StateContext<MergeosStateModel>,
-    { search, page, pageSize }: MergeosActions.LoadProfesionales
+    { page, pageSize }: MergeosActions.LoadProfesionales
   ) {
     const state = getState();
-    return this.profesionalesService.BusParaMerge(search, page, pageSize).pipe(
-      tap(
-        (result) => {
-          const mergeo = result?.results.map((registro: any) => {
-            const selected = state.selected.find(
-              (item) => item.id === registro.id
+    return this.profesionalesService
+      .BusParaMerge(state.searchString, page, pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const mergeo = result?.results.map((registro: any) => {
+              const selected = state.selected.find(
+                (item) => item.id === registro.id
+              );
+              const master = state.selected.find(
+                (item) => item.id === registro.id && item.master
+              );
+              return {
+                id: registro.id,
+                origen: registro.origenPopulate?.nombre,
+                origenId: registro.origenPopulate?.id,
+                idOrigen: registro.idOrigen,
+                master: master ? true : false,
+                selected: selected ? true : false,
+                descripcion:
+                  registro.nombre +
+                  (registro.apellido ? ' ' + registro.apellido : ''),
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                ...getState(),
+                toMerge: mergeo,
+                pagination: { ...result },
+              })
             );
-            const master = state.selected.find(
-              (item) => item.id === registro.id && item.master
-            );
-            return {
-              id: registro.id,
-              origen: registro.origenPopulate?.nombre,
-              origenId: registro.origenPopulate?.id,
-              idOrigen: registro.idOrigen,
-              master: master ? true : false,
-              selected: selected ? true : false,
-              descripcion:
-                registro.nombre +
-                (registro.apellido ? ' ' + registro.apellido : ''),
-            };
-          });
-          delete result.results;
-          setState(
-            patch({ ...getState(), toMerge: mergeo, pagination: { ...result } })
-          );
-        },
-        (err) => {
-          throw err.error?.error;
-        }
-      )
-    );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
   }
   @Action(MergeosActions.DeleteProfesional)
   delProf(

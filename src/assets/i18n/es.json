@@ -2,7 +2,7 @@
   "sidenav": {
     "estatus": "Estatus Services",
     "matchear": "Matchear",
-    "matcheados": "Matcheados",
+    "matcheos": "Matcheados",
     "profesionales": "Profesionales",
     "estudios": "Estudios",
     "equipos": "Equipos",
@@ -28,7 +28,7 @@
   "campo": "Debe completar este campo para continuar",
   "mergeo": {
     "table": {
-      "id": "ID",
+      "id": "ID de Origen",
       "descripcion": "Descripcion",
       "origen": "Origen",
       "acciones": "Acciones",
@@ -48,5 +48,24 @@
     "siguiente": "Siguiente {{pagination.pagina}}",
     "anterior": "{{pagination.pagina}} anterior",
     "guia": "{{pagination.pagina}} {{actual}} de {{totalPage}} (Total: {{total}})"
+  },
+  "toast": {
+    "errorTitle": "Hubo un error",
+    "successTitle": "Operacion exitosa",
+    "mergeoError": "Hubo un error vuelva a intentarlo o solicite ayuda a un admin",
+    "mergeoExito": "Mergeo exitoso",
+    "preguntaOperacion": "¿Esta seguro que desea realizar esta accion?",
+    "confirmacion":"Confirmar para seguir"
+  },
+  "matcheos": {
+    "title": "Master {{tipo}} {{master}}",
+    "profesional": "Profesional",
+    "table": {
+      "id":"ID",
+      "masterId":"Id Master",
+      "editar":"Editar Master",
+      "deleteMaster":"Eliminar Master",
+      "unmatch":"Desmatchear a {{matcheo}}"
+    }
   }
 }

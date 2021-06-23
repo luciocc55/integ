@@ -1,9 +1,9 @@
 <ng-container *ngIf="(selected$|async) as Selected">
-  <div class="flex flex-none" [matTooltip]='"mergeo.tooltipAceptar"|transloco'
+  <div class="flex flex-none " [matTooltip]='"mergeo.tooltipAceptar"|transloco'
     [matTooltipDisabled]='!(Selected.length<2 || !(existMaster$|async))'>
-    <button (click)='mergear.emit(true)' mat-flat-button color='primary' *ngIf="Selected.length>0"
+    <button (click)='mergear.emit(true)' mat-flat-button color='accent' *ngIf="Selected.length>0"
       [disabled]='Selected.length<2 || !(existMaster$|async)'>
-      {{'mergeo.aceptar'|transloco}}
+      <span class="text-white">{{'mergeo.aceptar'|transloco}}</span>
     </button>
   </div>
 </ng-container>

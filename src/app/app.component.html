@@ -4,7 +4,7 @@
     <div class="flex flex-col space-y-3 antialiased ">
       <mat-toolbar style='background-color: inherit;'>
         <div class="flex  flex-none justify-center mx-auto">
-          <ng-container [ngTemplateOutlet]="menuButton">
+          <ng-container [ngTemplateOutlet]="menuButton"  [ngTemplateOutletContext]="{class: 'text-4xl'}">
           </ng-container>
         </div>
       </mat-toolbar>
@@ -41,7 +41,9 @@
 
 <ng-template #scrollTopTemplate>
   <div class="flex flex-col">
-    <ng-container *ngIf='!(sideExpanded$|async)&& isLogged' [ngTemplateOutlet]="menuButton">
+    <app-scroll-up></app-scroll-up>
+    <ng-container *ngIf='isLogged' [ngTemplateOutlet]="menuButton"
+      [ngTemplateOutletContext]="{class: 'text-2xl'}">
     </ng-container>
     <app-dark-mode></app-dark-mode>
   </div>
@@ -50,8 +52,8 @@
 
 
 <ng-template #menuButton let-class='class'>
-  <button matRipple class="flex flex-none p-1 rounded-full items-center" (click)='triggerChange()'>
-    <mat-icon class="text-4xl w-auto mx-auto h-auto self-center dark:text-white text-black">menu</mat-icon>
+  <button matRipple class="flex flex-none px-1 rounded-full items-center" (click)='triggerChange()'>
+    <mat-icon [class]="'w-auto mx-auto h-auto self-center dark:text-white text-black ' + class">menu</mat-icon>
   </button>
 </ng-template>
 

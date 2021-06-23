@@ -25,6 +25,10 @@ export namespace GlobalActions {
   }
   export class OpenAlert {
     static readonly type = '[Global] Open Alert';
-    constructor() {}
+    constructor(public errorMsg:string) {}
+  }
+  export class OpenSuccess {
+    static readonly type = '[Global] Open Success';
+    constructor(public successMsg:string) {}
   }
 }

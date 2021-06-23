@@ -60,36 +60,36 @@ export const menuData = [
     ],
   },
   {
-    title: 'matcheados',
+    title: 'matcheos',
     subs: [
       {
         title: 'profesionales',
-        url: '/match_prof',
+        url: 'matcheos/profesionales',
         icon: 'manage_accounts',
       },
       {
         title: 'equipos',
-        url: '/match_equip',
+        url: 'matcheos/equipos',
         icon: 'groups',
       },
       {
         title: 'especialidades',
-        url: '/match_esp',
+        url: 'matcheos/especialidades',
         icon: 'health_and_safety',
       },
       {
         title: 'estudios',
-        url: '/match_est',
+        url: 'matcheos/estudios',
         icon: 'science',
       },
       {
         title: 'instituciones',
-        url: '/match_inst',
+        url: 'matcheos/instituciones',
         icon: 'business',
       },
       {
         title: 'os',
-        url: '/match_os',
+        url: 'matcheos/os',
         icon: 'account_balance',
       },
     ],

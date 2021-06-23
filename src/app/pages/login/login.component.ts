@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { ErrorSnackComponent } from 'src/app/components/globales/error-snack/error-snack.component';
 import { CuentasActions } from 'src/app/store/cuentas/cuentas.actions';
 import { GlobalActions } from 'src/app/store/global/global.actions';
 
@@ -17,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
-    private snackBar: MatSnackBar,
     private router: Router
   ) {}
 
@@ -46,8 +43,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['home']);
           },
           (err) => {
-            this.store.dispatch(new GlobalActions.OpenAlert());
-
+            this.store.dispatch(new GlobalActions.OpenAlert(err));
           }
         );
     }

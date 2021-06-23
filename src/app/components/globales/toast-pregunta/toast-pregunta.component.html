@@ -1,0 +1,20 @@
+<div class="flex flex-1 flex-col  w-96 mobile:w-full bg-transparent ">
+  <div [class]="'flex flex-1 px-5 py-1 items-center rounded-t-md shadow-lg '+data.headerClass ">
+    <div class="flex flex-1">
+      <span class="font-semibold text-base">{{data.header|transloco}}</span>
+    </div>
+    <div class="flex flex-none self-end  ">
+      <button (click)='close()' matRipple class="flex rounded-lg flex-none">
+        <mat-icon class="text-base text-white">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div
+    class="flex flex1 flex-col p-5 shadow-lg rounded-b-md dark:bg-black-shade-100 bg-gray-50 bg-opacity-90 blur dark:text-white text-black text-base">
+    {{data.texto|transloco}}
+    <div class="flex flex-1 justify-center space-x-4 items-center mt-2">
+      <button mat-stroked-button (click)='confirmacion()'>SI</button>
+      <button mat-stroked-button (click)='cancelacion()'>NO</button>
+    </div>
+  </div>
+</div>
