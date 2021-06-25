@@ -9,6 +9,7 @@ import {
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
+import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { GlobalActions } from '../global/global.actions';
 import { MergeosActions } from './mergeos.actions';
 
@@ -77,12 +78,7 @@ export class ToMerge {
   public master!: boolean;
   public selected!: boolean;
 }
-export class Pagination {
-  public count!: number;
-  public current!: number;
-  public page_size!: number;
-  public total_pages!: number;
-}
+
 export class MergeosStateModel {
   public token!: any;
   public pagination?: Pagination;

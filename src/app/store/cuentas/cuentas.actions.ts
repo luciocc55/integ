@@ -7,4 +7,8 @@ export namespace CuentasActions {
     static readonly type = '[Cuentas] Logout';
     constructor() {}
   }
+  export class LoadRoles {
+    static readonly type = '[Cuentas] Load Roles';
+    constructor(public page: string, public pageSize: string) {}
+  }
 }

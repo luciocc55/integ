@@ -45,14 +45,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"
       class="bg-primary-accent dark:bg-accent-accent">
     </tr>
-    <tr mat-row *matRowDef="let registro; columns: displayedColumns;" [ngClass]='registro.master?"bg-primary-accent dark:bg-accent-accent":""'>
+    <tr mat-row *matRowDef="let registro; columns: displayedColumns;"
+      [ngClass]='registro.master?"bg-primary-accent dark:bg-accent-accent":""'>
     </tr>
-
   </table>
-  <mat-paginator *ngIf="pagination$| async as Pagination" [length]="Pagination.count"
-  [pageSize]="Pagination.page_size"
-  [pageSizeOptions]="[5, 10, 25, 100]" (page)="handlePageEvent($event)">
-</mat-paginator>
+  <mat-paginator *ngIf="pagination$| async as Pagination" [length]="Pagination.count" [pageSize]="Pagination.page_size"
+    [pageSizeOptions]="[5, 10, 25, 100]" (page)="handlePageEvent($event)">
+  </mat-paginator>
 </div>
 
 <mat-menu #menu="matMenu">

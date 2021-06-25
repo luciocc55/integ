@@ -86,7 +86,8 @@
 </div>
 <mat-menu #menu="matMenu">
   <ng-template matMenuContent let-item="item">
-    <a [routerLink]="['./edit']" [queryParams]="{master: item.master}" routerLinkActive="router-link-active">
+    <a [routerLink]="['./edit']" [queryParams]="{master: item.master,search: item.descripcion}"
+      routerLinkActive="router-link-active">
       <button mat-menu-item>
         <mat-icon>edit</mat-icon>
         <span>{{'matcheos.table.editar'|transloco}}</span>

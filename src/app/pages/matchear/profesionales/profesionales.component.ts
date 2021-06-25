@@ -58,6 +58,7 @@ export class ProfesionalesComponent implements OnInit {
       relativeTo: this.route,
       queryParams: params,
       queryParamsHandling: 'merge',
+      replaceUrl: true
     });
   }
 }

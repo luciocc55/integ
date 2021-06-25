@@ -13,7 +13,13 @@
         'matcheos.profesional'|transloco} }}</span>
     </div>
   </div>
-  <div class="flex flex-1 dark:bg-accent-900 bg-primary-50 flex-col p-4 rounded-lg">
+  <div class="flex flex-1">
+    <app-search-input></app-search-input>
+  </div>
+  <div class="flex flex-none h-72 overflow-auto" *ngIf='searchMarker'>
+    <app-busquedas-table (evento)='addMatch($event)' [icon]='"add"'></app-busquedas-table>
+  </div>
+  <div class="flex flex-1 dark:bg-accent-900 bg-primary-50 flex-col p-4 rounded-lg mt-2">
     <ng-container [ngTemplateOutlet]="items"
     [ngTemplateOutletContext]="{registro: Master,icon:'star',template: buttonMaster}"></ng-container>
     <ng-container *ngFor="let registro of Master.matcheos">
@@ -25,13 +31,9 @@
 </div>
 <mat-menu #menu="matMenu">
   <ng-template matMenuContent let-item="item">
-    <button mat-menu-item>
-      <mat-icon>star</mat-icon>
-      <span>{{(item.master? 'mergeo.table.remMasterAccion': 'mergeo.table.masterAccion')|transloco}}</span>
-    </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)='unMatch(item.id)'>
       <mat-icon>delete</mat-icon>
-      <span>{{'mergeo.table.delete'|transloco}}</span>
+      <span>{{'matcheos.table.remove'|transloco}}</span>
     </button>
   </ng-template>
 </mat-menu>
@@ -68,7 +70,7 @@
 </ng-template>
 <mat-menu #menuMaster="matMenu">
   <ng-template matMenuContent let-item="item">
-    <button mat-menu-item>
+    <button mat-menu-item (click)='deleteMaster(item.master)'>
       <mat-icon>delete</mat-icon>
       <span>{{'matcheos.table.deleteMaster'|transloco}}</span>
     </button>

@@ -24,7 +24,13 @@ import { TranslocoService } from '@ngneat/transloco';
 import { MyCustomPaginatorIntl } from './utility/paginatorLang.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { HttpErrorInterceptor } from './utility/interceptors/error-interceptor';
-import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
+import {
+  MAT_SNACK_BAR_DATA,
+  MatSnackBarRef,
+} from '@angular/material/snack-bar';
+import { ToastPreguntaService } from './utility/toastPregunta.service';
+import '@angular/common/locales/global/es';
+import '@angular/common/locales/global/en';
 
 @NgModule({
   declarations: [AppComponent],
@@ -58,6 +64,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
       multi: true,
       deps: [Store],
     },
+    ToastPreguntaService,
     ThemingService,
     UpdateService,
     TokenService,

@@ -1,0 +1,37 @@
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8">
+  <div
+    class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+    <div class="flex flex-none  items-start justify-center ">
+      <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+        <mat-icon class="text-white text-5xl w-auto h-auto">info</mat-icon>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <span class="text-2xl font-medium">{{'sidenav.estatus'|transloco}}</span>
+      <span class="text-lg">{{'sidenav.estatusSub'|transloco}}</span>
+    </div>
+  </div>
+  <ng-container *ngIf="estatus$|async as Estatus">
+    <div class="flex flex-1 dark:bg-accent-900 bg-primary-50 flex-col p-4 rounded-lg mt-2">
+      <div class="flex flex-1 border-primary-500 border-l-4 space-x-2 my-2 mobile:flex-col" *ngFor='let estatus of Estatus'>
+        <div class="flex flex-col space-y-3 flex-1 ml-4">
+          <span class="text-base font-medium">
+            {{estatus.nombre|titlecase}}
+          </span>
+          <span class="text-sm">
+            {{'estatus.caidas'|transloco}}: <span class="font-medium">{{estatus.caidas}}</span>
+          </span>
+          <span class="text-sm">
+            {{'estatus.fecha'|transloco}}:
+            <span class="font-medium">{{estatus.cambio| localizedDate:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </span>
+        </div>
+        <div class="flex flex-none items-center mobile:pl-2 mobile:mt-3">
+          <mat-checkbox color='primary' [checked]="estatus.habilitado"
+            (change)="changeHabilit(estatus.id, !estatus.habilitado)">{{'estatus.habilitacion'|transloco}}
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

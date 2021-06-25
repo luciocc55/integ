@@ -19,5 +19,9 @@ export namespace MatcheosActions {
     static readonly type = '[Matcheos] UnMatch Profesional';
     constructor(public idMatch: number) {}
   }
+  export class MatchProfesional {
+    static readonly type = '[Matcheos] Match Profesional';
+    constructor(public idMatch: number, public idMaster: number) {}
+  }
 }
 

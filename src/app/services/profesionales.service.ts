@@ -20,14 +20,19 @@ export class ProfesionalesService {
       }
     );
   }
-  unMatchProf(profesional:number) {
+  unMatchProf(profesional: number) {
     return this.http.get<any>(urls.removerProfFromMaster + profesional + '/');
   }
   getMaster(idMaster: number) {
     return this.http.get<any>(urls.profesionalesMatcheos + idMaster + '/');
   }
-  deleteMaster(idMaster:number) {
+  deleteMaster(idMaster: number) {
     return this.http.get<any>(urls.removeMasterProf + idMaster + '/');
+  }
+  matchProf(idMaster: number, idMatch: number) {
+    return this.http.post<any>(urls.profesionalesMatcheos + idMaster + '/', {
+      profesional: idMatch,
+    });
   }
   BusParaMerge(search: string, page = '1', pageSize = '25') {
     return this.http.post<any>(

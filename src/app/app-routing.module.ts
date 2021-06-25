@@ -30,6 +30,18 @@ const routes: Routes = [
       import('./pages/matcheos/matcheos.module').then((m) => m.MatchearModule),
   },
   {
+    path: 'estatus',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/estatus/estatus.module').then((m) => m.EstatusModule),
+  },
+  {
+    path: 'cuentas',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/cuentas/cuentas.module').then((m) => m.CuentasModule),
+  },
+  {
     path: 'logout',
     canActivate: [AuthGuard],
     loadChildren: () =>

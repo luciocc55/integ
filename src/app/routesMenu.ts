@@ -14,12 +14,12 @@ export const menuData = [
     subs: [
       {
         title: 'roles',
-        url: '/roles',
+        url: 'cuentas/',
         icon: 'contacts',
       },
       {
         title: 'usuarios',
-        url: '/cuentas',
+        url: 'cuentas/',
         icon: 'person',
       },
     ],

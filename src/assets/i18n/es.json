@@ -1,6 +1,7 @@
 {
   "sidenav": {
     "estatus": "Estatus Services",
+    "estatusSub":"Se muestra el estado actual de los servicios",
     "matchear": "Matchear",
     "matcheos": "Matcheados",
     "profesionales": "Profesionales",
@@ -47,7 +48,7 @@
     "primer": "Primer {{pagination.pagina}}",
     "siguiente": "Siguiente {{pagination.pagina}}",
     "anterior": "{{pagination.pagina}} anterior",
-    "guia": "{{pagination.pagina}} {{actual}} de {{totalPage}} (Total: {{total}})"
+    "guia": "{{pagination.pagina}} {{actual}} de {{totalPage}} (Resultados: {{total}})"
   },
   "toast": {
     "errorTitle": "Hubo un error",
@@ -65,7 +66,14 @@
       "masterId":"Id Master",
       "editar":"Editar Master",
       "deleteMaster":"Eliminar Master",
+      "remove":"Remover",
       "unmatch":"Desmatchear a {{matcheo}}"
     }
+  },
+  "estatus": {
+    "serviceName": "Service",
+    "fecha":"Fecha de ultima modificacion",
+    "caidas": "Cantidad de caidas en las ultimas 24hs",
+    "habilitacion": "Habilitacion"
   }
 }

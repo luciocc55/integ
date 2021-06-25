@@ -3,6 +3,7 @@ import { State, Action, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
+import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { GlobalActions } from '../global/global.actions';
 import { ToMerge } from '../mergeos/mergeos.state';
 import { MatcheosActions } from './matcheos.actions';
@@ -17,12 +18,6 @@ export class Matcheados {
   public matcheos!: ToMerge[];
 }
 
-export class Pagination {
-  public count!: number;
-  public current!: number;
-  public page_size!: number;
-  public total_pages!: number;
-}
 export class MatcheosStateModel {
   public pagination?: Pagination;
   public searchString!: string;
@@ -85,6 +80,22 @@ export class MatcheosState {
       )
     );
   }
+  @Action(MatcheosActions.MatchProfesional)
+  matchProf(
+    { getState, dispatch }: StateContext<MatcheosStateModel>,
+    { idMatch, idMaster }: MatcheosActions.MatchProfesional
+  ) {
+    return this.profesionalesService.matchProf(idMaster, idMatch).pipe(
+      tap(
+        (result) => {},
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(MatcheosActions.DeleteMasterProfesional)
   deleteMasterProf(
     { getState, setState, dispatch }: StateContext<MatcheosStateModel>,

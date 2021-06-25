@@ -3,7 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MergeosActions } from 'src/app/store/mergeos/mergeos.actions';
-import { Pagination, ToMerge } from 'src/app/store/mergeos/mergeos.state';
+import { ToMerge } from 'src/app/store/mergeos/mergeos.state';
+import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 
 @Component({
   selector: 'app-mergeo-table',

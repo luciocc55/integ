@@ -40,6 +40,7 @@ export class ViewComponent implements OnInit {
       relativeTo: this.route,
       queryParams: params,
       queryParamsHandling: 'merge',
+      replaceUrl: true
     });
   }
   deteleteMaster(idMaster:number){

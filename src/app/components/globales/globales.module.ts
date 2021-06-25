@@ -6,6 +6,7 @@ import { ToastComponent } from './toast/toast.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ScrollUpComponent } from './scroll-up/scroll-up.component';
 import { ToastPreguntaComponent } from './toast-pregunta/toast-pregunta.component';
+import { BusquedasTableComponent } from './busquedas-table/busquedas-table.component';
 
 
 
@@ -14,7 +15,8 @@ import { ToastPreguntaComponent } from './toast-pregunta/toast-pregunta.componen
     DarkModeComponent,
     ToastComponent,
     ScrollUpComponent,
-    ToastPreguntaComponent
+    ToastPreguntaComponent,
+    BusquedasTableComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ToastPreguntaComponent } from './toast-pregunta/toast-pregunta.componen
   exports: [
     DarkModeComponent,
     ToastComponent,
-    ScrollUpComponent
+    ScrollUpComponent,
+    BusquedasTableComponent,
   ]
 })
 export class GlobalesModule { }

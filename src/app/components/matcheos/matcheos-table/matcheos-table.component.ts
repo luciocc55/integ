@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { Matcheados, Pagination } from 'src/app/store/matcheos/matcheos.state';
-import { ToastPreguntaComponent } from '../../globales/toast-pregunta/toast-pregunta.component';
+import { Matcheados } from 'src/app/store/matcheos/matcheos.state';
+import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
+import { ToastPreguntaService } from 'src/app/utility/toastPregunta.service';
 
 @Component({
   selector: 'app-matcheos-table',
@@ -28,7 +28,7 @@ export class MatcheosTableComponent implements OnInit {
   @Output() paginacion = new EventEmitter<any>(false);
   @Output() deletedMaster = new EventEmitter<any>(false);
   @Output() unMatch = new EventEmitter<any>(false);
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private preguntaService: ToastPreguntaService) {}
 
   ngOnInit(): void {
     this.matcheados$.subscribe((items: Matcheados[]) => {
@@ -43,7 +43,7 @@ export class MatcheosTableComponent implements OnInit {
     }
   }
   deleteMaster(idMaster: number) {
-    const ref = this.pregunta();
+    const ref = this.preguntaService.openStandard();
     const subscription: Subscription = ref.instance.decision.subscribe(
       (value) => {
         if (value) {
@@ -54,7 +54,7 @@ export class MatcheosTableComponent implements OnInit {
     );
   }
   desMatchProf(idMatch: number) {
-    const ref = this.pregunta();
+    const ref = this.preguntaService.openStandard();
     const subscription: Subscription = ref.instance.decision.subscribe(
       (value) => {
         if (value) {
@@ -63,18 +63,5 @@ export class MatcheosTableComponent implements OnInit {
         subscription.remove(subscription);
       }
     );
-  }
-  pregunta() {
-    const ref = this.snackBar.openFromComponent(ToastPreguntaComponent, {
-      data: {
-        headerClass: 'bg-yellow-500 text-white',
-        header: 'toast.confirmacion',
-        texto: 'toast.preguntaOperacion',
-      },
-      panelClass: ['mobile:w-full', 'shadow-none'],
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-    });
-    return ref;
   }
 }
