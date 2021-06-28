@@ -11,11 +11,14 @@
     </div>
     <div class="flex flex-none flex-col mobile:hidden">
       <ng-container [ngTemplateOutlet]="buttonCrear">
-    </ng-container>
+      </ng-container>
     </div>
   </div>
   <div class="flex flex-1">
-    <app-roles-table [columns]='["edit"]' ></app-roles-table>
+    <app-search-input></app-search-input>
+  </div>
+  <div class="flex flex-1">
+    <app-roles-table [columns]='["edit"]' (paginacion)='paginar($event)'></app-roles-table>
   </div>
   <div class="hidden mobile:flex fixed bottom-2 self-center">
     <ng-container [ngTemplateOutlet]="buttonCrear">
@@ -25,5 +28,9 @@
 
 
 <ng-template #buttonCrear>
-  <button (click)='nuevoRol()' class="p-4 text-lg bg-primary-accent dark:bg-accent-800 rounded-md">Crear nuevo</button>
+  <a [routerLink]='["./create"]'>
+    <button  matRipple class="p-4 text-lg bg-primary-accent dark:bg-accent-800 rounded-md">
+      {{'roles.nuevo'|transloco}}
+    </button>
+  </a>
 </ng-template>

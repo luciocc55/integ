@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { MergeosActions } from 'src/app/store/mergeos/mergeos.actions';
+import { ParamsActions } from 'src/app/store/params/params.actions';
 
 @Component({
   selector: 'app-search-input',
@@ -11,7 +11,7 @@ import { MergeosActions } from 'src/app/store/mergeos/mergeos.actions';
 })
 export class SearchInputComponent implements OnInit {
   search: FormControl = new FormControl('');
-  @Select((state: any) => state.mergeos.searchString)
+  @Select((state: any) => state.params.search)
   search$!: Observable<string>;
   constructor(private store: Store) {}
 
@@ -21,6 +21,6 @@ export class SearchInputComponent implements OnInit {
     });
   }
   buscar() {
-    this.store.dispatch(new MergeosActions.UpdateSearch(this.search.value));
+    this.store.dispatch(new ParamsActions.UpdateParams(this.search.value));
   }
 }

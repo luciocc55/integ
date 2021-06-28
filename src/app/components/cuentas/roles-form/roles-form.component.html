@@ -1,0 +1,43 @@
+<mat-form-field class="flex flex-1 text-base">
+  <mat-label>{{'roles.desc'|transloco}}</mat-label>
+  <input matInput [formControl]='descripcion' matInputAutofocus>
+  <mat-error *ngIf="descripcion.hasError('required')">
+    {{'campo'|transloco}}
+  </mat-error>
+</mat-form-field>
+
+<mat-form-field class="flex flex-1">
+  <mat-label>{{'roles.permisos'|transloco}}</mat-label>
+  <mat-select [formControl]="nuevosPermisos">
+    <mat-option>
+      <ngx-mat-select-search [placeholderLabel]="'selectSearch.title'|transloco"
+        [noEntriesFoundLabel]="'selectSearch.noResults'|transloco" [formControl]="searchSelect"></ngx-mat-select-search>
+    </mat-option>
+    <ng-container *ngIf="(permisosSelect$|async) as Permisos">
+      <mat-option [value]="permiso" *ngFor="let permiso of Permisos">
+        {{permiso.descripcion}}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
+
+<div class="flex flex-1 my-2" *ngIf="permisos.length>0">
+  <span class="text-lg">{{'roles.permisos'|transloco}}:</span>
+</div>
+<div class="flex flex-1 my-2 space-x-3" *ngIf="permisos.length === 0">
+  <span class="text-lg">{{'roles.sinPermisos'|transloco}}</span>
+  <mat-icon [matTooltip]='"roles.hint"|transloco' class="text-lg w-auto h-auto text-yellow-500 select-none">help
+  </mat-icon>
+</div>
+<ng-container *ngFor="let permiso of permisos">
+  <div class="flex flex-1">
+    <div class="flex flex-1">
+      {{permiso.descripcion}}
+    </div>
+    <div class="flex flex-none">
+      <button mat-icon-button (click)='removePermiso(permiso._id)'>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-container>

@@ -29,14 +29,11 @@ const defaults = {
 export class EstatusState {
   constructor(private estatusService: EstatusService) {}
   @Action(EstatusActions.LoadEstatus)
-  load(
-    { getState, setState }: StateContext<EstatusStateModel>,
-    {}: EstatusActions.LoadEstatus
-  ) {
+  load({ setState }: StateContext<EstatusStateModel>) {
     return this.estatusService.getEstatus().pipe(
       tap(
         (result) => {
-          setState(patch({ ...getState(), estatus: result }));
+          setState(patch({ estatus: result }));
         },
         (err) => {
           throw err.error?.error;

@@ -27,6 +27,7 @@
     "submit": "Ingresar"
   },
   "campo": "Debe completar este campo para continuar",
+  "disabled": "Necesita completar los requerimientos para proseguir",
   "mergeo": {
     "table": {
       "id": "ID de Origen",
@@ -70,10 +71,35 @@
       "unmatch":"Desmatchear a {{matcheo}}"
     }
   },
+  "roles": {
+    "title": "Rol {{descripcion}}",
+    "desc": "Descripcion",
+    "permisos": "Permisos",
+    "sinPermisos":"No posee permisos",
+    "hint": "Puede agregarlos desde la seleccion de permisos",
+    "guardarCambios": "Guardar Cambios",
+    "crear": "Crear Rol",
+    "nuevo": "Crear Nuevo"
+  },
+  "selectSearch": {
+    "title":"Buscar",
+    "noResults": "Sin resultados"
+  },
   "estatus": {
     "serviceName": "Service",
     "fecha":"Fecha de ultima modificacion",
     "caidas": "Cantidad de caidas en las ultimas 24hs",
     "habilitacion": "Habilitacion"
+  },
+  "usuarios": {
+    "table":{
+      "nombre":"Nombre",
+      "apellido": "Apellido",
+      "usuario": "Username"
+    },
+    "form": {
+      "password": "Password",
+      "crear": "Crear Usuario"
+    }
   }
 }

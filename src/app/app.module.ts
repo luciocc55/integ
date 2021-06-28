@@ -31,6 +31,7 @@ import {
 import { ToastPreguntaService } from './utility/toastPregunta.service';
 import '@angular/common/locales/global/es';
 import '@angular/common/locales/global/en';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,8 +46,13 @@ import '@angular/common/locales/global/en';
     NgxsStoragePluginModule.forRoot({
       key: ['cuentas.token'],
     }),
+    NgxsFormPluginModule.forRoot(),
     NgxsModule.forRoot([GlobalState, CuentasState], {
       developmentMode: !environment.production,
+      selectorOptions: {
+        suppressErrors: false,
+        injectContainerState: false
+      }
     }),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),
     ServiceWorkerModule.register('ngsw-worker.js', {

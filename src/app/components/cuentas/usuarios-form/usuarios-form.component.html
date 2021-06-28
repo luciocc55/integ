@@ -1,0 +1,56 @@
+<form [formGroup]="usuariosForm" ngxsForm="cuentas.newUsuarioForm" class="flex flex-col flex-1 w-full h-full">
+  <div class="flex flex-1 flex-col mt-2">
+    <div class="flex flex-1 mt-2">
+      <mat-form-field class=" w-full">
+        <input matInput formControlName="email" [placeholder]="'usuarios.table.usuario'|transloco">
+        <mat-error *ngIf="usuariosForm.controls.email.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-1">
+      <mat-form-field class="w-full">
+        <input matInput formControlName="password" type="password" [placeholder]="'usuarios.form.password'|transloco">
+        <mat-error *ngIf="usuariosForm.controls.password.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-1">
+      <mat-form-field class="w-full">
+        <input matInput formControlName="nombre" [placeholder]="'usuarios.table.nombre'|transloco">
+        <mat-error *ngIf="usuariosForm.controls.nombre.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-1">
+      <mat-form-field class="w-full">
+        <input matInput formControlName="apellido" [placeholder]="'usuarios.table.apellido'|transloco">
+        <mat-error *ngIf="usuariosForm.controls.apellido.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-1">
+      <mat-form-field class="flex flex-1">
+        <mat-label>{{'roles.title'|transloco}}</mat-label>
+        <mat-select formControlName="role">
+          <mat-option>
+            <ngx-mat-select-search [placeholderLabel]="'selectSearch.title'|transloco"
+              [noEntriesFoundLabel]="'selectSearch.noResults'|transloco" [formControl]="searchSelect">
+            </ngx-mat-select-search>
+          </mat-option>
+          <ng-container *ngIf="(roles$|async) as Roles">
+            <mat-option [value]="rol._id" *ngFor="let rol of Roles">
+              {{rol.descripcion}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error *ngIf="usuariosForm.controls.role.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

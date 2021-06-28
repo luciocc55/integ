@@ -7,13 +7,25 @@ const routes: Routes = [
     path: '',
     component: CuentasComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'roles' },
       {
         path: 'roles',
         loadChildren: () =>
-          import('./roles/roles.module').then(
-            (m) => m.RolesModule
-          ),
+          import('./roles/roles.module').then((m) => m.RolesModule),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./view/view.module').then((m) => m.ViewModule),
+      },
+      {
+        path: 'edit',
+        loadChildren: () =>
+          import('./edit/edit.module').then((m) => m.EditModule),
+      },
+      {
+        path: 'create',
+        loadChildren: () =>
+          import('./create/create.module').then((m) => m.CreateModule),
       },
     ],
   },

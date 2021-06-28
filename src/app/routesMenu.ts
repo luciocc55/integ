@@ -14,7 +14,7 @@ export const menuData = [
     subs: [
       {
         title: 'roles',
-        url: 'cuentas/',
+        url: 'cuentas/roles',
         icon: 'contacts',
       },
       {

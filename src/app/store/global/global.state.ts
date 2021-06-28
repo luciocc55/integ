@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslocoService } from '@ngneat/transloco';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
-import { ToastPreguntaComponent } from 'src/app/components/globales/toast-pregunta/toast-pregunta.component';
 import { ToastComponent } from 'src/app/components/globales/toast/toast.component';
 import { GlobalActions } from './global.actions';
 
@@ -36,22 +34,18 @@ export class GlobalState {
       return false;
     }
   }
-  constructor(
-    private snackBar: MatSnackBar,
-    private translocoService: TranslocoService
-  ) {}
+  constructor(private snackBar: MatSnackBar) {}
   @Action(GlobalActions.UpdateScroll)
   updScroll(
-    { getState, setState }: StateContext<GlobalStateModel>,
+    { setState }: StateContext<GlobalStateModel>,
     { scroll }: GlobalActions.UpdateScroll
   ) {
-    const state = getState();
-    setState(patch({ ...state, scroll }));
+    setState(patch({ scroll }));
   }
 
   @Action(GlobalActions.OpenAlert)
   OpenAlert(
-    {  }: StateContext<GlobalStateModel>,
+    {}: StateContext<GlobalStateModel>,
     { errorMsg }: GlobalActions.OpenAlert
   ) {
     this.snackBar.openFromComponent(ToastComponent, {
@@ -68,7 +62,7 @@ export class GlobalState {
   }
   @Action(GlobalActions.OpenSuccess)
   OpenSuccess(
-    { }: StateContext<GlobalStateModel>,
+    {}: StateContext<GlobalStateModel>,
     { successMsg }: GlobalActions.OpenSuccess
   ) {
     this.snackBar.openFromComponent(ToastComponent, {
@@ -87,17 +81,15 @@ export class GlobalState {
   @Action(GlobalActions.ChangeSideMode)
   sideMode({ getState, setState }: StateContext<GlobalStateModel>) {
     const state = getState();
-    setState(patch({ ...state, sideExpanded: !state.sideExpanded }));
+    setState(patch({ sideExpanded: !state.sideExpanded }));
   }
   @Action(GlobalActions.HideFloatMenu)
-  hide({ getState, setState }: StateContext<GlobalStateModel>) {
-    const state = getState();
-    setState(patch({ ...state, showFloatMenu: false }));
+  hide({ setState }: StateContext<GlobalStateModel>) {
+    setState(patch({ showFloatMenu: false }));
   }
   @Action(GlobalActions.ShowFloatMenu)
-  show({ getState, setState }: StateContext<GlobalStateModel>) {
-    const state = getState();
-    setState(patch({ ...state, showFloatMenu: true }));
+  show({ setState }: StateContext<GlobalStateModel>) {
+    setState(patch({ showFloatMenu: true }));
   }
   @Action(GlobalActions.ShowLoader)
   showLoader({ getState, setState }: StateContext<GlobalStateModel>) {

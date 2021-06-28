@@ -6,6 +6,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ProfesionalesComponent } from './profesionales.component';
 import { MergeosModule } from 'src/app/components/mergeos/mergeos.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { GlobalesModule } from 'src/app/components/globales/globales.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     TranslocoModule,
     MergeosModule,
     SharedModule,
+    GlobalesModule,
     RouterModule.forChild(routes),
     NgxsModule.forFeature([]),
   ],

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { GlobalActions } from '../global/global.actions';
 import { ToMerge } from '../mergeos/mergeos.state';
+import { ParamsState } from '../params/params.state';
 import { MatcheosActions } from './matcheos.actions';
 
 export class Matcheados {
@@ -20,14 +21,12 @@ export class Matcheados {
 
 export class MatcheosStateModel {
   public pagination?: Pagination;
-  public searchString!: string;
   public matcheos!: Matcheados[];
   public master?: any;
   public noResults!: boolean;
 }
 
 const defaults = {
-  searchString: '',
   matcheos: [],
   noResults: false,
 };
@@ -48,14 +47,10 @@ function formatProf(profesional: any) {
 })
 @Injectable()
 export class MatcheosState {
-  constructor(private profesionalesService: ProfesionalesService) {}
-  @Action(MatcheosActions.UpdateSearch)
-  newSearch(
-    { setState }: StateContext<MatcheosStateModel>,
-    { newSearch }: MatcheosActions.UpdateSearch
-  ) {
-    setState(patch({ searchString: newSearch }));
-  }
+  constructor(
+    private profesionalesService: ProfesionalesService,
+    private store: Store
+  ) {}
   @Action(MatcheosActions.UnMatchProfesional)
   unMatchProf(
     { getState, setState, dispatch }: StateContext<MatcheosStateModel>,
@@ -71,7 +66,7 @@ export class MatcheosState {
             );
             return { ...item, matcheos: newMatchs };
           });
-          setState(patch({ ...getState(), matcheos: newMatchs }));
+          setState(patch({ matcheos: newMatchs }));
         },
         (err) => {
           dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
@@ -82,7 +77,7 @@ export class MatcheosState {
   }
   @Action(MatcheosActions.MatchProfesional)
   matchProf(
-    { getState, dispatch }: StateContext<MatcheosStateModel>,
+    { dispatch }: StateContext<MatcheosStateModel>,
     { idMatch, idMaster }: MatcheosActions.MatchProfesional
   ) {
     return this.profesionalesService.matchProf(idMaster, idMatch).pipe(
@@ -109,7 +104,7 @@ export class MatcheosState {
             (item) => item.master !== idMaster
           );
           const noResults = newMatchs.length > 1 ? false : true;
-          setState(patch({ ...getState(), matcheos: newMatchs, noResults }));
+          setState(patch({ matcheos: newMatchs, noResults }));
         },
         (err) => {
           dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
@@ -120,7 +115,7 @@ export class MatcheosState {
   }
   @Action(MatcheosActions.LoadMasterProfesional)
   LoadMasterProfesional(
-    { getState, setState }: StateContext<MatcheosStateModel>,
+    { setState }: StateContext<MatcheosStateModel>,
     { idMaster }: MatcheosActions.LoadMasterProfesional
   ) {
     return this.profesionalesService.getMaster(idMaster).pipe(
@@ -137,7 +132,6 @@ export class MatcheosState {
           };
           setState(
             patch({
-              ...getState(),
               master: resultado,
             })
           );
@@ -149,13 +143,11 @@ export class MatcheosState {
     );
   }
   @Action(MatcheosActions.LoadProfesionales)
-  loadProfs(
-    { getState, setState }: StateContext<MatcheosStateModel>,
-    { page, pageSize }: MatcheosActions.LoadProfesionales
-  ) {
+  loadProfs({ getState, setState }: StateContext<MatcheosStateModel>) {
     const state = getState();
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
     return this.profesionalesService
-      .BusMatcheados(state.searchString, page, pageSize)
+      .BusMatcheados(paramsState.search, paramsState.page, paramsState.pageSize)
       .pipe(
         tap(
           (result) => {
@@ -173,7 +165,6 @@ export class MatcheosState {
             delete result.results;
             setState(
               patch({
-                ...state,
                 matcheos: matcheos,
                 pagination: { ...result },
               })

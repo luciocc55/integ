@@ -1,7 +1,7 @@
 export namespace MergeosActions {
   export class LoadProfesionales {
     static readonly type = '[Mergeos] Load profesionales';
-    constructor(public page: string, public pageSize: string) {}
+    constructor() {}
   }
   export class DeleteProfesional {
     static readonly type = '[Mergeos] Delete Profesional';
@@ -26,9 +26,5 @@ export namespace MergeosActions {
   export class MergeProfesionales {
     static readonly type = '[Mergeos] Merge Profesionales';
     constructor() {}
-  }
-  export class UpdateSearch {
-    static readonly type = '[Mergeos] Update Search';
-    constructor(public newSearch: string) {}
   }
 }

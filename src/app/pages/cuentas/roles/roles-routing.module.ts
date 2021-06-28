@@ -10,16 +10,17 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./view/view.module').then(
-            (m) => m.ViewModule
-          ),
+          import('./view/view.module').then((m) => m.ViewModule),
       },
       {
         path: 'edit',
         loadChildren: () =>
-          import('./edit/edit.module').then(
-            (m) => m.EditModule
-          ),
+          import('./edit/edit.module').then((m) => m.EditModule),
+      },
+      {
+        path: 'create',
+        loadChildren: () =>
+          import('./create/create.module').then((m) => m.CreateModule),
       },
     ],
   },

@@ -5,12 +5,14 @@ import {
   StateContext,
   StateOperator,
   Selector,
+  Store,
 } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { GlobalActions } from '../global/global.actions';
+import { ParamsState, ParamsStateModel } from '../params/params.state';
 import { MergeosActions } from './mergeos.actions';
 
 function actSelected(
@@ -84,7 +86,6 @@ export class MergeosStateModel {
   public pagination?: Pagination;
   public toMerge!: ToMerge[];
   public selected!: ToMerge[];
-  public searchString!: string;
   public noResults!: boolean;
 }
 
@@ -92,7 +93,6 @@ const defaults = {
   token: null,
   toMerge: [],
   selected: [],
-  searchString: '',
   noResults: false,
 };
 
@@ -110,7 +110,10 @@ export class MergeosState {
     }
     return false;
   }
-  constructor(private profesionalesService: ProfesionalesService) {}
+  constructor(
+    private profesionalesService: ProfesionalesService,
+    private store: Store
+  ) {}
   @Action(MergeosActions.SelectItem)
   SelectItem(
     { setState }: StateContext<MergeosStateModel>,
@@ -138,13 +141,6 @@ export class MergeosState {
     { id }: MergeosActions.SelectItem
   ) {
     setState(actSelected(true, false, id));
-  }
-  @Action(MergeosActions.UpdateSearch)
-  newSearch(
-    { setState }: StateContext<MergeosStateModel>,
-    { newSearch }: MergeosActions.UpdateSearch
-  ) {
-    setState(patch({ searchString: newSearch }));
   }
 
   @Action(MergeosActions.MergeProfesionales)
@@ -193,13 +189,11 @@ export class MergeosState {
     return null;
   }
   @Action(MergeosActions.LoadProfesionales)
-  loadProfs(
-    { getState, setState }: StateContext<MergeosStateModel>,
-    { page, pageSize }: MergeosActions.LoadProfesionales
-  ) {
+  loadProfs({ getState, setState }: StateContext<MergeosStateModel>) {
     const state = getState();
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
     return this.profesionalesService
-      .BusParaMerge(state.searchString, page, pageSize)
+      .BusParaMerge(paramsState.search, paramsState.page, paramsState.pageSize)
       .pipe(
         tap(
           (result) => {
@@ -225,7 +219,6 @@ export class MergeosState {
             delete result.results;
             setState(
               patch({
-                ...getState(),
                 toMerge: mergeo,
                 pagination: { ...result },
               })
@@ -248,9 +241,7 @@ export class MergeosState {
         (result) => {
           const toMergeNew = state.toMerge.filter((item) => item.id !== id);
           const selectedNew = state.selected.filter((item) => item.id !== id);
-          setState(
-            patch({ ...getState(), toMerge: toMergeNew, selected: selectedNew })
-          );
+          setState(patch({ toMerge: toMergeNew, selected: selectedNew }));
         },
         (err) => {}
       )

@@ -7,6 +7,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ScrollUpComponent } from './scroll-up/scroll-up.component';
 import { ToastPreguntaComponent } from './toast-pregunta/toast-pregunta.component';
 import { BusquedasTableComponent } from './busquedas-table/busquedas-table.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 
 
@@ -16,7 +17,8 @@ import { BusquedasTableComponent } from './busquedas-table/busquedas-table.compo
     ToastComponent,
     ScrollUpComponent,
     ToastPreguntaComponent,
-    BusquedasTableComponent
+    BusquedasTableComponent,
+    SearchInputComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { BusquedasTableComponent } from './busquedas-table/busquedas-table.compo
     ToastComponent,
     ScrollUpComponent,
     BusquedasTableComponent,
+    SearchInputComponent
   ]
 })
 export class GlobalesModule { }

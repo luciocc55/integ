@@ -15,7 +15,7 @@ import { ToastPreguntaService } from 'src/app/utility/toastPregunta.service';
 export class EditComponent implements OnInit {
   @Select((state: any) => state.matcheos.master)
   master$!: Observable<Matcheados>;
-  @Select((state: any) => state.matcheos.searchString)
+  @Select((state: any) => state.params.search)
   search$!: Observable<string>;
   searchMarker!: boolean;
   idMaster!: number;
@@ -27,38 +27,32 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.search$.subscribe((data) => {
+      if (data) {
+        this.searchMarker = true;
+        this.store.dispatch(new BusquedasActions.BuscarProfesionales());
+      }
+    });
     this.route.queryParamMap.subscribe((params) => {
       const master = params.get('master');
       if (master) {
-        this.idMaster = parseInt(master);
-        const page = params.get('page') || '1';
-        const pageSize = params.get('pageSize') || '25';
-        const search = params.get('search') || '';
-        this.searchMarker = search ? true : false;
-        this.store.dispatch([
-          new MatcheosActions.UpdateSearch(search),
-          new BusquedasActions.UpdateSearch(search),
-          new BusquedasActions.BuscarProfesionales(page, pageSize),
-          new MatcheosActions.LoadMasterProfesional(this.idMaster),
-        ]);
+        if (this.idMaster !== parseInt(master)) {
+          this.idMaster = parseInt(master);
+          this.store.dispatch([
+            new MatcheosActions.LoadMasterProfesional(this.idMaster),
+          ]);
+        }
       } else {
         this.router.navigate(['../'], {
           relativeTo: this.route,
         });
       }
     });
-    this.search$.subscribe((value) => {
-      this.store.dispatch(new BusquedasActions.UpdateSearch(value));
-      this.updateParams({ search: value, page: 1 });
-    });
   }
   paginar(data: { page: number; pageSize: number }) {
-    this.updateParams({ page: data.page, pageSize: data.pageSize });
-  }
-  updateParams(params: any) {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: params,
+      queryParams: { page: data.page, pageSize: data.pageSize },
       queryParamsHandling: 'merge',
       replaceUrl: true,
     });

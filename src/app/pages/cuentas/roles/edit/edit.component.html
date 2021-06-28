@@ -1,1 +1,25 @@
-<p>edit works!</p>
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8">
+  <ng-container *ngIf="rol$|async as Rol">
+    <div
+      class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+      <div class="flex flex-none  items-start justify-center ">
+        <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+          <mat-icon class="text-white text-5xl w-auto h-auto">settings</mat-icon>
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col">
+        <span class="text-2xl font-medium">{{'roles.title'|transloco: { descripcion:Rol.descripcion} }}</span>
+      </div>
+    </div>
+    <div class="flex flex-1 pt-8 px-8">
+      <app-roles-form></app-roles-form>
+    </div>
+    <div class="flex flex-1 pt-8 px-8 justify-end">
+      <div class="flex flex-none" [matTooltip]="'disabled'|transloco" [matTooltipDisabled]='Rol.descripcion !== ""'>
+        <button (click)='editarRol()' matRipple mat-stroked-button color='primary' [disabled]='!Rol.descripcion'>
+          {{'roles.guardarCambios'|transloco}}
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

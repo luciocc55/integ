@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
+import { ParamsState } from '../params/params.state';
 import { BusquedasActions } from './busquedas.actions';
 
 export class Busquedas {
@@ -16,12 +17,10 @@ export class Busquedas {
 
 export class BusquedasStateModel {
   public pagination?: Pagination;
-  public searchString!: string;
   public resultados!: Busquedas[];
 }
 
 const defaults = {
-  searchString: '',
   resultados: [],
 };
 function formatProf(profesional: any) {
@@ -41,22 +40,15 @@ function formatProf(profesional: any) {
 })
 @Injectable()
 export class BusquedasState {
-  constructor(private profesionalesService: ProfesionalesService) {}
-  @Action(BusquedasActions.UpdateSearch)
-  newSearch(
-    { setState }: StateContext<BusquedasStateModel>,
-    { newSearch }: BusquedasActions.UpdateSearch
-  ) {
-    setState(patch({ searchString: newSearch }));
-  }
+  constructor(private profesionalesService: ProfesionalesService, private store: Store) {}
+
   @Action(BusquedasActions.BuscarProfesionales)
   busProfs(
-    { getState, setState }: StateContext<BusquedasStateModel>,
-    { page, pageSize }: BusquedasActions.BuscarProfesionales
+    { setState }: StateContext<BusquedasStateModel>
   ) {
-    const state = getState();
+    const paramsState = this.store.selectSnapshot(ParamsState.params)
     return this.profesionalesService
-      .BusParaMerge(state.searchString, page, pageSize)
+      .BusParaMerge(paramsState.search, paramsState.page, paramsState.pageSize)
       .pipe(
         tap(
           (result) => {
@@ -66,7 +58,6 @@ export class BusquedasState {
             delete result.results;
             setState(
               patch({
-                ...getState(),
                 resultados: busqueda,
                 pagination: { ...result },
               })

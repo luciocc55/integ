@@ -20,6 +20,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSelectModule} from '@angular/material/select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [AutofocusDirective, NumberOnlyDirective],
@@ -44,7 +46,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTableModule,
     MatMenuModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule,
+    NgxMatSelectSearchModule,
   ],
 })
 export class SharedModule {}

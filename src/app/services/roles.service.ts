@@ -19,4 +19,19 @@ export class RolesService {
       }
     );
   }
+  getRol(idRol: string) {
+    return this.http.get<any>(urls.getRole + idRol);
+  }
+  getPermisos(busqueda: string) {
+    return this.http.post<any>(urls.getPermisos, { busqueda });
+  }
+  editRol(idRol: string, descripcion: string, permisos: string[]) {
+    return this.http.post<any>(urls.EditWPermisos + idRol, {
+      descripcion,
+      permisos,
+    });
+  }
+  createRol(descripcion: string, permisos: string[]) {
+    return this.http.post<any>(urls.CreateWPermisos, { descripcion, permisos });
+  }
 }

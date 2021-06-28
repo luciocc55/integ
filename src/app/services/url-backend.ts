@@ -37,7 +37,8 @@ export const getRoles = environment.api + roles + 'list/';
 export const getAllRoles = environment.api + roles + 'list_all/';
 export const getRole = environment.api + roles;
 export const createRole = environment.api + roles + 'crear';
-
+export const EditWPermisos = environment.api + roles + 'editar_con_permisos/'
+export const CreateWPermisos = environment.api + roles + 'crear_con_permisos/'
 
 export const agregarPermiso = environment.api + roles + 'agregar_permiso/';
 
