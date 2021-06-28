@@ -1,0 +1,30 @@
+<ng-template #editDialog>
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 mb-4">
+    <div
+      class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+      <div class="flex flex-none  items-start justify-center ">
+        <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+          <mat-icon class="text-white text-5xl w-auto h-auto">location_on</mat-icon>
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col">
+        <span class="text-2xl font-medium">{{'sidenav.direcciones'|transloco}}</span>
+      </div>
+    </div>
+    <div class="flex flex-1 pt-8 px-8">
+      <app-direcciones-form></app-direcciones-form>
+    </div>
+
+    <div class="flex flex-1 pt-8 px-8 justify-end">
+      <ng-container >
+        <div class="flex flex-none" [matTooltip]="'disabled'|transloco" [matTooltipDisabled]='"" !== ""'>
+          <button matRipple mat-stroked-button color='primary' [disabled]='!true'>
+            {{'roles.guardarCambios'|transloco}}
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+
+</ng-template>

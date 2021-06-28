@@ -17,7 +17,7 @@
     <ng-container *ngIf="{value:statusForm$|async} as Status">
       <div class="flex flex-none" [matTooltip]="'disabled'|transloco" [matTooltipDisabled]='Status.value !== ""'>
         <button (click)='crearUsuario()' matRipple mat-stroked-button color='primary' [disabled]='!Status.value'>
-          {{'usuarios.form.crear'|transloco}}
+          {{'usuarios.form.guardar'|transloco}}
         </button>
       </div>
     </ng-container>

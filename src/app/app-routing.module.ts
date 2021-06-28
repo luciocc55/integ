@@ -36,6 +36,12 @@ const routes: Routes = [
       import('./pages/estatus/estatus.module').then((m) => m.EstatusModule),
   },
   {
+    path: 'direcciones',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/direcciones/direcciones.module').then((m) => m.DireccionesModule),
+  },
+  {
     path: 'cuentas',
     canActivate: [AuthGuard],
     loadChildren: () =>

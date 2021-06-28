@@ -17,6 +17,10 @@ export namespace CuentasActions {
     static readonly type = '[Cuentas] Load Roles';
     constructor() {}
   }
+  export class LoadAllRoles {
+    static readonly type = '[Cuentas] Load All Roles';
+    constructor() {}
+  }
   export class LoadUsuarios {
     static readonly type = '[Cuentas] Load Usuarios';
     constructor() {}
@@ -44,5 +48,13 @@ export namespace CuentasActions {
   export class CreateRol {
     static readonly type = '[Cuentas] Create Rol';
     constructor() {}
+  }
+  export class CreateUsuario {
+    static readonly type = '[Cuentas] Create Usuario';
+    constructor() {}
+  }
+  export class LoadUsuario {
+    static readonly type = '[Cuentas] Load Usuario';
+    constructor(public idUsuario: string) {}
   }
 }

@@ -21,7 +21,7 @@ export const removeMasterPac = environment.api + 'pac_delete_master/';
 const permisos = 'permisos/';
 export const getPermisos = environment.api + permisos + 'list/';
 // Direcciones
-export const getDirecciones = environment.api + 'get_direcciones';
+export const getDirecciones = environment.api + 'get_direcciones/';
 export const updateDireccion = environment.api + 'update_direcciones/';
 
 // cuentas

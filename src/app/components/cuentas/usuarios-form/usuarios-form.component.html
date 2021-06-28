@@ -2,7 +2,7 @@
   <div class="flex flex-1 flex-col mt-2">
     <div class="flex flex-1 mt-2">
       <mat-form-field class=" w-full">
-        <input matInput formControlName="email" [placeholder]="'usuarios.table.usuario'|transloco">
+        <input matInput formControlName="email" [placeholder]="'usuarios.table.usuario'|transloco" matInputAutofocus>
         <mat-error *ngIf="usuariosForm.controls.email.hasError('required')">
           {{'campo'|transloco}}
         </mat-error>
@@ -42,7 +42,7 @@
             </ngx-mat-select-search>
           </mat-option>
           <ng-container *ngIf="(roles$|async) as Roles">
-            <mat-option [value]="rol._id" *ngFor="let rol of Roles">
+            <mat-option [value]="rol._id" *ngFor="let rol of Roles|search:'descripcion':searchSelect.value">
               {{rol.descripcion}}
             </mat-option>
           </ng-container>

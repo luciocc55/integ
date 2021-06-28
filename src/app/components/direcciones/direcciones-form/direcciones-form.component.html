@@ -1,0 +1,29 @@
+<form [formGroup]="direccionForm" ngxsForm="cuentas.newUsuarioForm" class="flex flex-col flex-1 w-full h-full">
+  <div class="flex flex-1 flex-col mt-2">
+    <div class="flex flex-1 mt-2">
+      <mat-form-field class=" w-full">
+        <input matInput formControlName="sinonimo" [placeholder]="'usuarios.table.usuario'|transloco" matInputAutofocus>
+        <mat-error *ngIf="direccionForm.controls.sinonimo.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-1">
+      <mat-form-field class="w-full">
+        <input matInput formControlName="institucion" [placeholder]="'usuarios.table.nombre'|transloco">
+        <mat-error *ngIf="direccionForm.controls.institucion.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-1">
+      <mat-form-field class="w-full">
+        <input matInput formControlName="idGoRed" [placeholder]="'usuarios.table.apellido'|transloco">
+        <mat-error *ngIf="direccionForm.controls.idGoRed.hasError('required')">
+          {{'campo'|transloco}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+</form>

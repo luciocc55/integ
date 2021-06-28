@@ -26,11 +26,19 @@ export class Usuarios {
   public apellido!: string;
   public email!: string;
 }
+
+export class NewUsuarios {
+  public password!: string;
+  public role!: string;
+  public nombre!: string;
+  public apellido!: string;
+  public email!: string;
+}
 export class FormUsuarios {
-  public model!: Usuarios;
+  public model!: NewUsuarios;
   public dirty!: boolean;
   public status!: string;
-  public errors!:any;
+  public errors!: any;
 }
 export class CuentasStateModel {
   public token!: any;
@@ -45,7 +53,7 @@ export class CuentasStateModel {
 const defaults = {
   token: null,
   newUsuarioForm: {
-    model: new Usuarios,
+    model: new NewUsuarios(),
     dirty: false,
     status: '',
     errors: { required: '' },
@@ -98,6 +106,20 @@ export class CuentasState {
         )
       );
   }
+  @Action(CuentasActions.LoadAllRoles)
+  LoadAllRoles({ setState }: StateContext<CuentasStateModel>) {
+    return this.rolesService.getAllRoles().pipe(
+      tap(
+        (result) => {
+          setState(patch({ roles: result }));
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(CuentasActions.LoadUsuarios)
   LoadUsuarios({ setState }: StateContext<CuentasStateModel>) {
     const paramsState = this.store.selectSnapshot(ParamsState.params);
@@ -132,6 +154,38 @@ export class CuentasState {
       )
     );
   }
+  @Action(CuentasActions.LoadUsuario)
+  LoadUsuario(
+    { setState, getState }: StateContext<CuentasStateModel>,
+    { idUsuario }: CuentasActions.LoadUsuario
+  ) {
+    const state = getState();
+    return this.usuariosService.getUsuario(idUsuario).pipe(
+      tap(
+        (result) => {
+          const newUsuarioForm: NewUsuarios = {
+            email: result.email,
+            password: result.password,
+            role: result.role._id,
+            nombre: result.nombre,
+            apellido: result.apellido,
+          };
+          setState(
+            patch({
+              newUsuarioForm: {
+                ...state.newUsuarioForm,
+                model: newUsuarioForm,
+              },
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(CuentasActions.LoadPermisos)
   LoadPermisos(
     { setState }: StateContext<CuentasStateModel>,
@@ -188,6 +242,34 @@ export class CuentasState {
     }
     return null;
   }
+  @Action(CuentasActions.CreateUsuario)
+  CreateUsuario({ getState, dispatch }: StateContext<CuentasStateModel>) {
+    const state = getState();
+    if (state.newUsuarioForm.model) {
+      const usuario = state.newUsuarioForm.model;
+      return this.usuariosService
+        .createUsuario(
+          usuario.email,
+          usuario.password,
+          usuario.nombre,
+          usuario.apellido,
+          usuario.role
+        )
+        .pipe(
+          tap(
+            (result) => {
+              dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
+            },
+            (err) => {
+              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+              throw err.error?.error;
+            }
+          )
+        );
+    }
+    return null;
+  }
+
   @Action(CuentasActions.UpdateState)
   UpdateState(
     { setState }: StateContext<CuentasStateModel>,

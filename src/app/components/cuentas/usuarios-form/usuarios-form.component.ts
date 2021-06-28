@@ -10,7 +10,6 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CuentasActions } from 'src/app/store/cuentas/cuentas.actions';
 import { Roles } from 'src/app/store/cuentas/cuentas.state';
-import { ParamsActions } from 'src/app/store/params/params.actions';
 
 @Component({
   selector: 'app-usuarios-form',
@@ -29,13 +28,7 @@ export class UsuariosFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new CuentasActions.LoadRoles());
-    this.searchSelect.valueChanges.subscribe((value) => {
-      this.store.dispatch([
-        new ParamsActions.UpdateParams(value),
-        new CuentasActions.LoadRoles(),
-      ]);
-    });
+    this.store.dispatch(new CuentasActions.LoadAllRoles());
     this.usuariosForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],

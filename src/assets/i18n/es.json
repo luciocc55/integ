@@ -99,7 +99,16 @@
     },
     "form": {
       "password": "Password",
-      "crear": "Crear Usuario"
+      "crear": "Crear Usuario",
+      "guardar":"Guardar"
+    }
+  },
+  "direcciones": {
+    "table": {
+      "sinonimo":"Sinonimo",
+      "real": "Valor Real",
+      "idgored": "Numero en GoRed",
+      "institucion": "Institucion"
     }
   }
 }

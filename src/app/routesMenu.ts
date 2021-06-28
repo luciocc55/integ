@@ -20,7 +20,7 @@ export const menuData = [
       {
         title: 'usuarios',
         url: 'cuentas/',
-        icon: 'person',
+        icon: 'groups',
       },
     ],
   },

@@ -1,41 +1,42 @@
 <div class="flex flex-col shadow-md rounded-xl flex-1  overflow-auto ">
   <table mat-table class="w-full h-full" #table [dataSource]="dataSource" *transloco="let t">
-    <ng-container matColumnDef="rol">
+    <ng-container matColumnDef="sinonimo">
       <th *matHeaderCellDef mat-sort-header>
-        {{t('roles.title')}}</th>
+        {{t('direcciones.table.real')}}</th>
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
-        <strong class='has_label_on_mobile' [attr.data-label]="t('roles.title')+ ':'"></strong>
-        <span class="text-base ">{{registro.role.descripcion}}</span>
+        <strong class='has_label_on_mobile' [attr.data-label]="t('direcciones.table.real')+ ':'"></strong>
+        <span class="text-base ">{{registro.direccion}}</span>
       </td>
     </ng-container>
-    <ng-container matColumnDef="nombre">
+    <ng-container matColumnDef="real">
       <th *matHeaderCellDef mat-sort-header>
-        {{t('usuarios.table.nombre')}}</th>
+        {{t('direcciones.table.sinonimo')}}</th>
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
-        <strong class='has_label_on_mobile' [attr.data-label]="t('usuarios.table.nombre')+ ':'"></strong>
-        <span class="text-lg font-medium">{{registro.nombre|titlecase}}</span>
+        <strong class='has_label_on_mobile' [attr.data-label]="t('direcciones.table.sinonimo')+ ':'"></strong>
+        <span class="text-lg font-medium">{{registro.sinonimo|titlecase}}</span>
       </td>
     </ng-container>
-    <ng-container matColumnDef="apellido">
+
+    <ng-container matColumnDef="gored">
       <th *matHeaderCellDef mat-sort-header>
-        {{t('usuarios.table.apellido')}}</th>
+        {{t('direcciones.table.idgored')}}</th>
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
-        <strong class='has_label_on_mobile' [attr.data-label]="t('usuarios.table.apellido')+ ':'"></strong>
-        <span class="text-lg font-medium">{{registro.apellido|titlecase}}</span>
+        <strong class='has_label_on_mobile' [attr.data-label]="t('direcciones.table.idgored')+ ':'"></strong>
+        <span class="text-lg font-medium">{{registro.idGoRed|titlecase}}</span>
       </td>
     </ng-container>
-    <ng-container matColumnDef="usuario">
+    <ng-container matColumnDef="institucion">
       <th *matHeaderCellDef mat-sort-header>
-        {{t('usuarios.table.usuario')}}</th>
+        {{t('direcciones.table.institucion')}}</th>
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
-        <strong class='has_label_on_mobile' [attr.data-label]="t('usuarios.table.usuario')+ ':'"></strong>
-        <span class="text-lg font-medium">{{registro.email}}</span>
+        <strong class='has_label_on_mobile' [attr.data-label]="t('direcciones.table.institucion')+ ':'"></strong>
+        <span class="text-lg font-medium">{{registro.institucion|titlecase}}</span>
       </td>
     </ng-container>
     <ng-container matColumnDef="edit">
       <th *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
-        <a [routerLink]="['/cuentas/edit']" [queryParams]='{usuario: registro._id}'
+        <a [routerLink]="['/direcciones/edit']" [queryParams]='{direccion: registro._id}'
           routerLinkActive="router-link-active">
           <button mat-icon-button class="bg-primary-accent my-2">
             <mat-icon class="text-primary-700 ">edit</mat-icon>

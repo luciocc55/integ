@@ -143,8 +143,7 @@ export class MatcheosState {
     );
   }
   @Action(MatcheosActions.LoadProfesionales)
-  loadProfs({ getState, setState }: StateContext<MatcheosStateModel>) {
-    const state = getState();
+  loadProfs({ setState }: StateContext<MatcheosStateModel>) {
     const paramsState = this.store.selectSnapshot(ParamsState.params);
     return this.profesionalesService
       .BusMatcheados(paramsState.search, paramsState.page, paramsState.pageSize)

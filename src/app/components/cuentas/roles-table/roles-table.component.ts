@@ -19,7 +19,7 @@ export class RolesTableComponent implements OnInit {
   roles$!: Observable<Roles[]>;
   @Output() paginacion = new EventEmitter<any>(false);
   @Output() evento = new EventEmitter<any>(false);
-  @Input() columns!: string[];
+  @Input() columns: string[] = [];
   constructor() {}
 
   ngOnInit(): void {

@@ -19,6 +19,11 @@ export class RolesService {
       }
     );
   }
+  getAllRoles() {
+    return this.http.post<any>(
+      urls.getAllRoles, {}
+    );
+  }
   getRol(idRol: string) {
     return this.http.get<any>(urls.getRole + idRol);
   }

@@ -19,17 +19,22 @@ export class UsuariosService {
       }
     );
   }
-  getRol(idRol: string) {
-    return this.http.get<any>(urls.getRole + idRol);
+  getUsuario(idUsuario: string) {
+    return this.http.get<any>(urls.getCuenta + idUsuario);
   }
-
-  editRol(idRol: string, descripcion: string, permisos: string[]) {
-    return this.http.post<any>(urls.EditWPermisos + idRol, {
-      descripcion,
-      permisos,
+  createUsuario(
+    email: string,
+    password: string,
+    nombre: string,
+    apellido: string,
+    role: string
+  ) {
+    return this.http.post<any>(urls.crearCuenta, {
+      email,
+      password,
+      nombre,
+      apellido,
+      role
     });
-  }
-  createRol(descripcion: string, permisos: string[]) {
-    return this.http.post<any>(urls.CreateWPermisos, { descripcion, permisos });
   }
 }

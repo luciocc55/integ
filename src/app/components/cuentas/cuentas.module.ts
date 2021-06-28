@@ -9,6 +9,7 @@ import { UsuariosTableComponent } from './usuarios-table/usuarios-table.componen
 import { UsuariosFormComponent } from './usuarios-form/usuarios-form.component';
 import { CuentasState } from 'src/app/store/cuentas/cuentas.state';
 import { NgxsModule } from '@ngxs/store';
+import { SearchPipe } from 'src/app/utility/pipes/searchString.pipe';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { NgxsModule } from '@ngxs/store';
     RolesFormComponent,
     UsuariosTableComponent,
     UsuariosFormComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
