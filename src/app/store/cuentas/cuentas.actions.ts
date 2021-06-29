@@ -45,6 +45,10 @@ export namespace CuentasActions {
     static readonly type = '[Cuentas] Edit Rol';
     constructor() {}
   }
+  export class EditUsuario {
+    static readonly type = '[Cuentas] Edit Usuario';
+    constructor() {}
+  }
   export class CreateRol {
     static readonly type = '[Cuentas] Create Rol';
     constructor() {}

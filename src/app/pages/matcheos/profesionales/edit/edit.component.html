@@ -18,7 +18,7 @@
     <div class="flex flex-none h-72 overflow-auto" *ngIf='searchMarker'>
       <app-busquedas-table (evento)='addMatch($event)' [icon]='"add"'></app-busquedas-table>
     </div>
-    <div class="flex flex-1 dark:bg-accent-900 bg-primary-50 flex-col p-4 rounded-lg mt-2">
+    <div class="flex flex-1 flex-col p-4 rounded-lg space-y-2 mt-2">
       <ng-container [ngTemplateOutlet]="items"
         [ngTemplateOutletContext]="{registro: Master,icon:'star',template: buttonMaster}"></ng-container>
       <ng-container *ngFor="let registro of Master.matcheos">
@@ -38,22 +38,25 @@
 </mat-menu>
 
 <ng-template #items let-registro='registro' let-template=template let-icon='icon'>
-  <div class="flex flex-1 border-primary-500 border-l-4 space-x-2 my-1">
+  <app-item-tarjeta>
     <div class="flex flex-none justify-center items-center mx-2">
       <mat-icon class="text-3xl w-auto h-auto">{{icon}}</mat-icon>
     </div>
-    <div class="flex flex-col space-y-3 flex-1">
+    <div class="flex flex-col space-y-1 flex-1">
       <span class="text-lg font-medium">
         {{registro.descripcion| titlecase}}
       </span>
       <span>
-        {{registro.origen}} {{registro.idOrigen}}
+        {{registro.origen}}
+      </span>
+      <span>
+        {{'mergeo.table.id'|transloco}}: {{registro.idOrigen}}
       </span>
     </div>
     <div class="flex flex-none items-center">
       <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]='{registro:registro}'></ng-container>
     </div>
-  </div>
+  </app-item-tarjeta>
 </ng-template>
 
 <ng-template #buttonMatcheos let-registro='registro'>

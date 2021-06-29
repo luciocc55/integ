@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
@@ -12,22 +12,28 @@ import { ToastPreguntaService } from 'src/app/utility/toastPregunta.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   @Select((state: any) => state.matcheos.master)
   master$!: Observable<Matcheados>;
   @Select((state: any) => state.params.search)
   search$!: Observable<string>;
   searchMarker!: boolean;
   idMaster!: number;
+  searchSubscription!: Subscription;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store,
     private preguntaService: ToastPreguntaService
   ) {}
+  ngOnDestroy(): void {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
-    this.search$.subscribe((data) => {
+    this.searchSubscription = this.search$.subscribe((data) => {
       if (data) {
         this.searchMarker = true;
         this.store.dispatch(new BusquedasActions.BuscarProfesionales());

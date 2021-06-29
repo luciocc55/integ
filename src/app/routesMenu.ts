@@ -48,11 +48,6 @@ export const menuData = [
         icon: 'science',
       },
       {
-        title: 'instituciones',
-        url: 'matchear/instituciones',
-        icon: 'business',
-      },
-      {
         title: 'os',
         url: 'matchear/os',
         icon: 'account_balance',
@@ -83,11 +78,6 @@ export const menuData = [
         icon: 'science',
       },
       {
-        title: 'instituciones',
-        url: 'matcheos/instituciones',
-        icon: 'business',
-      },
-      {
         title: 'os',
         url: 'matcheos/os',
         icon: 'account_balance',
@@ -98,44 +88,19 @@ export const menuData = [
     title: 'importaciones',
     subs: [
       {
+        title: 'importacion',
+        url: '/importacion',
+        icon: 'date_range',
+      },
+      {
         title: 'general',
-        url: '/ultimos-registros',
+        url: '/ultimas-importaciones',
         icon: 'timer',
       },
       {
         title: 'direcciones',
         url: '/direcciones',
         icon: 'location_on',
-      },
-      {
-        title: 'profesionales',
-        url: '/match_prof',
-        icon: 'manage_accounts',
-      },
-      {
-        title: 'equipos',
-        url: '/match_equip',
-        icon: 'groups',
-      },
-      {
-        title: 'especialidades',
-        url: '/match_esp',
-        icon: 'health_and_safety',
-      },
-      {
-        title: 'estudios',
-        url: '/match_est',
-        icon: 'science',
-      },
-      {
-        title: 'instituciones',
-        url: '/match_inst',
-        icon: 'business',
-      },
-      {
-        title: 'os',
-        url: '/match_os',
-        icon: 'account_balance',
       },
     ],
   },

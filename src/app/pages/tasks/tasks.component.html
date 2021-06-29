@@ -1,0 +1,87 @@
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8">
+  <div
+    class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+    <div class="flex flex-none  items-start justify-center ">
+      <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+        <mat-icon class="text-white text-5xl w-auto h-auto">date_range</mat-icon>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <span class="text-2xl font-medium">{{'sidenav.importacion'|transloco}}</span>
+    </div>
+  </div>
+  <div class="flex flex-1 flex-col space-y-3 pt-4">
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='prof()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'sidenav.profesionales'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.profesionales'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='equip()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'sidenav.equipos'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.equipos'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='esp()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'sidenav.especialidades'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.especialidades'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='est()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'sidenav.estudios'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.estudios'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='profesp()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'tasks.profespTitle'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.profesp'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='dir()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'sidenav.direcciones'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.direcciones'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
+  </div>
+</div>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { merge, Observable } from 'rxjs';
+import { merge, Observable, Subscription } from 'rxjs';
 import { MatcheosActions } from 'src/app/store/matcheos/matcheos.actions';
 
 @Component({
@@ -9,19 +9,25 @@ import { MatcheosActions } from 'src/app/store/matcheos/matcheos.actions';
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.scss'],
 })
-export class ViewComponent implements OnInit {
+export class ViewComponent implements OnInit, OnDestroy {
   @Select((state: any) => state.matcheos.noResults)
   noResults$!: Observable<string>;
   @Select((state: any) => state.params)
   search$!: Observable<string>;
+  subscription!: Subscription;
   constructor(
     private route: ActivatedRoute,
     private store: Store,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
-    merge(this.noResults$, this.search$).subscribe((data) => {
+    this.subscription = merge(this.noResults$, this.search$).subscribe((data) => {
       if (data) {
         this.store.dispatch(new MatcheosActions.LoadProfesionales());
       }

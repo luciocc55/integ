@@ -45,8 +45,8 @@ export const agregarPermiso = environment.api + roles + 'agregar_permiso/';
 // Equipos
 export const Getequipos = environment.api + 'equipos/';
 export const busEquipos = environment.api + 'bus_equipos/';
-
-
+export const latestEquips = environment.api + 'latest_equipos/';
+export const mergeoEquipos = environment.api + 'matcheo_equipos/';
 export const MasterEquipCrear = environment.api + 'master_equipos_crear/';
 export const equiposUpdate = environment.api + 'equipos_update/';
 export const equiposDelete = environment.api + 'equipos_delete/';
@@ -57,6 +57,7 @@ export const removerEquipFromMaster = environment.api + 'equip_delete_from_maste
 export const removeMasterEquip = environment.api + 'equip_delete_master/';
 // Estudios
 export const Getestudios = environment.api + 'estudios/';
+export const mergeoEstudios = environment.api + 'matcheo_estudios/';
 export const busEstudios = environment.api + 'bus_estudios/';
 export const MasterEstCrear = environment.api + 'master_estudios_crear/';
 export const estudiosUpdate = environment.api + 'estudios_update/';
@@ -66,6 +67,7 @@ export const MasterEstUpd = environment.api + 'master_estudios_update/';
 export const estudiosMatcheosExport = environment.api + 'exportar_estudios_matcheados/';
 export const removerEstFromMaster = environment.api + 'est_delete_from_master/';
 export const removeMasterEst = environment.api + 'est_delete_master/';
+export const latestEsts = environment.api + 'latest_estudios/';
 // Profesionales
 export const Getprofesionales = environment.api + 'profesionales/';
 export const BusProfesionales = environment.api + 'bus_profesionales/';
@@ -84,6 +86,7 @@ export const removeMasterProf = environment.api + 'prof_delete_master/';
 export const profesionalesMatcheosExport = environment.api + 'exportar_profesionales_matcheados/';
 // Especialidades
 export const Getespecialidades = environment.api + 'especialidades/';
+export const mergeoEspecialidades = environment.api + 'matcheo_especialidades/';
 export const BusEspecialidades = environment.api + 'bus_especialidades/';
 export const MasterEspCrear = environment.api + 'master_especialidades_crear/';
 export const especialidadesUpdate = environment.api + 'especialidades_update/';
@@ -110,3 +113,11 @@ export const removeMasterOs = environment.api + 'os_delete_master/';
 export const habilitacionOs = environment.api + 'os_habilitacion/';
 export const habilitacionMaster = environment.api + 'os_habilitacion_master/';
 
+// TASKS
+const tasks = 'tasks/';
+export const profesionalesTask = environment.api + tasks + 'profesionales/';
+export const direccionesTask = environment.api + tasks + 'direcciones/';
+export const especialidadesTask = environment.api + tasks + 'especialidades/';
+export const equiposTask = environment.api + tasks + 'equipos/';
+export const estudiosTask = environment.api + tasks + 'estudios/';
+export const profespTask = environment.api + tasks + 'profesionalesespecialidades/';

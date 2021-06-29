@@ -1,14 +1,13 @@
 {
   "sidenav": {
     "estatus": "Estatus Services",
-    "estatusSub":"Se muestra el estado actual de los servicios",
+    "estatusSub": "Se muestra el estado actual de los servicios",
     "matchear": "Matchear",
     "matcheos": "Matcheados",
     "profesionales": "Profesionales",
     "estudios": "Estudios",
     "equipos": "Equipos",
     "especialidades": "Especialidades",
-    "instituciones": "Instituciones",
     "os": "Obras Sociales",
     "cuentas": "Cuentas",
     "roles": "Roles",
@@ -17,8 +16,10 @@
     "general": "Ver ultimas importaciones",
     "direcciones": "Direcciones",
     "logout": "Cerrar Sesion",
-    "home": "Home"
+    "home": "Home",
+    "importacion": "Tareas de Importacion"
   },
+  "ultimos":"Sin importaciones en los ultimos 2 dias",
   "login": {
     "title": "Login",
     "subTitle": "Bienvenido",
@@ -36,7 +37,8 @@
       "acciones": "Acciones",
       "masterAccion": "Elegir como master",
       "remMasterAccion": "Remover como master",
-      "delete": "Eliminar"
+      "delete": "Eliminar",
+      "creacion": "Fecha de importacion"
     },
     "aceptar": "Aceptar mergeo",
     "tooltipAceptar": "Debe seleccionar al menos un registro y un master"
@@ -57,58 +59,73 @@
     "mergeoError": "Hubo un error vuelva a intentarlo o solicite ayuda a un admin",
     "mergeoExito": "Mergeo exitoso",
     "preguntaOperacion": "¿Esta seguro que desea realizar esta accion?",
-    "confirmacion":"Confirmar para seguir"
+    "confirmacion": "Confirmar para seguir",
+    "migracion": "La tarea fue realizada con exito"
   },
   "matcheos": {
     "title": "Master {{tipo}} {{master}}",
     "profesional": "Profesional",
+    "especialidad": "Especialidad",
+    "equipo": "Equipo",
+    "estudio": "Estudio",
     "table": {
-      "id":"ID",
-      "masterId":"Id Master",
-      "editar":"Editar Master",
-      "deleteMaster":"Eliminar Master",
-      "remove":"Remover",
-      "unmatch":"Desmatchear a {{matcheo}}"
+      "id": "ID",
+      "masterId": "Id Master",
+      "editar": "Editar Master",
+      "deleteMaster": "Eliminar Master",
+      "remove": "Remover",
+      "unmatch": "Desmatchear a {{matcheo}}"
     }
   },
   "roles": {
     "title": "Rol {{descripcion}}",
     "desc": "Descripcion",
     "permisos": "Permisos",
-    "sinPermisos":"No posee permisos",
+    "sinPermisos": "No posee permisos",
     "hint": "Puede agregarlos desde la seleccion de permisos",
     "guardarCambios": "Guardar Cambios",
     "crear": "Crear Rol",
     "nuevo": "Crear Nuevo"
   },
   "selectSearch": {
-    "title":"Buscar",
+    "title": "Buscar",
     "noResults": "Sin resultados"
   },
   "estatus": {
     "serviceName": "Service",
-    "fecha":"Fecha de ultima modificacion",
+    "fecha": "Fecha de ultima modificacion",
     "caidas": "Cantidad de caidas en las ultimas 24hs",
     "habilitacion": "Habilitacion"
   },
   "usuarios": {
-    "table":{
-      "nombre":"Nombre",
+    "table": {
+      "nombre": "Nombre",
       "apellido": "Apellido",
       "usuario": "Username"
     },
     "form": {
       "password": "Password",
       "crear": "Crear Usuario",
-      "guardar":"Guardar"
+      "guardar": "Guardar"
     }
   },
   "direcciones": {
     "table": {
-      "sinonimo":"Sinonimo",
+      "sinonimo": "Sinonimo",
       "real": "Valor Real",
       "idgored": "Numero en GoRed",
       "institucion": "Institucion"
     }
+  },
+  "tasks": {
+    "migrar": "Migrar",
+    "boton": "Ejecutar Tarea",
+    "profesionales": "Esta tarea se ejecuta en un cron que migra todos los profesionales desde cada his",
+    "especialidades": "Esta tarea se ejecuta en un cron que migra todos las especialidades desde cada his",
+    "direcciones": "Esta tarea se ejecuta en un cron que migra todas las direcciones desde cada his",
+    "estudios": "Esta tarea se ejecuta en un cron que migra todos los estudios desde cada his",
+    "equipos": "Esta tarea se ejecuta en un cron que migra todos los equipos desde cada his",
+    "profespTitle": "profesionales y especialidades",
+    "profesp": "Esta tarea se ejecuta en un cron que migra las relaciones entre profesional y especialidad desde cada his"
   }
 }

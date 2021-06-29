@@ -7,7 +7,6 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EstatusComponent } from './estatus.component';
 import { EstatusState } from 'src/app/store/estatus/estatus.state';
-import { LocalizedDatePipe } from 'src/app/utility/pipes/date-localized.pipe';
 
 const routes: Routes = [
   {
@@ -17,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [EstatusComponent, LocalizedDatePipe],
+  declarations: [EstatusComponent],
   imports: [
     CommonModule,
     GlobalesModule,

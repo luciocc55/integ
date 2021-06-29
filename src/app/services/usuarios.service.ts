@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as urls from './url-backend';
+import { NewUsuarios } from '../store/cuentas/cuentas.state';
 @Injectable({
   providedIn: 'root',
 })
@@ -36,5 +37,8 @@ export class UsuariosService {
       apellido,
       role
     });
+  }
+  editarUsuario(idUsuario: string, data: NewUsuarios) {
+    return this.http.post<any>(urls.updateCuenta + idUsuario, data);
   }
 }

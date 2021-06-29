@@ -50,7 +50,7 @@
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
         <strong class='has_label_on_mobile' [attr.data-label]="t('matcheos.table.id')+ ':'"></strong>
         <ng-container *ngFor="let item of registro.matcheos">
-          <span>{{item.idOrigen|titlecase}}</span>
+          <span>{{item.idOrigen}}</span>
           <br>
         </ng-container>
       </td>

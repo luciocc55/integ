@@ -16,6 +16,30 @@ const routes: Routes = [
             (m) => m.ProfesionalesModule
           ),
       },
+      {
+        path: 'especialidades',
+        data: { state: 'especialidades' },
+        loadChildren: () =>
+          import('./especialidades/especialidades.module').then(
+            (m) => m.EspecialidadesModule
+          ),
+      },
+      {
+        path: 'equipos',
+        data: { state: 'equipos' },
+        loadChildren: () =>
+          import('./equipos/equipos.module').then(
+            (m) => m.EquiposModule
+          ),
+      },
+      {
+        path: 'estudios',
+        data: { state: 'estudios' },
+        loadChildren: () =>
+          import('./estudios/estudios.module').then(
+            (m) => m.EstudiosModule
+          ),
+      },
     ],
   },
 ];

@@ -39,13 +39,27 @@ const routes: Routes = [
     path: 'direcciones',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/direcciones/direcciones.module').then((m) => m.DireccionesModule),
+      import('./pages/direcciones/direcciones.module').then(
+        (m) => m.DireccionesModule
+      ),
+  },
+  {
+    path: 'importacion',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/tasks/tasks.module').then((m) => m.TasksModule),
   },
   {
     path: 'cuentas',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/cuentas/cuentas.module').then((m) => m.CuentasModule),
+  },
+  {
+    path: 'ultimas-importaciones',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/ultimas-importaciones/ultimas-importaciones.module').then((m) => m.UltimasImportacionesModule),
   },
   {
     path: 'logout',

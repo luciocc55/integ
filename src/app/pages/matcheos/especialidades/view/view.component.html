@@ -1,0 +1,20 @@
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8">
+  <div
+    class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+    <div class="flex flex-none  items-start justify-center ">
+      <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+        <mat-icon class="text-white text-5xl w-auto h-auto">health_and_safety</mat-icon>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <span class="text-2xl font-medium">{{'sidenav.especialidades'|transloco}}</span>
+    </div>
+  </div>
+  <div class="flex flex-1">
+    <app-search-input></app-search-input>
+  </div>
+  <div class="flex flex-1 ">
+    <app-matcheos-table (unMatch)='unMatch($event)' (deletedMaster)='deteleteMaster($event)'
+      (paginacion)='paginar($event)'></app-matcheos-table>
+  </div>
+</div>

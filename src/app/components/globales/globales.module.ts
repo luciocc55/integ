@@ -8,6 +8,7 @@ import { ScrollUpComponent } from './scroll-up/scroll-up.component';
 import { ToastPreguntaComponent } from './toast-pregunta/toast-pregunta.component';
 import { BusquedasTableComponent } from './busquedas-table/busquedas-table.component';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { ItemTarjetaComponent } from './item-tarjeta/item-tarjeta.component';
 
 
 
@@ -18,7 +19,8 @@ import { SearchInputComponent } from './search-input/search-input.component';
     ScrollUpComponent,
     ToastPreguntaComponent,
     BusquedasTableComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    ItemTarjetaComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { SearchInputComponent } from './search-input/search-input.component';
     ToastComponent,
     ScrollUpComponent,
     BusquedasTableComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    ItemTarjetaComponent
   ]
 })
 export class GlobalesModule { }

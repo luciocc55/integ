@@ -12,9 +12,9 @@
     </div>
   </div>
   <ng-container *ngIf="estatus$|async as Estatus">
-    <div class="flex flex-1 dark:bg-accent-900 bg-primary-50 flex-col p-4 rounded-lg mt-2">
-      <div class="flex flex-1 border-primary-500 border-l-4 space-x-2 my-2 mobile:flex-col" *ngFor='let estatus of Estatus'>
-        <div class="flex flex-col space-y-3 flex-1 ml-4">
+    <div class="flex flex-1 flex-col   mt-2">
+      <app-item-tarjeta class="my-1" *ngFor='let estatus of Estatus'>
+        <div class="flex flex-col space-y-2 flex-1 ml-4 ">
           <span class="text-base font-medium">
             {{estatus.nombre|titlecase}}
           </span>
@@ -31,7 +31,7 @@
             (change)="changeHabilit(estatus.id, !estatus.habilitado)">{{'estatus.habilitacion'|transloco}}
           </mat-checkbox>
         </div>
-      </div>
+      </app-item-tarjeta>
     </div>
   </ng-container>
 </div>

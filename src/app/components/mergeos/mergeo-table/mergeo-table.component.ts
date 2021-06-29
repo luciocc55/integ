@@ -17,6 +17,7 @@ export class MergeoTableComponent implements OnInit {
     'select',
     'id',
     'descripcion',
+    'creacion',
     'origen',
     'acciones',
   ];

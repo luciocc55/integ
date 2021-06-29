@@ -46,6 +46,7 @@ export class CuentasStateModel {
   public permisos?: Permisos[];
   public rol?: Roles;
   public usuarios?: Usuarios[];
+  public usuario!: string;
   public pagination?: Pagination;
   public newUsuarioForm!: FormUsuarios;
 }
@@ -58,6 +59,7 @@ const defaults = {
     status: '',
     errors: { required: '' },
   },
+  usuario: '',
 };
 
 @State<CuentasStateModel>({
@@ -172,6 +174,7 @@ export class CuentasState {
           };
           setState(
             patch({
+              usuario: result._id,
               newUsuarioForm: {
                 ...state.newUsuarioForm,
                 model: newUsuarioForm,
@@ -215,7 +218,7 @@ export class CuentasState {
               dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
             },
             (err) => {
-              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+              dispatch(new GlobalActions.OpenAlert( err.error?.error || 'toast.mergeoError'));
               throw err.error?.error;
             }
           )
@@ -223,6 +226,26 @@ export class CuentasState {
     }
     return null;
   }
+  @Action(CuentasActions.EditUsuario)
+  EditUsuario({ getState, dispatch }: StateContext<CuentasStateModel>) {
+    const state = getState();
+    const usuario = state.newUsuarioForm.model;
+    if (usuario) {
+      return this.usuariosService.editarUsuario(state.usuario, usuario).pipe(
+        tap(
+          (result) => {
+            dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
+          },
+          (err) => {
+            dispatch(new GlobalActions.OpenAlert( err.error?.error || 'toast.mergeoError'));
+            throw err.error?.error;
+          }
+        )
+      );
+    }
+    return null;
+  }
+
   @Action(CuentasActions.CreateRol)
   CreateRol({ getState, dispatch }: StateContext<CuentasStateModel>) {
     const state = getState();
@@ -234,7 +257,7 @@ export class CuentasState {
             dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
           },
           (err) => {
-            dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+            dispatch(new GlobalActions.OpenAlert( err.error?.error || 'toast.mergeoError'));
             throw err.error?.error;
           }
         )
@@ -261,7 +284,7 @@ export class CuentasState {
               dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
             },
             (err) => {
-              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+              dispatch(new GlobalActions.OpenAlert( err.error?.error || 'toast.mergeoError'));
               throw err.error?.error;
             }
           )

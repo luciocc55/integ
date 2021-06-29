@@ -37,5 +37,11 @@ export class EditComponent implements OnInit {
       }
     });
   }
-  editarUsuario() {}
+  editarUsuario() {
+    this.store.dispatch(new CuentasActions.EditUsuario()).subscribe(() => {
+      this.router.navigate(['../'], {
+        relativeTo: this.route,
+      });
+    });
+  }
 }

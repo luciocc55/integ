@@ -22,9 +22,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { LocalizedDatePipe } from '../utility/pipes/date-localized.pipe';
 
 @NgModule({
-  declarations: [AutofocusDirective, NumberOnlyDirective],
+  declarations: [AutofocusDirective, NumberOnlyDirective, LocalizedDatePipe],
   imports: [CommonModule],
   exports: [
     OverlayModule,
@@ -49,6 +50,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatTooltipModule,
     MatSelectModule,
     NgxMatSelectSearchModule,
+    LocalizedDatePipe
   ],
 })
 export class SharedModule {}

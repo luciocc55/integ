@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     positionStrategy: this.overlay
       .position()
       .global()
-      .bottom('2em')
+      .bottom('1em')
       .right('1em'),
   });
   isLogged: any = null;

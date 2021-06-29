@@ -36,6 +36,10 @@ export class EditComponent implements OnInit {
     });
   }
   editarRol() {
-    this.store.dispatch(new CuentasActions.EditRol());
+    this.store.dispatch(new CuentasActions.EditRol()).subscribe(() => {
+      this.router.navigate(['../'], {
+        relativeTo: this.route,
+      });
+    });
   }
 }

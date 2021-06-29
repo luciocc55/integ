@@ -1,0 +1,81 @@
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+  <ng-container *ngIf="profesionales$|async as Profesionales">
+    <div class="flex flex-1 border-primary-500 border-l-4 pl-3 my-1">
+      <span class="text-3xl">{{'sidenav.profesionales'|transloco}}</span>
+    </div>
+    <div class="flex flex-1 flex-col p-1 space-y-2 overflow-auto" style="max-height: 300px;">
+      <span *ngIf="Profesionales.length === 0">{{'ultimos'|transloco}}</span>
+      <app-item-tarjeta class="flex flex-1 w-full " *ngFor="let registro of Profesionales">
+        <div class="flex flex-1">
+          <div class="flex flex-1 flex-col">
+            <span class="text-base font-medium">{{registro.descripcion|titlecase}}</span>
+            <span class="text-sm ">{{registro.idOrigen}}</span>
+            <span class="text-sm ">{{registro.origen}}</span>
+            <span class="text-base ">{{registro.fechaCreacion| localizedDate:'dd/MM/yyyy HH:mm:ss'}}</span>
+
+          </div>
+        </div>
+      </app-item-tarjeta>
+    </div>
+  </ng-container>
+</div>
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+  <ng-container *ngIf="equipos$|async as Equipos">
+    <div class="flex flex-1 border-primary-500 border-l-4 pl-3 my-1">
+      <span class="text-3xl">{{'sidenav.equipos'|transloco}}</span>
+    </div>
+    <div class="flex flex-1 flex-col p-1 space-y-2 overflow-auto" style="max-height: 300px;">
+      <span *ngIf="Equipos.length === 0">{{'ultimos'|transloco}}</span>
+      <app-item-tarjeta class="flex flex-1 w-full " *ngFor="let registro of Equipos">
+        <div class="flex flex-1">
+          <div class="flex flex-1 flex-col">
+            <span class="text-base font-medium">{{registro.descripcion|titlecase}}</span>
+            <span class="text-sm ">{{registro.idOrigen}}</span>
+            <span class="text-sm ">{{registro.origen}}</span>
+            <span class="text-base ">{{registro.fechaCreacion| localizedDate:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </div>
+        </div>
+      </app-item-tarjeta>
+    </div>
+  </ng-container>
+</div>
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+  <ng-container *ngIf="especialidades$|async as Especialidades">
+    <div class="flex flex-1 border-primary-500 border-l-4 pl-3 my-1">
+      <span class="text-3xl">{{'sidenav.especialidades'|transloco}}</span>
+    </div>
+    <div class="flex flex-1 flex-col p-1 space-y-2 overflow-auto" style="max-height: 300px;">
+      <span *ngIf="Especialidades.length === 0">{{'ultimos'|transloco}}</span>
+      <app-item-tarjeta class="flex flex-1 w-full " *ngFor="let registro of Especialidades">
+        <div class="flex flex-1">
+          <div class="flex flex-1 flex-col">
+            <span class="text-base font-medium">{{registro.descripcion|titlecase}}</span>
+            <span class="text-sm ">{{registro.idOrigen}}</span>
+            <span class="text-sm ">{{registro.origen}}</span>
+            <span class="text-base ">{{registro.fechaCreacion| localizedDate:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </div>
+        </div>
+      </app-item-tarjeta>
+    </div>
+  </ng-container>
+</div>
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+  <ng-container *ngIf="estudios$|async as Estudios">
+    <div class="flex flex-1 border-primary-500 border-l-4 pl-3 my-1">
+      <span class="text-3xl">{{'sidenav.equipos'|transloco}}</span>
+    </div>
+    <div class="flex flex-1 flex-col p-1 space-y-2 overflow-auto" style="max-height: 300px;">
+      <span *ngIf="Estudios.length === 0">{{'ultimos'|transloco}}</span>
+      <app-item-tarjeta class="flex flex-1 w-full " *ngFor="let registro of Estudios">
+        <div class="flex flex-1">
+          <div class="flex flex-1 flex-col">
+            <span class="text-base font-medium">{{registro.descripcion|titlecase}}</span>
+            <span class="text-sm ">{{registro.idOrigen}}</span>
+            <span class="text-sm ">{{registro.origen}}</span>
+            <span class="text-base ">{{registro.fechaCreacion| localizedDate:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </div>
+        </div>
+      </app-item-tarjeta>
+    </div>
+  </ng-container>
+</div>
