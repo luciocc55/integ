@@ -27,7 +27,7 @@ export class EstudiosComponent implements OnInit {
       }
     });
   }
-  deleteProf(id: number) {
+  deleteRegistro(id: number) {
     this.store.dispatch(new MergeosActions.DeleteEstudios(id));
   }
   aceptarMerge() {

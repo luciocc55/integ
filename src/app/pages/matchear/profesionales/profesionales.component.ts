@@ -27,7 +27,7 @@ export class ProfesionalesComponent implements OnInit {
       }
     });
   }
-  deleteProf(id: number) {
+  deleteRegistro(id: number) {
     this.store.dispatch(new MergeosActions.DeleteProfesional(id));
   }
   aceptarMerge() {

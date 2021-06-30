@@ -56,6 +56,14 @@ const routes: Routes = [
       import('./pages/cuentas/cuentas.module').then((m) => m.CuentasModule),
   },
   {
+    path: 'estadisticas',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/estadisticas/estadisticas.module').then(
+        (m) => m.EstadisticasModule
+      ),
+  },
+  {
     path: 'ultimas-importaciones',
     canActivate: [AuthGuard],
     loadChildren: () =>

@@ -23,4 +23,8 @@ export namespace TasksActions {
     static readonly type = '[Tasks] Profesionales Especialidades';
     constructor() {}
   }
+  export class Os {
+    static readonly type = '[Tasks] Os';
+    constructor() {}
+  }
 }

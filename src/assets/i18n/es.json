@@ -8,7 +8,9 @@
     "estudios": "Estudios",
     "equipos": "Equipos",
     "especialidades": "Especialidades",
+    "pacientes": "Pacientes",
     "os": "Obras Sociales",
+    "estadisticas":"Estadisticas",
     "cuentas": "Cuentas",
     "roles": "Roles",
     "usuarios": "Usuarios",
@@ -68,6 +70,8 @@
     "especialidad": "Especialidad",
     "equipo": "Equipo",
     "estudio": "Estudio",
+    "paciente": "Paciente",
+    "os": "Obra Social",
     "table": {
       "id": "ID",
       "masterId": "Id Master",
@@ -126,6 +130,7 @@
     "estudios": "Esta tarea se ejecuta en un cron que migra todos los estudios desde cada his",
     "equipos": "Esta tarea se ejecuta en un cron que migra todos los equipos desde cada his",
     "profespTitle": "profesionales y especialidades",
-    "profesp": "Esta tarea se ejecuta en un cron que migra las relaciones entre profesional y especialidad desde cada his"
+    "profesp": "Esta tarea se ejecuta en un cron que migra las relaciones entre profesional y especialidad desde cada his",
+    "os": "Esta tarea se ejecuta en un cron que migra las obras sociales habilitadas desde cada his"
   }
 }

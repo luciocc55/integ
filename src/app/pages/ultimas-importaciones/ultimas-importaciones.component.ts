@@ -18,7 +18,10 @@ export class UltimasImportacionesComponent implements OnInit {
   especialidades$!: Observable<BusquedasCreated[]>;
   @Select((state: any) => state.busquedas.equipos)
   equipos$!: Observable<BusquedasCreated[]>;
-
+  @Select((state: any) => state.busquedas.os)
+  os$!: Observable<BusquedasCreated[]>;
+  @Select((state: any) => state.busquedas.pacientes)
+  pacientes$!: Observable<BusquedasCreated[]>;
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -27,6 +30,8 @@ export class UltimasImportacionesComponent implements OnInit {
       new BusquedasActions.UltimosEquipos(),
       new BusquedasActions.UltimosEspecialidades(),
       new BusquedasActions.UltimosEstudios(),
+      new BusquedasActions.UltimosOs(),
+      new BusquedasActions.UltimosPacientes(),
     ]);
   }
 }

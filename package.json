@@ -27,6 +27,7 @@
     "@ngxs/form-plugin": "^3.7.2",
     "@ngxs/storage-plugin": "^3.7.2",
     "@ngxs/store": "^3.7.2",
+    "@swimlane/ngx-charts": "^18.0.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "ngx-mat-select-search": "^3.3.0",

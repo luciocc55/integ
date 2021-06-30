@@ -1,0 +1,80 @@
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8">
+  <ng-container *ngIf="master$|async as Master">
+    <div
+      class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+      <div class="flex flex-none  items-start justify-center ">
+        <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+          <mat-icon class="text-white text-5xl w-auto h-auto">space_dashboard</mat-icon>
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col">
+        <span class="text-2xl font-medium">{{'matcheos.title'|transloco: { master:Master.master, tipo:
+          'matcheos.paciente'|transloco} }}</span>
+      </div>
+    </div>
+    <div class="flex flex-1">
+      <app-search-input></app-search-input>
+    </div>
+    <div class="flex flex-none h-72 overflow-auto" *ngIf='searchMarker'>
+      <app-busquedas-table (evento)='addMatch($event)' [icon]='"add"'></app-busquedas-table>
+    </div>
+    <div class="flex flex-1 flex-col p-4 rounded-lg space-y-2 mt-2">
+      <ng-container [ngTemplateOutlet]="items"
+        [ngTemplateOutletContext]="{registro: Master,icon:'star',template: buttonMaster}"></ng-container>
+      <ng-container *ngFor="let registro of Master.matcheos">
+        <ng-container [ngTemplateOutlet]="items"
+          [ngTemplateOutletContext]="{registro: registro,icon:'face',template: buttonMatcheos}"></ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+<mat-menu #menu="matMenu">
+  <ng-template matMenuContent let-item="item">
+    <button mat-menu-item (click)='unMatch(item.id)'>
+      <mat-icon>delete</mat-icon>
+      <span>{{'matcheos.table.remove'|transloco}}</span>
+    </button>
+  </ng-template>
+</mat-menu>
+
+<ng-template #items let-registro='registro' let-template=template let-icon='icon'>
+  <app-item-tarjeta>
+    <div class="flex flex-none justify-center items-center mx-2">
+      <mat-icon class="text-3xl w-auto h-auto">{{icon}}</mat-icon>
+    </div>
+    <div class="flex flex-col space-y-1 flex-1">
+      <span class="text-lg font-medium">
+        {{registro.descripcion| titlecase}}
+      </span>
+      <span>
+        {{registro.origen}}
+      </span>
+      <span>
+        {{'mergeo.table.id'|transloco}}: {{registro.idOrigen}}
+      </span>
+    </div>
+    <div class="flex flex-none items-center">
+      <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]='{registro:registro}'></ng-container>
+    </div>
+  </app-item-tarjeta>
+</ng-template>
+
+<ng-template #buttonMatcheos let-registro='registro'>
+  <button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{item:registro}" mat-icon-button>
+    <mat-icon class="text-primary-500 dark:text-primary-accent">more_vert</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #buttonMaster let-registro='registro'>
+  <button [matMenuTriggerFor]="menuMaster" [matMenuTriggerData]="{item:registro}" mat-icon-button>
+    <mat-icon class="text-primary-500 dark:text-primary-accent">more_vert</mat-icon>
+  </button>
+</ng-template>
+<mat-menu #menuMaster="matMenu">
+  <ng-template matMenuContent let-item="item">
+    <button mat-menu-item (click)='deleteMaster(item.master)'>
+      <mat-icon>delete</mat-icon>
+      <span>{{'matcheos.table.deleteMaster'|transloco}}</span>
+    </button>
+  </ng-template>
+</mat-menu>

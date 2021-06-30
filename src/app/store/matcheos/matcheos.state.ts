@@ -5,6 +5,8 @@ import { tap } from 'rxjs/operators';
 import { EquiposService } from 'src/app/services/equipos.service';
 import { EspecialidadesService } from 'src/app/services/especialidades.service';
 import { EstudiosService } from 'src/app/services/estudios.service';
+import { ObrasSocialesService } from 'src/app/services/os.service';
+import { PacientesService } from 'src/app/services/pacientes.service';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { GlobalActions } from '../global/global.actions';
@@ -73,6 +75,8 @@ export class MatcheosState {
     private especialidadesService: EspecialidadesService,
     private equiposService: EquiposService,
     private estudiosService: EstudiosService,
+    private osService: ObrasSocialesService,
+    private pacientesService: PacientesService,
     private store: Store
   ) {}
 
@@ -93,6 +97,25 @@ export class MatcheosState {
       )
     );
   }
+
+  @Action(MatcheosActions.UnMatchOs)
+  UnMatchOs(
+    { setState, dispatch }: StateContext<MatcheosStateModel>,
+    { idMatch }: MatcheosActions.UnMatchOs
+  ) {
+    return this.osService.unMatch(idMatch).pipe(
+      tap(
+        (result) => {
+          setState(unmatch(idMatch));
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(MatcheosActions.UnMatchEspecialidad)
   UnMatchEspecialidad(
     { setState, dispatch }: StateContext<MatcheosStateModel>,
@@ -144,6 +167,24 @@ export class MatcheosState {
       )
     );
   }
+  @Action(MatcheosActions.UnMatchPaciente)
+  UnMatchPaciente(
+    { setState, dispatch }: StateContext<MatcheosStateModel>,
+    { idMatch }: MatcheosActions.UnMatchPaciente
+  ) {
+    return this.pacientesService.unMatch(idMatch).pipe(
+      tap(
+        (result) => {
+          setState(unmatch(idMatch));
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(MatcheosActions.MatchProfesional)
   matchProf(
     { dispatch }: StateContext<MatcheosStateModel>,
@@ -159,12 +200,43 @@ export class MatcheosState {
       )
     );
   }
+  @Action(MatcheosActions.MatchPaciente)
+  MatchPaciente(
+    { dispatch }: StateContext<MatcheosStateModel>,
+    { idMatch, idMaster }: MatcheosActions.MatchPaciente
+  ) {
+    return this.pacientesService.match(idMaster, idMatch).pipe(
+      tap(
+        (result) => {},
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(MatcheosActions.MatchEspecialidad)
   MatchEspecialidad(
     { dispatch }: StateContext<MatcheosStateModel>,
     { idMatch, idMaster }: MatcheosActions.MatchEspecialidad
   ) {
     return this.especialidadesService.match(idMaster, idMatch).pipe(
+      tap(
+        (result) => {},
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+  @Action(MatcheosActions.MatchOs)
+  MatchOs(
+    { dispatch }: StateContext<MatcheosStateModel>,
+    { idMatch, idMaster }: MatcheosActions.MatchOs
+  ) {
+    return this.osService.match(idMaster, idMatch).pipe(
       tap(
         (result) => {},
         (err) => {
@@ -208,11 +280,63 @@ export class MatcheosState {
 
   @Action(MatcheosActions.DeleteMasterProfesional)
   deleteMasterProf(
-    { getState, setState, dispatch }: StateContext<MatcheosStateModel>,
+    { setState, dispatch }: StateContext<MatcheosStateModel>,
     { idMaster }: MatcheosActions.DeleteMasterProfesional
   ) {
-    const state = getState();
     return this.profesionalesService.deleteMaster(idMaster).pipe(
+      tap(
+        (result) => {
+          setState(deleteFromMaster(idMaster));
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+  @Action(MatcheosActions.DeleteMasterPaciente)
+  DeleteMasterPaciente(
+    { setState, dispatch }: StateContext<MatcheosStateModel>,
+    { idMaster }: MatcheosActions.DeleteMasterPaciente
+  ) {
+    return this.pacientesService.deleteMaster(idMaster).pipe(
+      tap(
+        (result) => {
+          setState(deleteFromMaster(idMaster));
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
+  @Action(MatcheosActions.DeleteMasterOs)
+  DeleteMasterOs(
+    { setState, dispatch }: StateContext<MatcheosStateModel>,
+    { idMaster }: MatcheosActions.DeleteMasterOs
+  ) {
+    return this.osService.deleteMaster(idMaster).pipe(
+      tap(
+        (result) => {
+          setState(deleteFromMaster(idMaster));
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
+  @Action(MatcheosActions.DeleteMasterPacientes)
+  DeleteMasterPacientes(
+    { setState, dispatch }: StateContext<MatcheosStateModel>,
+    { idMaster }: MatcheosActions.DeleteMasterPacientes
+  ) {
+    return this.pacientesService.deleteMaster(idMaster).pipe(
       tap(
         (result) => {
           setState(deleteFromMaster(idMaster));
@@ -305,6 +429,67 @@ export class MatcheosState {
       )
     );
   }
+  @Action(MatcheosActions.LoadMasterPaciente)
+  LoadMasterPaciente(
+    { setState }: StateContext<MatcheosStateModel>,
+    { idMaster }: MatcheosActions.LoadMasterPaciente
+  ) {
+    return this.pacientesService.getMaster(idMaster).pipe(
+      tap(
+        (result) => {
+          const registro = result.master;
+          const pacientes = result.pacientes.map((item: any) => {
+            return formatProf(item);
+          });
+          const resultado = {
+            ...formatProf(registro),
+            matcheos: pacientes,
+            master: result.id,
+          };
+          setState(
+            patch({
+              master: resultado,
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
+  @Action(MatcheosActions.LoadMasterOs)
+  LoadMasterOs(
+    { setState }: StateContext<MatcheosStateModel>,
+    { idMaster }: MatcheosActions.LoadMasterOs
+  ) {
+    return this.osService.getMaster(idMaster).pipe(
+      tap(
+        (result) => {
+          const registro = result.master;
+          const os = result.os.map((item: any) => {
+            return { ...formatProf(item), descripcion: item.nombre || item.descripcion };
+          });
+          const resultado = {
+            ...formatProf(registro),
+            descripcion: registro.nombre || registro.descripcion,
+            matcheos: os,
+            master: result.id,
+          };
+          setState(
+            patch({
+              master: resultado,
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+
   @Action(MatcheosActions.LoadMasterEspecialidad)
   LoadMasterEspecialidad(
     { setState }: StateContext<MatcheosStateModel>,
@@ -429,6 +614,40 @@ export class MatcheosState {
         )
       );
   }
+  @Action(MatcheosActions.LoadPacientes)
+  LoadPacientes({ setState }: StateContext<MatcheosStateModel>) {
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.pacientesService
+      .BusMatcheados(paramsState.search, paramsState.page, paramsState.pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const matcheos = result?.results.map((master: any) => {
+              const registro = master.master;
+              const pacientes = master.pacientes.map((item: any) => {
+                return formatProf(item);
+              });
+              return {
+                ...formatProf(registro),
+                matcheos: pacientes,
+                master: master.id,
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                matcheos: matcheos,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
+  }
+
   @Action(MatcheosActions.LoadEspecialidades)
   LoadEspecialidades({ setState }: StateContext<MatcheosStateModel>) {
     const paramsState = this.store.selectSnapshot(ParamsState.params);
@@ -449,6 +668,44 @@ export class MatcheosState {
                 ...formatProf(registro),
                 descripcion: registro.descripcion || '',
                 matcheos: especialidades,
+                master: master.id,
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                matcheos: matcheos,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
+  }
+
+  @Action(MatcheosActions.LoadOs)
+  LoadOs({ setState }: StateContext<MatcheosStateModel>) {
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.osService
+      .BusMatcheados(paramsState.search, paramsState.page, paramsState.pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const matcheos = result?.results.map((master: any) => {
+              const registro = master.master;
+              const os = master.os.map((item: any) => {
+                return {
+                  ...formatProf(item),
+                  descripcion: item.nombre || item.descripcion,
+                };
+              });
+              return {
+                ...formatProf(registro),
+                descripcion: registro.nombre || registro.descripcion,
+                matcheos: os,
                 master: master.id,
               };
             });

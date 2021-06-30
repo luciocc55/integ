@@ -27,7 +27,7 @@ export class EquiposComponent implements OnInit {
       }
     });
   }
-  deleteProf(id: number) {
+  deleteRegistro(id: number) {
     this.store.dispatch(new MergeosActions.DeleteEquipos(id));
   }
   aceptarMerge() {

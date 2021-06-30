@@ -11,6 +11,14 @@ export namespace MergeosActions {
     static readonly type = '[Mergeos] Load Estudios';
     constructor() {}
   }
+  export class LoadOs {
+    static readonly type = '[Mergeos] Load Os';
+    constructor() {}
+  }
+  export class LoadPacientes {
+    static readonly type = '[Mergeos] Load Pacientes';
+    constructor() {}
+  }
   export class LoadEquipos {
     static readonly type = '[Mergeos] Load Equipos';
     constructor() {}
@@ -21,6 +29,14 @@ export namespace MergeosActions {
   }
   export class DeleteEspecialidades {
     static readonly type = '[Mergeos] Delete Especialidades';
+    constructor(public id: number) {}
+  }
+  export class DeleteOs {
+    static readonly type = '[Mergeos] Delete Os';
+    constructor(public id: number) {}
+  }
+  export class DeletePacientes {
+    static readonly type = '[Mergeos] Delete Pacientes';
     constructor(public id: number) {}
   }
   export class DeleteEstudios {
@@ -53,6 +69,14 @@ export namespace MergeosActions {
   }
   export class MergeEspecialidades {
     static readonly type = '[Mergeos] Merge Especialidades';
+    constructor() {}
+  }
+  export class MergeOs {
+    static readonly type = '[Mergeos] Merge Os';
+    constructor() {}
+  }
+  export class MergePacientes {
+    static readonly type = '[Mergeos] Merge Pacientes';
     constructor() {}
   }
   export class MergeEstudios {

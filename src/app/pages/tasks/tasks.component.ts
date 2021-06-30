@@ -29,4 +29,7 @@ export class TasksComponent implements OnInit {
   profesp() {
     this.store.dispatch(new TasksActions.ProfesionalesEspecialidades());
   }
+  os() {
+    this.store.dispatch(new TasksActions.Os());
+  }
 }

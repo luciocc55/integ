@@ -12,6 +12,8 @@ import { tap } from 'rxjs/operators';
 import { EquiposService } from 'src/app/services/equipos.service';
 import { EspecialidadesService } from 'src/app/services/especialidades.service';
 import { EstudiosService } from 'src/app/services/estudios.service';
+import { ObrasSocialesService } from 'src/app/services/os.service';
+import { PacientesService } from 'src/app/services/pacientes.service';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { GlobalActions } from '../global/global.actions';
@@ -126,6 +128,8 @@ export class MergeosState {
     private especialidadesService: EspecialidadesService,
     private equiposService: EquiposService,
     private estudiosService: EstudiosService,
+    private osService: ObrasSocialesService,
+    private pacientesService: PacientesService,
     private store: Store
   ) {}
   @Action(MergeosActions.SelectItem)
@@ -250,6 +254,50 @@ export class MergeosState {
         )
       );
   }
+  @Action(MergeosActions.LoadPacientes)
+  LoadPacientes({ getState, setState }: StateContext<MergeosStateModel>) {
+    const state = getState();
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.pacientesService
+      .BusParaMerge(paramsState.search, paramsState.page, paramsState.pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const mergeo = result?.results.map((registro: any) => {
+              const selected = state.selected.find(
+                (item) => item.id === registro.id
+              );
+              const master = state.selected.find(
+                (item) => item.id === registro.id && item.master
+              );
+              return {
+                id: registro.id,
+                origen: registro.origenPopulate?.nombre,
+                origenId: registro.origenPopulate?.id,
+                idOrigen: registro.idOrigen,
+                master: master ? true : false,
+                selected: selected ? true : false,
+                fechaCreacion: registro.createdAt,
+                descripcion:
+                  registro.nombre +
+                  (registro.apellido ? ' ' + registro.apellido : ''),
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                toMerge: mergeo,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
+  }
+
   @Action(MergeosActions.LoadEspecialidades)
   LoadEspecialidades({ getState, setState }: StateContext<MergeosStateModel>) {
     const state = getState();
@@ -332,6 +380,47 @@ export class MergeosState {
         )
       );
   }
+  @Action(MergeosActions.LoadOs)
+  LoadOs({ getState, setState }: StateContext<MergeosStateModel>) {
+    const state = getState();
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.osService
+      .BusParaMerge(paramsState.search, paramsState.page, paramsState.pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const mergeo = result?.results.map((registro: any) => {
+              const selected = state.selected.find(
+                (item) => item.id === registro.id
+              );
+              const master = state.selected.find(
+                (item) => item.id === registro.id && item.master
+              );
+              return {
+                id: registro.id,
+                origen: registro.origenPopulate?.nombre,
+                origenId: registro.origenPopulate?.id,
+                idOrigen: registro.idOrigen,
+                master: master ? true : false,
+                selected: selected ? true : false,
+                fechaCreacion: registro.createdAt,
+                descripcion: registro.nombre || registro.descripcion,
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                toMerge: mergeo,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
+  }
 
   @Action(MergeosActions.LoadEquipos)
   LoadEquipos({ getState, setState }: StateContext<MergeosStateModel>) {
@@ -383,7 +472,7 @@ export class MergeosState {
     { id }: MergeosActions.DeleteProfesional
   ) {
     const state = getState();
-    return this.profesionalesService.deleteProf(id).pipe(
+    return this.profesionalesService.delete(id).pipe(
       tap(
         (result) => {
           setState(deleteRegistro(id));
@@ -392,6 +481,22 @@ export class MergeosState {
       )
     );
   }
+  @Action(MergeosActions.DeletePacientes)
+  DeletePacientes(
+    { getState, setState }: StateContext<MergeosStateModel>,
+    { id }: MergeosActions.DeletePacientes
+  ) {
+    const state = getState();
+    return this.pacientesService.delete(id).pipe(
+      tap(
+        (result) => {
+          setState(deleteRegistro(id));
+        },
+        (err) => {}
+      )
+    );
+  }
+
   @Action(MergeosActions.DeleteEspecialidades)
   DeleteEspecialidades(
     { setState }: StateContext<MergeosStateModel>,
@@ -406,6 +511,21 @@ export class MergeosState {
       )
     );
   }
+  @Action(MergeosActions.DeleteOs)
+  DeleteOs(
+    { setState }: StateContext<MergeosStateModel>,
+    { id }: MergeosActions.DeleteOs
+  ) {
+    return this.osService.delete(id).pipe(
+      tap(
+        (result) => {
+          setState(deleteRegistro(id));
+        },
+        (err) => {}
+      )
+    );
+  }
+
   @Action(MergeosActions.DeleteEstudios)
   DeleteEstudios(
     { setState }: StateContext<MergeosStateModel>,
@@ -463,6 +583,34 @@ export class MergeosState {
     }
     return null;
   }
+  @Action(MergeosActions.MergeOs)
+  MergeOs({ getState, dispatch }: StateContext<MergeosStateModel>) {
+    const state = getState();
+    const master = state.selected.find((item) => item.master);
+    if (master) {
+      const registros = state.selected
+        .filter((item) => !item.master)
+        .map((item) => ({ origen: item.origenId, idOrigen: item.idOrigen }));
+      return this.osService
+        .mergeo(
+          { origen: master.origenId, idOrigen: master.idOrigen },
+          registros
+        )
+        .pipe(
+          tap(
+            (result) => {
+              dispatch(new MergeosActions.MergeExitoso());
+            },
+            (err) => {
+              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+              throw err.error?.error;
+            }
+          )
+        );
+    }
+    return null;
+  }
+
   @Action(MergeosActions.MergeEstudios)
   MergeEstudios({ getState, dispatch }: StateContext<MergeosStateModel>) {
     const state = getState();
@@ -472,6 +620,33 @@ export class MergeosState {
         .filter((item) => !item.master)
         .map((item) => ({ origen: item.origenId, idOrigen: item.idOrigen }));
       return this.estudiosService
+        .mergeo(
+          { origen: master.origenId, idOrigen: master.idOrigen },
+          registros
+        )
+        .pipe(
+          tap(
+            (result) => {
+              dispatch(new MergeosActions.MergeExitoso());
+            },
+            (err) => {
+              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+              throw err.error?.error;
+            }
+          )
+        );
+    }
+    return null;
+  }
+  @Action(MergeosActions.MergePacientes)
+  MergePacientes({ getState, dispatch }: StateContext<MergeosStateModel>) {
+    const state = getState();
+    const master = state.selected.find((item) => item.master);
+    if (master) {
+      const registros = state.selected
+        .filter((item) => !item.master)
+        .map((item) => ({ origen: item.origenId, idOrigen: item.idOrigen }));
+      return this.pacientesService
         .mergeo(
           { origen: master.origenId, idOrigen: master.idOrigen },
           registros

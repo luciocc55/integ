@@ -40,6 +40,22 @@ const routes: Routes = [
             (m) => m.EstudiosModule
           ),
       },
+      {
+        path: 'os',
+        data: { state: 'os' },
+        loadChildren: () =>
+          import('./os/os.module').then(
+            (m) => m.OsModule
+          ),
+      },
+      {
+        path: 'pacientes',
+        data: { state: 'pacientes' },
+        loadChildren: () =>
+          import('./pacientes/pacientes.module').then(
+            (m) => m.PacientesModule
+          ),
+      },
     ],
   },
 ];

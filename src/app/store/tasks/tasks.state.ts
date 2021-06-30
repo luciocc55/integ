@@ -100,4 +100,18 @@ export class TasksState {
       )
     );
   }
+  @Action(TasksActions.Os)
+  Os({ dispatch }: StateContext<TasksStateModel>) {
+    return this.tasksService.taskOs().pipe(
+      tap(
+        (result) => {
+          dispatch(new GlobalActions.OpenSuccess('toast.migracion'));
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
 }

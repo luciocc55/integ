@@ -5,6 +5,8 @@ import { tap } from 'rxjs/operators';
 import { EquiposService } from 'src/app/services/equipos.service';
 import { EspecialidadesService } from 'src/app/services/especialidades.service';
 import { EstudiosService } from 'src/app/services/estudios.service';
+import { ObrasSocialesService } from 'src/app/services/os.service';
+import { PacientesService } from 'src/app/services/pacientes.service';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
 import { ParamsState } from '../params/params.state';
@@ -27,6 +29,8 @@ export class BusquedasStateModel {
   public estudios?: BusquedasCreated[];
   public especialidades?: BusquedasCreated[];
   public equipos?: BusquedasCreated[];
+  public os?: BusquedasCreated[];
+  public pacientes?: BusquedasCreated[];
 }
 
 const defaults = {
@@ -63,9 +67,36 @@ export class BusquedasState {
     private especialidadesService: EspecialidadesService,
     private equiposService: EquiposService,
     private estudiosService: EstudiosService,
+    private pacientesService: PacientesService,
+    private osService: ObrasSocialesService,
     private store: Store
   ) {}
 
+  @Action(BusquedasActions.BuscarPacientes)
+  BuscarPacientes({ setState }: StateContext<BusquedasStateModel>) {
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.pacientesService
+      .BusParaMerge(paramsState.search, paramsState.page, paramsState.pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const busqueda = result?.results.map((registro: any) => {
+              return formatProf(registro);
+            });
+            delete result.results;
+            setState(
+              patch({
+                resultados: busqueda,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
+  }
   @Action(BusquedasActions.BuscarProfesionales)
   busProfs({ setState }: StateContext<BusquedasStateModel>) {
     const paramsState = this.store.selectSnapshot(ParamsState.params);
@@ -103,6 +134,35 @@ export class BusquedasState {
               return {
                 ...formatProf(registro),
                 descripcion: registro.descripcion,
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                resultados: busqueda,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
+  }
+
+  @Action(BusquedasActions.BuscarOs)
+  BuscarOs({ setState }: StateContext<BusquedasStateModel>) {
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.osService
+      .BusParaMerge(paramsState.search, paramsState.page, paramsState.pageSize)
+      .pipe(
+        tap(
+          (result) => {
+            const busqueda = result?.results.map((registro: any) => {
+              return {
+                ...formatProf(registro),
+                descripcion: registro.nombre || registro.descripcion,
               };
             });
             delete result.results;
@@ -172,6 +232,57 @@ export class BusquedasState {
           }
         )
       );
+  }
+
+  @Action(BusquedasActions.UltimosOs)
+  UltimosOs({ setState }: StateContext<BusquedasStateModel>) {
+    return this.osService.ultimos().pipe(
+      tap(
+        (result: any) => {
+          const busqueda = result.map((registro: any) => {
+            const mapped: BusquedasCreated = {
+              ...formatRegistro(registro),
+              descripcion: registro.nombre || registro.descripcion,
+            };
+            return mapped;
+          });
+          setState(
+            patch({
+              os: busqueda,
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+  @Action(BusquedasActions.UltimosPacientes)
+  UltimosPacientes({ setState }: StateContext<BusquedasStateModel>) {
+    return this.pacientesService.ultimos().pipe(
+      tap(
+        (result: any) => {
+          const busqueda = result.map((registro: any) => {
+            const mapped: BusquedasCreated = {
+              ...formatRegistro(registro),
+              descripcion:
+                registro.nombre +
+                (registro.apellido ? ' ' + registro.apellido : ''),
+            };
+            return mapped;
+          });
+          setState(
+            patch({
+              pacientes: busqueda,
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
   }
 
   @Action(BusquedasActions.UltimosProfesionales)

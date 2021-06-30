@@ -16,13 +16,17 @@ export const pacientesMatcheos = environment.api + 'matcheos_pacientes/';
 export const MatcheoPacUpdate = environment.api + 'master_paciente_update/';
 export const removerPacFromMaster = environment.api + 'pac_delete_from_master/';
 export const removeMasterPac = environment.api + 'pac_delete_master/';
-
+export const latestPacientes = environment.api + 'latest_pacientes/';
+export const mergeoPacientes = environment.api + 'matcheo_pacientes/';
+export const estadisticasPac = environment.api + 'pacientes_estadisticas_mergeo/';
 // Permisos
 const permisos = 'permisos/';
 export const getPermisos = environment.api + permisos + 'list/';
 // Direcciones
 export const getDirecciones = environment.api + 'get_direcciones/';
 export const updateDireccion = environment.api + 'update_direcciones/';
+export const direccionesEstadisticas = environment.api + 'direcciones_estadisticas/';
+
 
 // cuentas
 const usuarios = 'usuarios/';
@@ -55,6 +59,8 @@ export const MasterEquipUpd = environment.api + 'master_equipo_update/';
 export const equiposMatcheosExport = environment.api + 'exportar_equipos_matcheados/';
 export const removerEquipFromMaster = environment.api + 'equip_delete_from_master/';
 export const removeMasterEquip = environment.api + 'equip_delete_master/';
+export const estadisticasEquip = environment.api + 'equipos_estadisticas_mergeo/';
+
 // Estudios
 export const Getestudios = environment.api + 'estudios/';
 export const mergeoEstudios = environment.api + 'matcheo_estudios/';
@@ -68,6 +74,7 @@ export const estudiosMatcheosExport = environment.api + 'exportar_estudios_match
 export const removerEstFromMaster = environment.api + 'est_delete_from_master/';
 export const removeMasterEst = environment.api + 'est_delete_master/';
 export const latestEsts = environment.api + 'latest_estudios/';
+export const estadisticasEst = environment.api + 'estudios_estadisticas_mergeo/';
 // Profesionales
 export const Getprofesionales = environment.api + 'profesionales/';
 export const BusProfesionales = environment.api + 'bus_profesionales/';
@@ -82,7 +89,7 @@ export const profesionalesMatcheos = environment.api + 'matcheos_profesionales/'
 export const MatcheoProfUpdate = environment.api + 'master_profesional_update/';
 export const removerProfFromMaster = environment.api + 'prof_delete_from_master/';
 export const removeMasterProf = environment.api + 'prof_delete_master/';
-
+export const estadisticasProf = environment.api + 'profesionales_estadisticas_mergeo/';
 export const profesionalesMatcheosExport = environment.api + 'exportar_profesionales_matcheados/';
 // Especialidades
 export const Getespecialidades = environment.api + 'especialidades/';
@@ -97,6 +104,7 @@ export const MatcheoEspUpdate = environment.api + 'master_especialidad_update/';
 export const removerEspFromMaster = environment.api + 'esp_delete_from_master/';
 export const removeMasterEsp = environment.api + 'esp_delete_master/';
 export const latestEsps = environment.api + 'latest_especialidades/';
+export const estadisticasEsp = environment.api + 'especialidades_estadisticas_mergeo/';
 // Obras Sociales
 export const Getos = environment.api + 'os/';
 export const Busos = environment.api + 'bus_os/';
@@ -107,12 +115,13 @@ export const osMatcheos = environment.api + 'matcheos_os/';
 export const osMatcheosExport = environment.api + 'exportar_os_matcheados/';
 export const MatcheoOsUpdate = environment.api + 'master_os_update/';
 export const busOsTesting = environment.api + 'get_obras_sociales/';
-
+export const mergeoOs = environment.api + 'matcheo_os/';
+export const estadisticasOs = environment.api + 'os_estadisticas_mergeo/';
 export const removerOsFromMaster = environment.api + 'os_delete_from_master/';
 export const removeMasterOs = environment.api + 'os_delete_master/';
 export const habilitacionOs = environment.api + 'os_habilitacion/';
 export const habilitacionMaster = environment.api + 'os_habilitacion_master/';
-
+export const latestOs = environment.api + 'latest_os/';
 // TASKS
 const tasks = 'tasks/';
 export const profesionalesTask = environment.api + tasks + 'profesionales/';
@@ -121,3 +130,4 @@ export const especialidadesTask = environment.api + tasks + 'especialidades/';
 export const equiposTask = environment.api + tasks + 'equipos/';
 export const estudiosTask = environment.api + tasks + 'estudios/';
 export const profespTask = environment.api + tasks + 'profesionalesespecialidades/';
+export const osTask = environment.api + tasks + 'os/';

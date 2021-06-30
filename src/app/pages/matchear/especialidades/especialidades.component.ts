@@ -27,7 +27,7 @@ export class EspecialidadesComponent implements OnInit {
       }
     });
   }
-  deleteProf(id: number) {
+  deleteRegistro(id: number) {
     this.store.dispatch(new MergeosActions.DeleteEspecialidades(id));
   }
   aceptarMerge() {

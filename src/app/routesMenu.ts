@@ -10,6 +10,16 @@ export const menuData = [
     ],
   },
   {
+    title: 'estadisticas',
+    subs: [
+      {
+        title: 'estadisticas',
+        url: '/estadisticas',
+        icon: 'trending_up',
+      },
+    ],
+  },
+  {
     title: 'cuentas',
     subs: [
       {
@@ -48,6 +58,11 @@ export const menuData = [
         icon: 'science',
       },
       {
+        title: 'pacientes',
+        url: 'matchear/pacientes',
+        icon: 'face',
+      },
+      {
         title: 'os',
         url: 'matchear/os',
         icon: 'account_balance',
@@ -76,6 +91,11 @@ export const menuData = [
         title: 'estudios',
         url: 'matcheos/estudios',
         icon: 'science',
+      },
+      {
+        title: 'pacientes',
+        url: 'matcheos/pacientes',
+        icon: 'face',
       },
       {
         title: 'os',

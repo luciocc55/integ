@@ -83,5 +83,17 @@
         </div>
       </div>
     </app-item-tarjeta>
+    <app-item-tarjeta class="flex flex-1 cursor-pointer w-full" (click)='os()' matRipple>
+      <div class="flex flex-1">
+        <div class="flex flex-1 flex-col">
+          <span class="text-base font-medium">{{'tasks.migrar'|transloco}}
+            {{'sidenav.os'|transloco|lowercase}}</span>
+          <span class="text-sm ">{{'tasks.os'|transloco}}</span>
+        </div>
+        <div class="flex flex-none">
+          <button>{{'tasks.boton'|transloco}}</button>
+        </div>
+      </div>
+    </app-item-tarjeta>
   </div>
 </div>

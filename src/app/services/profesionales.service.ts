@@ -57,7 +57,7 @@ export class ProfesionalesService {
       registros,
     });
   }
-  deleteProf(id: number) {
+  delete(id: number) {
     return this.http.post<any>(urls.profesionalesDelete, { id_registro: id });
   }
   ultimos() {

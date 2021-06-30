@@ -26,4 +26,7 @@ export class TasksService {
   taskProfEsp() {
     return this.http.get<any>(urls.profespTask);
   }
+  taskOs() {
+    return this.http.get<any>(urls.osTask);
+  }
 }
