@@ -1,86 +1,89 @@
 <app-title-changer [title]='("title"|transloco) + " | " + ("sidenav.estadisticas"|transloco)'></app-title-changer>
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.direcciones'}">
-  </ng-container>
-  <ng-container *ngIf="direcciones$|async as Direcciones">
-    <div class="flex flex-1 mobile:justify-center">
-      <div class="flex flex-col">
-        <span class="text-sm text-primary-500 dark:text-primary-accent self-center">{{'total'|transloco}}:
-          {{Direcciones.total}}</span>
-        <div class="flex flex-1 mobile:flex-col justify-center">
-          <app-mergeos-grafico [data]='{name: "estadisticas.idgored"|transloco,value:Direcciones.noGored}'
-            [total]='Direcciones.total'></app-mergeos-grafico>
-          <app-mergeos-grafico [data]='{name: "estadisticas.sinonimo"|transloco,value:Direcciones.noUnificados}'
-            [total]='Direcciones.total'></app-mergeos-grafico>
+<div class="flex flex-1 flex-wrap justify-center mobile:flex-col">
+
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.direcciones'}">
+    </ng-container>
+    <ng-container *ngIf="direcciones$|async as Direcciones">
+      <div class="flex flex-1 mobile:justify-center">
+        <div class="flex flex-col">
+          <span class="text-sm text-primary-500 dark:text-primary-accent self-center">{{'total'|transloco}}:
+            {{Direcciones.total}}</span>
+          <div class="flex flex-1 mobile:flex-col justify-center">
+            <app-mergeos-grafico [data]='{name: "estadisticas.idgored"|transloco,value:Direcciones.noGored}'
+              [total]='Direcciones.total'></app-mergeos-grafico>
+            <app-mergeos-grafico [data]='{name: "estadisticas.sinonimo"|transloco,value:Direcciones.noUnificados}'
+              [total]='Direcciones.total'></app-mergeos-grafico>
+          </div>
         </div>
       </div>
+    </ng-container>
+  </div>
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.pacientes'}">
+    </ng-container>
+    <div class="flex flex-1 mobile:justify-center">
+      <ng-container *ngIf="pacientes$|async as Pacientes">
+        <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Pacientes}">
+        </ng-container>
+      </ng-container>
     </div>
-  </ng-container>
-</div>
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.pacientes'}">
-  </ng-container>
-  <div class="flex flex-1 mobile:justify-center">
-    <ng-container *ngIf="pacientes$|async as Pacientes">
-      <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Pacientes}">
-      </ng-container>
-    </ng-container>
   </div>
-</div>
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.profesionales'}">
-  </ng-container>
-  <div class="flex flex-1 mobile:justify-center">
-    <ng-container *ngIf="profesionales$|async as Profesionales">
-      <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Profesionales}">
-      </ng-container>
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.profesionales'}">
     </ng-container>
-  </div>
-</div>
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.especialidades'}">
-  </ng-container>
-  <div class="flex flex-1 mobile:justify-center">
-    <ng-container *ngIf="especialidades$|async as Especialidades">
-      <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Especialidades}">
+    <div class="flex flex-1 mobile:justify-center">
+      <ng-container *ngIf="profesionales$|async as Profesionales">
+        <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Profesionales}">
+        </ng-container>
       </ng-container>
-    </ng-container>
+    </div>
   </div>
-</div>
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.equipos'}">
-  </ng-container>
-  <div class="flex flex-1 mobile:justify-center">
-    <ng-container *ngIf="equipos$|async as Equipos">
-      <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Equipos}">
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.especialidades'}">
+    </ng-container>
+    <div class="flex flex-1 mobile:justify-center">
+      <ng-container *ngIf="especialidades$|async as Especialidades">
+        <ng-container [ngTemplateOutlet]="estadisticaTemplate"
+          [ngTemplateOutletContext]="{estadistica: Especialidades}">
+        </ng-container>
       </ng-container>
-    </ng-container>
+    </div>
   </div>
-</div>
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.equipos'}">
+    </ng-container>
+    <div class="flex flex-1 mobile:justify-center">
+      <ng-container *ngIf="equipos$|async as Equipos">
+        <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Equipos}">
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
 
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.estudios'}">
-  </ng-container>
-  <div class="flex flex-1 mobile:justify-center">
-    <ng-container *ngIf="estudios$|async as Estudios">
-      <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Estudios}">
-      </ng-container>
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.estudios'}">
     </ng-container>
-  </div>
-</div>
-
-<div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
-  <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.os'}">
-  </ng-container>
-  <div class="flex flex-1 mobile:justify-center">
-    <ng-container *ngIf="os$|async as Os">
-      <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Os}">
+    <div class="flex flex-1 mobile:justify-center">
+      <ng-container *ngIf="estudios$|async as Estudios">
+        <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Estudios}">
+        </ng-container>
       </ng-container>
-    </ng-container>
+    </div>
   </div>
+
+  <div class="flex flex-1 space-y-4 py-4 flex-col px-8 ">
+    <ng-container [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title: 'sidenav.os'}">
+    </ng-container>
+    <div class="flex flex-1 mobile:justify-center">
+      <ng-container *ngIf="os$|async as Os">
+        <ng-container [ngTemplateOutlet]="estadisticaTemplate" [ngTemplateOutletContext]="{estadistica: Os}">
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
 </div>
-
-
 
 
 
