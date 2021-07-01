@@ -1,5 +1,8 @@
 {
   "title":"Integrador",
+  "exist": "Este Usuario no Existe!",
+  "password": "Contraseña Incorrecta!",
+  "email": "Este email ya esta registrado",
   "sidenav": {
     "login": "Login",
     "estatus": "Estatus Services",

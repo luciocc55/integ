@@ -1,5 +1,8 @@
 {
   "title":"Integrator",
+  "exist": "This User Does Not Exist!",
+  "password": "Incorrect password!",
+  "email": "This email is already registered",
   "sidenav": {
     "login": "Login",
     "estatus": "Estatus Services",

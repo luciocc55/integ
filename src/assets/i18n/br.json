@@ -1,5 +1,8 @@
 {
-  "title":"Integrador",
+  "title": "Integrador",
+  "exist": "Esse usuário não existe!",
+  "password": "Senha incorreta!",
+  "email": "Este e-mail já está registado",
   "sidenav": {
     "login": "Conecte-se",
     "estatus": "Serviços de status",
@@ -12,7 +15,7 @@
     "especialidades": "Especialidades",
     "pacientes": "Pacientes",
     "os": "Obras Sociais",
-    "estadisticas":"Estatisticas",
+    "estadisticas": "Estatisticas",
     "cuentas": "Contas",
     "roles": "Funções",
     "usuarios": "Comercial",
@@ -23,7 +26,7 @@
     "home": "Casa",
     "importacion": "Importar Tarefas"
   },
-  "ultimos":"Nenhuma importação nos últimos 2 dias",
+  "ultimos": "Nenhuma importação nos últimos 2 dias",
   "login": {
     "title": "Conecte-se",
     "subTitle": "Receber",
@@ -143,5 +146,5 @@
     "merge": "Mesclado",
     "eliminados": "Eliminado"
   },
-  "total":"Total"
+  "total": "Total"
 }
