@@ -1,5 +1,6 @@
+import langs from './available-langs'
 module.exports = {
   rootTranslationsPath: 'src/assets/i18n/',
-  langs: ['en', 'es'],
+  langs: langs,
   keysManager: {}
 };

@@ -31,4 +31,8 @@ export namespace GlobalActions {
     static readonly type = '[Global] Open Success';
     constructor(public successMsg:string) {}
   }
+  export class UpdateLang {
+    static readonly type = '[Global] Update Lang';
+    constructor(public lang:string) {}
+  }
 }

@@ -9,6 +9,8 @@ import { ToastPreguntaComponent } from './toast-pregunta/toast-pregunta.componen
 import { BusquedasTableComponent } from './busquedas-table/busquedas-table.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ItemTarjetaComponent } from './item-tarjeta/item-tarjeta.component';
+import { LangChangerComponent } from './lang-changer/lang-changer.component';
+import { TitleChangerComponent } from './title-changer/title-changer.component';
 
 
 
@@ -20,7 +22,9 @@ import { ItemTarjetaComponent } from './item-tarjeta/item-tarjeta.component';
     ToastPreguntaComponent,
     BusquedasTableComponent,
     SearchInputComponent,
-    ItemTarjetaComponent
+    ItemTarjetaComponent,
+    LangChangerComponent,
+    TitleChangerComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { ItemTarjetaComponent } from './item-tarjeta/item-tarjeta.component';
     ScrollUpComponent,
     BusquedasTableComponent,
     SearchInputComponent,
-    ItemTarjetaComponent
+    ItemTarjetaComponent,
+    LangChangerComponent,
+    TitleChangerComponent,
   ]
 })
 export class GlobalesModule { }

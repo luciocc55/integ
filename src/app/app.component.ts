@@ -23,6 +23,7 @@ import { GlobalActions } from './store/global/global.actions';
 import { menuData } from './routesMenu';
 import { GlobalState } from './store/global/global.state';
 import { OverlayLoadingService } from './utility/overlayLoading.service';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,6 +38,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   token$!: Observable<string>;
   @Select((state: any) => state.global.sideExpanded)
   sideExpanded$!: Observable<boolean>;
+  @Select((state: any) => state.global.lang)
+  lang$!: Observable<string>;
   @Select(GlobalState.isLoading)
   loader$!: Observable<boolean>;
   configs = new OverlayConfig({
@@ -45,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       .position()
       .global()
       .bottom('1em')
-      .right('1em'),
+      .right('0.3em'),
   });
   isLogged: any = null;
   overlayRef = this.overlay.create(this.configs);
@@ -62,7 +65,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router,
     private store: Store,
     private dtch: ChangeDetectorRef,
-    private overlayLoadingService: OverlayLoadingService
+    private overlayLoadingService: OverlayLoadingService,
+    private translocoService: TranslocoService
   ) {}
   ngAfterViewInit(): void {
     this.floatMenu$.subscribe((float) => {
@@ -112,6 +116,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       } else {
         this.overlayLoadingService.close();
       }
+    });
+    this.lang$.subscribe((lang) => {
+      this.translocoService.setActiveLang(lang);
     });
   }
   attach() {

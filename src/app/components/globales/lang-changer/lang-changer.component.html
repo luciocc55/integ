@@ -1,0 +1,13 @@
+<div class="fixed" style="top: 1em;right: 0.3em;">
+  <button matRipple (click)='extend()' class="flex flex-none p-1 rounded-full items-center">
+    <mat-icon class='w-auto mx-auto h-auto self-center dark:text-white text-black 2xl'>translate</mat-icon>
+  </button>
+  <ng-container *ngIf="extended">
+    <ng-container *ngFor="let lang of langs">
+      <button matRipple (click)='changeLang(lang)' class="flex flex-none p-1 px-2 rounded-full items-center ">
+        <span class='dark:text-white text-black 2xl right-0'
+          [ngClass]='lang===(currentLang$|async)?"text-primary-500 dark:text-primary-400":""'>{{lang|uppercase}}</span>
+      </button>
+    </ng-container>
+  </ng-container>
+</div>

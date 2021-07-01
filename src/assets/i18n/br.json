@@ -1,0 +1,147 @@
+{
+  "title":"Integrador",
+  "sidenav": {
+    "login": "Conecte-se",
+    "estatus": "Serviços de status",
+    "estatusSub": "O status atual dos serviços é exibido",
+    "matchear": "Partida",
+    "matcheos": "Coincide",
+    "profesionales": "Profissionais",
+    "estudios": "Estudos",
+    "equipos": "Equipes",
+    "especialidades": "Especialidades",
+    "pacientes": "Pacientes",
+    "os": "Obras Sociais",
+    "estadisticas":"Estatisticas",
+    "cuentas": "Contas",
+    "roles": "Funções",
+    "usuarios": "Comercial",
+    "importaciones": "Importar",
+    "general": "Veja as últimas importações",
+    "direcciones": "Endereços",
+    "logout": "Fechar Sessão",
+    "home": "Casa",
+    "importacion": "Importar Tarefas"
+  },
+  "ultimos":"Nenhuma importação nos últimos 2 dias",
+  "login": {
+    "title": "Conecte-se",
+    "subTitle": "Receber",
+    "user": "Do utilizador",
+    "password": "Senha",
+    "submit": "Pagar em"
+  },
+  "campo": "Você deve preencher este campo para continuar",
+  "disabled": "Você precisa preencher os requisitos para continuar",
+  "mergeo": {
+    "table": {
+      "id": "ID de origem",
+      "descripcion": "Descrição",
+      "origen": "Fonte",
+      "acciones": "Ações",
+      "masterAccion": "Escolha como mestre",
+      "remMasterAccion": "Remover como mestre",
+      "delete": "Livrar-se de",
+      "creacion": "Data de importação"
+    },
+    "aceptar": "Aceitar mesclar",
+    "tooltipAceptar": "Você deve selecionar pelo menos um registro e um mestre"
+  },
+  "search": "Olhe para",
+  "pagination": {
+    "pagina": "Página",
+    "title": "Registros de {{pagination.pagina}}",
+    "ultima": "Durar {{pagination.pagina}}",
+    "primer": "Primeiro {{pagination.pagina}}",
+    "siguiente": "Próximo {{pagination.pagina}}",
+    "anterior": "{{pagination.pagina}} anterior",
+    "guia": "{{pagination.pagina}} {{actual}} de {{totalPage}} (Resultados: {{total}})"
+  },
+  "toast": {
+    "errorTitle": "Houve um erro",
+    "successTitle": "Operação bem sucedida",
+    "mergeoError": "Ocorreu um erro, tente novamente ou peça ajuda a um administrador",
+    "mergeoExito": "Mesclagem bem-sucedida",
+    "preguntaOperacion": "Tem certeza de que deseja realizar esta ação?",
+    "confirmacion": "Confirme para continuar",
+    "migracion": "A tarefa foi realizada com sucesso"
+  },
+  "matcheos": {
+    "title": "Mestre {{tipo}} {{master}}",
+    "profesional": "Profissional",
+    "especialidad": "Especialidade",
+    "equipo": "Equipe",
+    "estudio": "Estudar",
+    "paciente": "Paciente",
+    "os": "Trabalho social",
+    "table": {
+      "id": "ID",
+      "masterId": "Id Mestre",
+      "editar": "Editar Mestre",
+      "deleteMaster": "Excluir Mestre",
+      "remove": "Mexer",
+      "unmatch": "Unmatch {{matcheo}}"
+    }
+  },
+  "roles": {
+    "title": "Função {{descripcion}}",
+    "desc": "Descrição",
+    "permisos": "Permissões",
+    "sinPermisos": "Não tem licenças",
+    "hint": "Você pode adicioná-los a partir da seleção de permissões",
+    "guardarCambios": "Guardar mudanças",
+    "crear": "Criar papel",
+    "nuevo": "Criar Novo"
+  },
+  "selectSearch": {
+    "title": "Olhe para",
+    "noResults": "Sem resultados"
+  },
+  "estatus": {
+    "serviceName": "Serviço",
+    "fecha": "Data da última modificação",
+    "caidas": "Quantidade de quedas nas últimas 24 horas",
+    "habilitacion": "Qualificação"
+  },
+  "usuarios": {
+    "table": {
+      "nombre": "Nome",
+      "apellido": "Sobrenome",
+      "usuario": "Nome do usuário"
+    },
+    "form": {
+      "password": "Senha",
+      "crear": "Criar usuário",
+      "edit": "Editar usuário",
+      "guardar": "Manter"
+    }
+  },
+  "direcciones": {
+    "table": {
+      "sinonimo": "Sinônimo",
+      "real": "Valor real",
+      "idgored": "Número em GoRed",
+      "institucion": "Instituição"
+    }
+  },
+  "tasks": {
+    "migrar": "Migrar",
+    "boton": "Executar Tarefa",
+    "profesionales": "Esta tarefa é executada em um cron que migra todos os profissionais de cada his",
+    "especialidades": "Esta tarefa é executada em um cron que migra todas as especialidades de cada his",
+    "direcciones": "Esta tarefa é executada em um cron que migra todos os endereços de cada um de seus",
+    "estudios": "Esta tarefa é executada em um cron que migra todos os estudos de cada his",
+    "equipos": "Esta tarefa é executada em um cron que migra todos os computadores de cada his",
+    "profespTitle": "profissionais e especialidades",
+    "profesp": "Esta tarefa é executada em um cron que migra as relações entre profissional e especialidade de cada his",
+    "os": "Esta tarefa é executada em um cron que migra as obras sociais habilitadas a partir de cada his"
+  },
+  "estadisticas": {
+    "idgored": "Sem id no GoRed",
+    "sinonimo": "Sem Sinônimo",
+    "nomerge": "Sem fusão",
+    "merge": "Mesclado",
+    "eliminados": "Eliminado"
+  },
+  "total":"Total"
+}

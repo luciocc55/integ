@@ -10,6 +10,7 @@ export class GlobalStateModel {
   public showFloatMenu!: boolean;
   public sideExpanded!: boolean;
   public showLoading!: boolean[];
+  public lang!: string;
 }
 
 const defaults = {
@@ -17,6 +18,7 @@ const defaults = {
   showFloatMenu: true,
   sideExpanded: false,
   showLoading: [],
+  lang: 'es',
 };
 
 @State<GlobalStateModel>({
@@ -41,6 +43,13 @@ export class GlobalState {
     { scroll }: GlobalActions.UpdateScroll
   ) {
     setState(patch({ scroll }));
+  }
+  @Action(GlobalActions.UpdateLang)
+  UpdateLang(
+    { setState }: StateContext<GlobalStateModel>,
+    { lang }: GlobalActions.UpdateLang
+  ) {
+    setState(patch({ lang }));
   }
 
   @Action(GlobalActions.OpenAlert)

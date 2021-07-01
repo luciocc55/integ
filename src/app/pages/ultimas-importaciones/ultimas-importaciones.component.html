@@ -1,3 +1,4 @@
+<app-title-changer [title]='("title"|transloco) + " | " + ("sidenav.general"|transloco)'></app-title-changer>
 <ng-container [ngTemplateOutlet]="dataTemplate"
   [ngTemplateOutletContext]="{registros: profesionales$|async, title: 'sidenav.profesionales'}">
 </ng-container>

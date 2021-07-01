@@ -1,5 +1,7 @@
 {
+  "title":"Integrador",
   "sidenav": {
+    "login": "Login",
     "estatus": "Estatus Services",
     "estatusSub": "Se muestra el estado actual de los servicios",
     "matchear": "Matchear",
@@ -110,6 +112,7 @@
     "form": {
       "password": "Password",
       "crear": "Crear Usuario",
+      "edit": "Editar Usuario",
       "guardar": "Guardar"
     }
   },
@@ -132,5 +135,13 @@
     "profespTitle": "profesionales y especialidades",
     "profesp": "Esta tarea se ejecuta en un cron que migra las relaciones entre profesional y especialidad desde cada his",
     "os": "Esta tarea se ejecuta en un cron que migra las obras sociales habilitadas desde cada his"
-  }
+  },
+  "estadisticas": {
+    "idgored": "Sin id en GoRed",
+    "sinonimo": "Sin Sinonimo",
+    "nomerge": "Sin mergear",
+    "merge": "Mergeados",
+    "eliminados": "Eliminados"
+  },
+  "total":"Total"
 }

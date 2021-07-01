@@ -7,6 +7,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EstadisticasComponent } from './estadisticas.component';
 import { EstadisticasState } from 'src/app/store/estadisticas/estadisticas.state';
+import { GraficosModule } from 'src/app/components/graficos/graficos.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     GlobalesModule,
     SharedModule,
     TranslocoModule,
+    GraficosModule,
     RouterModule.forChild(routes),
     NgxsModule.forFeature([EstadisticasState]),
   ],

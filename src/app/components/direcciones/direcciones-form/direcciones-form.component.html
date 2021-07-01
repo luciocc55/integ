@@ -2,7 +2,7 @@
   <div class="flex flex-1 flex-col mt-2">
     <div class="flex flex-1 mt-2">
       <mat-form-field class=" w-full">
-        <input matInput formControlName="sinonimo" [placeholder]="'usuarios.table.usuario'|transloco" matInputAutofocus>
+        <input matInput formControlName="sinonimo" [placeholder]="'direcciones.table.sinonimo'|transloco" matInputAutofocus>
         <mat-error *ngIf="direccionForm.controls.sinonimo.hasError('required')">
           {{'campo'|transloco}}
         </mat-error>
@@ -10,7 +10,7 @@
     </div>
     <div class="flex flex-1">
       <mat-form-field class="w-full">
-        <input matInput formControlName="institucion" [placeholder]="'usuarios.table.nombre'|transloco">
+        <input matInput formControlName="institucion" [placeholder]="'direcciones.table.institucion'|transloco">
         <mat-error *ngIf="direccionForm.controls.institucion.hasError('required')">
           {{'campo'|transloco}}
         </mat-error>
@@ -18,7 +18,7 @@
     </div>
     <div class="flex flex-1">
       <mat-form-field class="w-full">
-        <input matInput formControlName="idGoRed" [placeholder]="'usuarios.table.apellido'|transloco">
+        <input matInput formControlName="idGoRed" [placeholder]="'direcciones.table.idgored'|transloco">
         <mat-error *ngIf="direccionForm.controls.idGoRed.hasError('required')">
           {{'campo'|transloco}}
         </mat-error>

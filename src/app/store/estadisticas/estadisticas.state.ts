@@ -4,15 +4,20 @@ import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
 import { EstadisticasService } from 'src/app/services/estadisticas.service';
 import { EstadisticasActions } from './estadisticas.actions';
-
+export class EstadisticasDefault{
+  public deletes!: number;
+  public noUnificados!: number;
+  public total!: number;
+  public unificados!: number;
+}
 export class EstadisticasStateModel {
   public resultados!: any;
-  public profesionales?: any;
-  public estudios?: any;
-  public especialidades?: any;
-  public equipos?: any;
-  public os?: any;
-  public pacientes?: any;
+  public profesionales?: EstadisticasDefault;
+  public estudios?: EstadisticasDefault;
+  public especialidades?: EstadisticasDefault;
+  public equipos?: EstadisticasDefault;
+  public os?: EstadisticasDefault;
+  public pacientes?: EstadisticasDefault;
   public direcciones?: any;
 }
 
@@ -69,7 +74,7 @@ export class EstadisticasState {
         (result: any) => {
           setState(
             patch({
-              estudios: result,
+              direcciones: result,
             })
           );
         },

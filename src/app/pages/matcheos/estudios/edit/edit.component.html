@@ -1,5 +1,7 @@
 <div class="flex flex-1 space-y-4 py-4 flex-col px-8">
   <ng-container *ngIf="master$|async as Master">
+    <app-title-changer [title]='("title"|transloco) + " | " + ("matcheos.title"|transloco: { master:Master.master, tipo:
+      ("matcheos.estudio"|transloco)})'></app-title-changer>
     <div
       class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
       <div class="flex flex-none  items-start justify-center ">

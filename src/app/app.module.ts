@@ -31,6 +31,7 @@ import {
 import { ToastPreguntaService } from './utility/toastPregunta.service';
 import '@angular/common/locales/global/es';
 import '@angular/common/locales/global/en';
+import '@angular/common/locales/global/pt';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 @NgModule({
@@ -44,7 +45,7 @@ import { NgxsFormPluginModule } from '@ngxs/form-plugin';
     GlobalesModule,
     BrowserAnimationsModule,
     NgxsStoragePluginModule.forRoot({
-      key: ['cuentas.token'],
+      key: ['cuentas.token', 'global.lang'],
     }),
     NgxsFormPluginModule.forRoot(),
     NgxsModule.forRoot([GlobalState, CuentasState], {

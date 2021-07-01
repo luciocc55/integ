@@ -1,11 +1,147 @@
 {
-  "sidenav":{
+  "title":"Integrator",
+  "sidenav": {
+    "login": "Login",
     "estatus": "Estatus Services",
-    "matchear": "Matchear",
-    "matcheos": "Matcheados",
-    "profesionales": "Profesionales",
-    "especialidades": "Especialidades",
-    "instituciones": "Instituciones",
-    "os": "Obras Sociales"
-  }
+    "estatusSub": "The current status of the services is displayed",
+    "matchear": "Match",
+    "matcheos": "Matched",
+    "profesionales": "Professionals",
+    "estudios": "Studies",
+    "equipos": "Teams",
+    "especialidades": "Specialties",
+    "pacientes": "Patients",
+    "os": "Private health insurances",
+    "estadisticas": "Statistics",
+    "cuentas": "Accounts",
+    "roles": "Roles",
+    "usuarios": "Users",
+    "importaciones": "Imports",
+    "general": "See latest imports",
+    "direcciones": "Addresses",
+    "logout": "Sign off",
+    "home": "Home",
+    "importacion": "Import Tasks"
+  },
+  "ultimos": "No imports in the last 2 days",
+  "login": {
+    "title": "Login",
+    "subTitle": "Welcome",
+    "user": "Users",
+    "password": "Password",
+    "submit": "Sign in"
+  },
+  "campo": "You must complete this field to continue",
+  "disabled": "You need to complete the requirements to proceed",
+  "mergeo": {
+    "table": {
+      "id": "Origin ID",
+      "descripcion": "Description",
+      "origen": "Source",
+      "acciones": "Actions",
+      "masterAccion": "Choose as master",
+      "remMasterAccion": "Remove as master",
+      "delete": "Delete",
+      "creacion": "Import date"
+    },
+    "aceptar": "Accept merge",
+    "tooltipAceptar": "You must select at least one record and one master"
+  },
+  "search": "Search",
+  "pagination": {
+    "pagina": "Page",
+    "title": "Records by {{pagination.pagina}}",
+    "ultima": "Last {{pagination.pagina}}",
+    "primer": "First {{pagination.pagina}}",
+    "siguiente": "Siguiente {{pagination.pagina}}",
+    "anterior": "{{pagination.pagina}} previous",
+    "guia": "{{pagination.pagina}} {{actual}} of {{totalPage}} (Results: {{total}})"
+  },
+  "toast": {
+    "errorTitle": "Error occurred",
+    "successTitle": "Successful operation",
+    "mergeoError": "There was an error, try again or ask an admin for help",
+    "mergeoExito": "Successful merge",
+    "preguntaOperacion": "Are you sure you want to perform this action?",
+    "confirmacion": "Confirm to continue",
+    "migracion": "The task was carried out successfully"
+  },
+  "matcheos": {
+    "title": "Master {{tipo}} {{master}}",
+    "profesional": "Professional",
+    "especialidad": "Specialties",
+    "equipo": "Team",
+    "estudio": "Study",
+    "paciente": "Patient",
+    "os": "Private health insurance",
+    "table": {
+      "id": "ID",
+      "masterId": "Master id",
+      "editar": "Edit Master",
+      "deleteMaster": "Delete Master",
+      "remove": "Remove",
+      "unmatch": "Unmatch {{matcheo}}"
+    }
+  },
+  "roles": {
+    "title": "Role {{descripcion}}",
+    "desc": "Description",
+    "permisos": "Permissions",
+    "sinPermisos": "Does not have permits",
+    "hint": "You can add them from the permissions selection",
+    "guardarCambios": "Save Changes",
+    "crear": "Create Role",
+    "nuevo": "Create New"
+  },
+  "selectSearch": {
+    "title": "Search",
+    "noResults": "No results"
+  },
+  "estatus": {
+    "serviceName": "Service",
+    "fecha": "Last modified date",
+    "caidas": "Amount of falls in the last 24 hours",
+    "habilitacion": "Available"
+  },
+  "usuarios": {
+    "table": {
+      "nombre": "Name",
+      "apellido": "Lastname",
+      "usuario": "Username"
+    },
+    "form": {
+      "password": "Password",
+      "crear": "Create User",
+      "edit": "Edit User",
+      "guardar": "Save"
+    }
+  },
+  "direcciones": {
+    "table": {
+      "sinonimo": "Synonymous",
+      "real": "Real value",
+      "idgored": "Number in GoRed",
+      "institucion": "Institution"
+    }
+  },
+  "tasks": {
+    "migrar": "Migrate",
+    "boton": "Run Task",
+    "profesionales": "This task is executed in a cron that migrates all the professionals from each his",
+    "especialidades": "This task is executed in a cron that migrates all the specialties from each his",
+    "direcciones": "This task is executed in a cron that migrates all the addresses from each his",
+    "estudios": "This task runs in a cron that migrates all studies from each his",
+    "equipos": "This task is executed in a cron that migrates all the computers from each his",
+    "profespTitle": "professionals and specialties",
+    "profesp": "This task is executed in a cron that migrates the relationships between professional and specialty from each his",
+    "os": "This task is executed in a cron that migrates the social works enabled from each his"
+  },
+  "estadisticas": {
+    "idgored": "No id in GoRed",
+    "sinonimo": "Without synonym",
+    "nomerge": "Unmerged",
+    "merge": "Merged",
+    "eliminados": "Deleted"
+  },
+  "total": "Total"
 }

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { TranslocoService } from "@ngneat/transloco";
+import { Injectable } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,9 @@ export class HelperFunctions {
         break;
       case 'us':
         lang = 'en_US';
+        break;
+      case 'br':
+        lang = 'pt_BR';
         break;
     }
     return lang;
