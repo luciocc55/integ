@@ -2,7 +2,7 @@
   "title":"Integrador",
   "exist": "Este Usuario no Existe!",
   "password": "Contraseña Incorrecta!",
-  "email": "Este email ya esta registrado",
+  "email": "Este email ya está registrado",
   "sidenav": {
     "login": "Login",
     "estatus": "Estatus Services",
@@ -15,18 +15,18 @@
     "especialidades": "Especialidades",
     "pacientes": "Pacientes",
     "os": "Obras Sociales",
-    "estadisticas":"Estadisticas",
+    "estadisticas":"Estadísticas",
     "cuentas": "Cuentas",
     "roles": "Roles",
     "usuarios": "Usuarios",
-    "importaciones": "Importacion",
+    "importaciones": "Importación",
     "general": "Ver ultimas importaciones",
     "direcciones": "Direcciones",
-    "logout": "Cerrar Sesion",
+    "logout": "Cerrar Sesión",
     "home": "Home",
-    "importacion": "Tareas de Importacion"
+    "importacion": "Tareas de Importación"
   },
-  "ultimos":"Sin importaciones en los ultimos 2 dias",
+  "ultimos":"Sin importaciones en los últimos 2 días",
   "login": {
     "title": "Login",
     "subTitle": "Bienvenido",
@@ -39,22 +39,22 @@
   "mergeo": {
     "table": {
       "id": "ID de Origen",
-      "descripcion": "Descripcion",
+      "descripcion": "Descripción",
       "origen": "Origen",
       "acciones": "Acciones",
       "masterAccion": "Elegir como master",
       "remMasterAccion": "Remover como master",
       "delete": "Eliminar",
-      "creacion": "Fecha de importacion"
+      "creacion": "Fecha de importación"
     },
     "aceptar": "Aceptar mergeo",
     "tooltipAceptar": "Debe seleccionar al menos un registro y un master"
   },
   "search": "Buscar",
   "pagination": {
-    "pagina": "Pagina",
+    "pagina": "Página",
     "title": "Registros por {{pagination.pagina}}",
-    "ultima": "Ultima {{pagination.pagina}}",
+    "ultima": "Última {{pagination.pagina}}",
     "primer": "Primer {{pagination.pagina}}",
     "siguiente": "Siguiente {{pagination.pagina}}",
     "anterior": "{{pagination.pagina}} anterior",
@@ -62,12 +62,12 @@
   },
   "toast": {
     "errorTitle": "Hubo un error",
-    "successTitle": "Operacion exitosa",
+    "successTitle": "Operación exitosa",
     "mergeoError": "Hubo un error vuelva a intentarlo o solicite ayuda a un admin",
     "mergeoExito": "Mergeo exitoso",
-    "preguntaOperacion": "¿Esta seguro que desea realizar esta accion?",
+    "preguntaOperacion": "¿Está seguro que desea realizar esta acción?",
     "confirmacion": "Confirmar para seguir",
-    "migracion": "La tarea fue realizada con exito"
+    "migracion": "La tarea fue realizada con éxito"
   },
   "matcheos": {
     "title": "Master {{tipo}} {{master}}",
@@ -88,10 +88,10 @@
   },
   "roles": {
     "title": "Rol {{descripcion}}",
-    "desc": "Descripcion",
+    "desc": "Descripción",
     "permisos": "Permisos",
     "sinPermisos": "No posee permisos",
-    "hint": "Puede agregarlos desde la seleccion de permisos",
+    "hint": "Puede agregarlos desde la selección de permisos",
     "guardarCambios": "Guardar Cambios",
     "crear": "Crear Rol",
     "nuevo": "Crear Nuevo"
@@ -102,9 +102,9 @@
   },
   "estatus": {
     "serviceName": "Service",
-    "fecha": "Fecha de ultima modificacion",
-    "caidas": "Cantidad de caidas en las ultimas 24hs",
-    "habilitacion": "Habilitacion"
+    "fecha": "Fecha de última modificación",
+    "caidas": "Cantidad de caídas en las últimas 24 hs",
+    "habilitacion": "Habilitación"
   },
   "usuarios": {
     "table": {
@@ -121,17 +121,17 @@
   },
   "direcciones": {
     "table": {
-      "sinonimo": "Sinonimo",
+      "sinonimo": "Sinónimo",
       "real": "Valor Real",
-      "idgored": "Numero en GoRed",
-      "institucion": "Institucion"
+      "idgored": "Número en GoRed",
+      "institucion": "Institución"
     }
   },
   "tasks": {
     "migrar": "Migrar",
     "boton": "Ejecutar Tarea",
     "profesionales": "Esta tarea se ejecuta en un cron que migra todos los profesionales desde cada his",
-    "especialidades": "Esta tarea se ejecuta en un cron que migra todos las especialidades desde cada his",
+    "especialidades": "Esta tarea se ejecuta en un cron que migra todas las especialidades desde cada his",
     "direcciones": "Esta tarea se ejecuta en un cron que migra todas las direcciones desde cada his",
     "estudios": "Esta tarea se ejecuta en un cron que migra todos los estudios desde cada his",
     "equipos": "Esta tarea se ejecuta en un cron que migra todos los equipos desde cada his",
@@ -140,8 +140,8 @@
     "os": "Esta tarea se ejecuta en un cron que migra las obras sociales habilitadas desde cada his"
   },
   "estadisticas": {
-    "idgored": "Sin id en GoRed",
-    "sinonimo": "Sin Sinonimo",
+    "idgored": "Sin ID en GoRed",
+    "sinonimo": "Sin Sinónimo",
     "nomerge": "Sin mergear",
     "merge": "Mergeados",
     "eliminados": "Eliminados"
