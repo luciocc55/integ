@@ -146,5 +146,6 @@
     "merge": "Mergeados",
     "eliminados": "Eliminados"
   },
-  "total":"Total"
+  "total":"Total",
+  "copiado": "Copiado con exito!"
 }

@@ -22,6 +22,13 @@
           <span class="text-sm">
             {{'estatus.caidas'|transloco}}: <span class="font-medium">{{estatus.caidas}}</span>
           </span>
+          <div class="flex flex-none">
+            <span class="text-sm text-red-400 cursor-pointer" [cdkCopyToClipboard]="estatus.error.descripcion" (click)='copied()' [matTooltip]="estatus.error.descripcion"
+              *ngIf='estatus.error?.descripcion'>
+              {{estatus.error?.fechaCreacion| localizedDate:'dd/MM/yyyy HH:mm:ss'}}
+              <span class="font-bold">{{estatus.error?.descripcion|slice:0:50}}</span>
+            </span>
+          </div>
           <span class="text-sm">
             {{'estatus.fecha'|transloco}}:
             <span class="font-medium">{{estatus.cambio| localizedDate:'dd/MM/yyyy HH:mm:ss'}}</span>

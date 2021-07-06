@@ -146,5 +146,6 @@
     "merge": "Merged",
     "eliminados": "Deleted"
   },
-  "total": "Total"
+  "total": "Total",
+  "copiado": "Successfully copied!"
 }

@@ -5,6 +5,11 @@ import { tap } from 'rxjs/operators';
 import { EstatusService } from 'src/app/services/estatus.service';
 import { EstatusActions } from './estatus.actions';
 
+export class Errores {
+  public _id!: string;
+  public fechaCreacion!: string;
+  public descripcion!: string;
+}
 export class Estatus {
   public _id!: string;
   public id!: number;
@@ -12,6 +17,7 @@ export class Estatus {
   public cambio!: string;
   public habilitado!: boolean;
   public nombre!: string;
+  public error!: Errores;
 }
 export class EstatusStateModel {
   public estatus!: Estatus[];

@@ -23,6 +23,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { LocalizedDatePipe } from '../utility/pipes/date-localized.pipe';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [AutofocusDirective, NumberOnlyDirective, LocalizedDatePipe],
@@ -50,7 +51,8 @@ import { LocalizedDatePipe } from '../utility/pipes/date-localized.pipe';
     MatTooltipModule,
     MatSelectModule,
     NgxMatSelectSearchModule,
-    LocalizedDatePipe
+    LocalizedDatePipe,
+    ClipboardModule
   ],
 })
 export class SharedModule {}
