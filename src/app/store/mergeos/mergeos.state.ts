@@ -54,7 +54,7 @@ function actSelected(
       }
     } else {
       if (isSelected && item) {
-        newSelected = newSelected.filter((item) => item.id !== item.id);
+        newSelected = newSelected.filter((newItem) => newItem.id !== item.id);
       }
     }
     newSelected = newSelected.sort((a, b) => {
