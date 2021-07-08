@@ -16,6 +16,7 @@ export class MatcheosTableComponent implements OnInit {
   displayedColumns: string[] = [
     'master',
     'id',
+    'idOrigen',
     'descripcion',
     'origen',
     'acciones',
