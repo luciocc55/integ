@@ -24,7 +24,9 @@ export class RolesFormComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new CuentasActions.LoadPermisos(''));
     this.searchSelect.valueChanges.subscribe((value) => {
-      this.store.dispatch(new CuentasActions.LoadPermisos(value));
+      if (value) {
+        this.store.dispatch(new CuentasActions.LoadPermisos(value));
+      }
     });
     this.descripcion.valueChanges.subscribe((value) => {
       const stateRol = this.store.selectSnapshot((state) => state.cuentas.rol);
