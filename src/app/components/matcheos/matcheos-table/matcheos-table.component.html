@@ -54,7 +54,7 @@
         <span>{{registro.master}}</span>
       </td>
     </ng-container>
-    <ng-container matColumnDef="expandedDetail1">
+    <ng-container matColumnDef="expandedDetail2">
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
         <strong class='has_label_on_mobile' [attr.data-label]="t('matcheos.table.id')+ ':'"></strong>
         <ng-container *ngFor="let item of registro.matcheos">
@@ -63,14 +63,23 @@
         </ng-container>
       </td>
     </ng-container>
-    <ng-container matColumnDef="expandedDetail2">
+    <ng-container matColumnDef="expandedDetail1">
+      <td mat-cell *matCellDef="let registro" class='m-card-title'>
+        <strong class='has_label_on_mobile' [attr.data-label]="t('mergeo.table.id')+ ':'"></strong>
+        <ng-container *ngFor="let item of registro.matcheos">
+          <span>{{item.id}}</span>
+          <br>
+        </ng-container>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail3">
       <td mat-cell *matCellDef="let registro" class='m-card-title'>
         <ng-container *ngFor="let item of registro.matcheos">
           <span>{{item.descripcion|titlecase}}</span><br>
         </ng-container>
       </td>
     </ng-container>
-    <ng-container matColumnDef="expandedDetail3">
+    <ng-container matColumnDef="expandedDetail4">
       <td mat-cell [attr.colspan]='2' *matCellDef="let registro; let i = dataIndex" class='m-card-title'>
         <strong class='has_label_on_mobile' [attr.data-label]="t('mergeo.table.origen') + ':'"></strong>
         <ng-container *ngFor="let item of registro.matcheos">
@@ -84,7 +93,7 @@
     <tr mat-row *matRowDef="let registro; columns: displayedColumns;">
     </tr>
     <tr mat-row
-      *matRowDef="let registro; columns: ['expandedDetail0','expandedDetail1','expandedDetail2','expandedDetail3']"
+      *matRowDef="let registro; columns: ['expandedDetail0','expandedDetail1','expandedDetail2','expandedDetail3','expandedDetail4']"
       class="dark:bg-black-shade-200 bg-primary-accent " [ngClass]='registro.matcheos.length>0? "":"hidden"'>
     </tr>
   </table>
