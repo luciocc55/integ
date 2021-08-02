@@ -41,6 +41,20 @@ export class EspecialidadesService {
       }
     );
   }
+  busAll(search: string, page = '1', pageSize = '25') {
+    return this.http.post<any>(
+      urls.BusEspecialidadesAll,
+      {
+        especialidad: search,
+      },
+      {
+        params: {
+          page,
+          perPage: pageSize,
+        },
+      }
+    );
+  }
   mergeo(
     master: { origen: number; idOrigen: string },
     registros: { origen: number; idOrigen: string }[]

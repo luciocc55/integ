@@ -24,7 +24,9 @@
     "direcciones": "Direcciones",
     "logout": "Cerrar Sesión",
     "home": "Home",
-    "importacion": "Tareas de Importación"
+    "importacion": "Tareas de Importación",
+    "relaciones": "Asociaciones relacionales",
+    "relacionesprofesp": "Profesionales y Especialidades"
   },
   "ultimos":"Sin importaciones en los últimos 2 días",
   "login": {
@@ -61,6 +63,7 @@
     "guia": "{{pagination.pagina}} {{actual}} de {{totalPage}} (Resultados: {{total}})"
   },
   "toast": {
+    "duplicado": "Este registro ya existe",
     "errorTitle": "Hubo un error",
     "successTitle": "Operación exitosa",
     "mergeoError": "Hubo un error vuelva a intentarlo o solicite ayuda a un admin",
@@ -146,6 +149,16 @@
     "merge": "Mergeados",
     "eliminados": "Eliminados"
   },
+  "relaciones": {
+    "table": {
+      "agregar": "Agregar nueva",
+      "eliminar": "Eliminar con {{relacion}}"
+    },
+    "limpiar": "Limpiar relaciones",
+    "guardar": "Guardar relaciones",
+    "nueva": "Nueva relacion"
+  },
   "total":"Total",
-  "copiado": "Copiado con exito!"
+  "copiado": "Copiado con exito!",
+  "cerrarModal": "Cerrar modal"
 }

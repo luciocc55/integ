@@ -24,7 +24,9 @@
     "direcciones": "Addresses",
     "logout": "Sign off",
     "home": "Home",
-    "importacion": "Import Tasks"
+    "importacion": "Import Tasks",
+    "relaciones": "Relational associations",
+    "relacionesprofesp": "Professionals and Specialties"
   },
   "ultimos": "No imports in the last 2 days",
   "login": {
@@ -61,6 +63,7 @@
     "guia": "{{pagination.pagina}} {{actual}} of {{totalPage}} (Results: {{total}})"
   },
   "toast": {
+    "duplicado": "This item already exists",
     "errorTitle": "Error occurred",
     "successTitle": "Successful operation",
     "mergeoError": "There was an error, try again or ask an admin for help",
@@ -146,6 +149,16 @@
     "merge": "Merged",
     "eliminados": "Deleted"
   },
+  "relaciones": {
+    "table": {
+      "agregar": "Add new",
+      "eliminar": "Delete with {{relacion}}"
+    },
+    "limpiar": "Clear relations",
+    "guardar": "Save relations",
+    "nueva": "New relation"
+  },
   "total": "Total",
-  "copiado": "Successfully copied!"
+  "copiado": "Successfully copied!",
+  "cerrarModal": "Close modal"
 }

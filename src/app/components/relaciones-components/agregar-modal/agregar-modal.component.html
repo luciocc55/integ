@@ -1,0 +1,72 @@
+<div class="flex flex-col space-y-4">
+  <ng-container *ngIf="{selected: selected$ | async, selecteds: selecteds$ |async } as Resultado">
+  <div class="flex flex-1"  >
+    <div class="flex flex-1  items-center">
+      <ng-container *ngIf="Resultado.selected as Selected" >
+        {{Selected.idOrigen}} {{Selected.descripcion |titlecase}} ({{Selected.origen}})
+      </ng-container>
+    </div>
+    <div class="flex flex-1 flex-col space-y-1"  *ngIf="Resultado.selecteds as Selecteds">
+      <ng-container *ngFor="let item of Selecteds">
+        <div class="flex flex-row items-center">
+          <div class="flex flex-none">
+            <mat-icon>adjust</mat-icon>
+          </div>
+          <div class="flex flex-1">
+            {{item.idOrigen}} {{item.descripcion |titlecase}} ({{item.origen}})
+          </div>
+          <div class="flex flex-none">
+            <button (click)='delete(item)' mat-icon-button>
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="flex flex-1 justify-end space-x-2">
+    <div class="flex flex-none " *ngIf="Resultado.selected || (Resultado.selecteds && Resultado.selecteds.length>0)">
+      <button class="p-2 bg-primary-500  rounded-md" (click)="clearAll()">{{'relaciones.limpiar'|transloco}}</button>
+    </div>
+    <div class="flex flex-none" *ngIf="Resultado.selected && (Resultado.selecteds && Resultado.selecteds.length>0)">
+      <button class="p-2 bg-accent-500  rounded-md" (click)="guardar()">{{'relaciones.guardar'|transloco}}</button>
+    </div>
+  </div>
+
+</ng-container>
+  <div class="flex flex-1 space-x-3 ">
+    <div class="flex flex-1 flex-col">
+      <div class="flex flex-none justify-end relative items-center">
+        <input (keyup.enter)="buscar1()" class="p-2 bg-primary-accent dark:bg-accent-500 rounded-md w-full outline-none"
+          matInput [placeholder]="'search'|transloco" [formControl]="search1">
+        <button (click)='buscar1()' matRipple class="absolute z-10 right-0 pr-2 flex flex-none  rounded-md">
+          <mat-icon class="text-black dark:text-white w-auto h-auto" matSuffix>search</mat-icon>
+        </button>
+      </div>
+      <div class="flex flex-1 flex-col my-2 max-h-72 overflow-auto">
+        <ng-container *ngFor="let item of resultados1?.results">
+          <button matRipple (click)='add1(item)' class="flex flex-none p-2 ">
+            {{item.idOrigen}} {{item.descripcion |titlecase}} ({{item.origen}})
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <div class="flex flex-none justify-end relative items-center">
+        <input (keyup.enter)="buscar2()" class="p-2 bg-primary-accent dark:bg-accent-500 rounded-md w-full outline-none"
+          matInput [placeholder]="'search'|transloco" [formControl]="search2">
+        <button (click)='buscar2()' matRipple class="absolute z-10 right-0 pr-2 flex flex-none  rounded-md">
+          <mat-icon class="text-black dark:text-white w-auto h-auto" matSuffix>search</mat-icon>
+        </button>
+      </div>
+      <div class="flex flex-1 flex-col my-2 max-h-72 overflow-auto">
+        <ng-container *ngFor="let item of resultados2?.results">
+          <button matRipple (click)='add2(item)' class="flex flex-none p-2 ">
+            {{item.idOrigen}} {{item.descripcion |titlecase}} ({{item.origen}})
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>

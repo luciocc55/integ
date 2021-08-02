@@ -78,6 +78,7 @@ export const estadisticasEst = environment.api + 'estudios_estadisticas_mergeo/'
 // Profesionales
 export const Getprofesionales = environment.api + 'profesionales/';
 export const BusProfesionales = environment.api + 'bus_profesionales/';
+export const BusProfesionalesAll = environment.api + 'bus_profesionales_all/';
 export const mergeoProfesionales = environment.api + 'matcheo_profesionales/';
 
 export const busProfesionalesTesting = environment.api + 'get_profesionales_testing/';
@@ -95,6 +96,7 @@ export const profesionalesMatcheosExport = environment.api + 'exportar_profesion
 export const Getespecialidades = environment.api + 'especialidades/';
 export const mergeoEspecialidades = environment.api + 'matcheo_especialidades/';
 export const BusEspecialidades = environment.api + 'bus_especialidades/';
+export const BusEspecialidadesAll = environment.api + 'bus_especialidades_all/';
 export const MasterEspCrear = environment.api + 'master_especialidades_crear/';
 export const especialidadesUpdate = environment.api + 'especialidades_update/';
 export const especialidadesDelete = environment.api + 'especialidades_delete/';
@@ -131,3 +133,10 @@ export const equiposTask = environment.api + tasks + 'equipos/';
 export const estudiosTask = environment.api + tasks + 'estudios/';
 export const profespTask = environment.api + tasks + 'profesionalesespecialidades/';
 export const osTask = environment.api + tasks + 'os/';
+
+/// RELACIONES
+export const profEsp = 'profesionales-especialidades/'
+export const busquedaProfEsp = environment.api + profEsp + 'busqueda/';
+export const removerProfEsp = environment.api + profEsp + 'delete/';
+export const agregarProfEsp = environment.api + profEsp + 'agregar/';
+

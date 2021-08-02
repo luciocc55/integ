@@ -64,6 +64,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'relaciones',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/relaciones/relaciones.module').then(
+        (m) => m.RelacionesModule
+      ),
+  },
+  {
     path: 'ultimas-importaciones',
     canActivate: [AuthGuard],
     loadChildren: () =>

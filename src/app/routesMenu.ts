@@ -124,4 +124,14 @@ export const menuData = [
       },
     ],
   },
+  {
+    title: 'relaciones',
+    subs: [
+      {
+        title: 'relacionesprofesp',
+        url: '/relaciones/profesionales-especialidades',
+        icon: 'fact_check',
+      },
+    ],
+  },
 ];

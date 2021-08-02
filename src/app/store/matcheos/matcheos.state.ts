@@ -53,7 +53,7 @@ const defaults = {
   matcheos: [],
   noResults: false,
 };
-function formatProf(profesional: any) {
+export function formatProf(profesional: any) {
   return {
     id: profesional.id,
     origen: profesional.origen?.nombre,

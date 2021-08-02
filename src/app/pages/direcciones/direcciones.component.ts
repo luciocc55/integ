@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { DireccionesActions } from 'src/app/store/direcciones/direcciones.actions';
-import { ParamsActions } from 'src/app/store/params/params.actions';
 
 @Component({
   selector: 'app-direcciones',
@@ -11,16 +6,7 @@ import { ParamsActions } from 'src/app/store/params/params.actions';
   styleUrls: ['./direcciones.component.scss'],
 })
 export class DireccionesComponent implements OnInit {
+  constructor() {}
 
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-
-  }
-
-
+  ngOnInit(): void {}
 }

@@ -20,6 +20,20 @@ export class ProfesionalesService {
       }
     );
   }
+  busAll(search: string, page = '1', pageSize = '25') {
+    return this.http.post<any>(
+      urls.BusProfesionalesAll,
+      {
+        profesional: search,
+      },
+      {
+        params: {
+          page,
+          perPage: pageSize,
+        },
+      }
+    );
+  }
   unMatchProf(profesional: number) {
     return this.http.get<any>(urls.removerProfFromMaster + profesional + '/');
   }
