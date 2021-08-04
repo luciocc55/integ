@@ -65,7 +65,10 @@ export class ProfesionalesEspecialidadesComponent implements OnInit {
       );
     });
     this.store.dispatch(promises).subscribe(() => {
-      this.store.dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
+      this.store.dispatch([
+        new GlobalActions.OpenSuccess('toast.successTitle'),
+        new RelacionesActions.LoadRelacionesProfEsp(),
+      ]);
     });
   }
   nuevaRelacion() {

@@ -58,14 +58,14 @@ export class EquiposEstudiosComponent implements OnInit {
     const promises: any = [];
     relaciones.forEach((element: Registro) => {
       promises.push(
-        new RelacionesActions.GuardarRelacionesEquipEst(
-          equipo.id,
-          element.id
-        )
+        new RelacionesActions.GuardarRelacionesEquipEst(equipo.id, element.id)
       );
     });
     this.store.dispatch(promises).subscribe(() => {
-      this.store.dispatch(new GlobalActions.OpenSuccess('toast.successTitle'));
+      this.store.dispatch([
+        new GlobalActions.OpenSuccess('toast.successTitle'),
+        new RelacionesActions.LoadRelacionEquipEst(),
+      ]);
     });
   }
   nuevaRelacion() {
