@@ -3,7 +3,9 @@ import { TranslocoService } from '@ngneat/transloco';
 import { State, Action, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { tap } from 'rxjs/operators';
+import { EquiposService } from 'src/app/services/equipos.service';
 import { EspecialidadesService } from 'src/app/services/especialidades.service';
+import { EstudiosService } from 'src/app/services/estudios.service';
 import { ProfesionalesService } from 'src/app/services/profesionales.service';
 import { RelacionesService } from 'src/app/services/relaciones.service';
 import { Pagination } from 'src/app/utility/interfaces/pagination.interface';
@@ -60,6 +62,8 @@ export class RelacionesState {
     private relacionesService: RelacionesService,
     private profesionalesService: ProfesionalesService,
     private especialidadesService: EspecialidadesService,
+    private equiposService: EquiposService,
+    private estudiosService: EstudiosService,
     private translocoService: TranslocoService,
     private store: Store
   ) {}
@@ -94,6 +98,33 @@ export class RelacionesState {
     setState(patch({ selected2: newSelected }));
   }
 
+  @Action(RelacionesActions.GuardarRelacionesEquipEst)
+  GuardarRelacionesEquipEst(
+    { dispatch }: StateContext<RelacionesStateModel>,
+    { equipo, estudio }: RelacionesActions.GuardarRelacionesEquipEst
+  ) {
+    return this.relacionesService
+      .guardarEquipEst({ equipo, estudio })
+      .pipe(
+        tap(
+          (result) => {},
+          (err) => {
+            if (err.error?.code === 101) {
+              const msg =
+                this.translocoService.translateObject('toast.duplicado') +
+                ' ' +
+                equipo +
+                ' / ' +
+                estudio;
+              dispatch(new GlobalActions.OpenAlert(msg));
+            } else {
+              dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+            }
+            throw err.error?.error;
+          }
+        )
+      );
+  }
   @Action(RelacionesActions.GuardarRelacionesProfEsp)
   GuardarRelacionesProfEsp(
     { dispatch }: StateContext<RelacionesStateModel>,
@@ -138,6 +169,23 @@ export class RelacionesState {
       )
     );
   }
+  @Action(RelacionesActions.DeleteRelacionEquipEst)
+  DeleteRelacionEquipEst(
+    { dispatch }: StateContext<RelacionesStateModel>,
+    { idRelacion }: RelacionesActions.DeleteRelacionEquipEst
+  ) {
+    return this.relacionesService.deleteEquipEst(idRelacion).pipe(
+      tap(
+        (result) => {
+          dispatch(new RelacionesActions.LoadRelacionEquipEst());
+        },
+        (err) => {
+          dispatch(new GlobalActions.OpenAlert('toast.mergeoError'));
+          throw err.error?.error;
+        }
+      )
+    );
+  }
   @Action(RelacionesActions.LoadEspecialidades)
   LoadEspecialidades(
     { setState, getState }: StateContext<RelacionesStateModel>,
@@ -158,6 +206,64 @@ export class RelacionesState {
             };
           });
           const resultado: any = { results: especialidades };
+          setState(
+            patch({
+              [key]: resultado,
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+  @Action(RelacionesActions.LoadEquipos)
+  LoadEquipos(
+    { setState, getState }: StateContext<RelacionesStateModel>,
+    { key }: RelacionesActions.LoadEquipos
+  ) {
+    const state: any = getState();
+    const busqueda = state[key]?.value;
+    return this.equiposService.busAll(busqueda).pipe(
+      tap(
+        (result) => {
+          const equipos = result.results.map((item: any) => {
+            return formatProf(item);
+          });
+          const resultado: any = { results: equipos };
+          setState(
+            patch({
+              [key]: resultado,
+            })
+          );
+        },
+        (err) => {
+          throw err.error?.error;
+        }
+      )
+    );
+  }
+  @Action(RelacionesActions.LoadEstudios)
+  LoadEstudios(
+    { setState, getState }: StateContext<RelacionesStateModel>,
+    { key }: RelacionesActions.LoadEstudios
+  ) {
+    const state: any = getState();
+    const busqueda = state[key]?.value;
+    return this.estudiosService.busAll(busqueda).pipe(
+      tap(
+        (result) => {
+          const estudios = result.results.map((item: any) => {
+            return {
+              descripcion: item.descripcion,
+              id: item.id,
+              origen: item.origenPopulate.nombre,
+              origenId: item.origen.id,
+              idOrigen: item.idOrigen,
+            };
+          });
+          const resultado: any = { results: estudios };
           setState(
             patch({
               [key]: resultado,
@@ -195,6 +301,49 @@ export class RelacionesState {
         }
       )
     );
+  }
+
+  @Action(RelacionesActions.LoadRelacionEquipEst)
+  LoadRelacionEquipEst({ setState }: StateContext<RelacionesStateModel>) {
+    const paramsState = this.store.selectSnapshot(ParamsState.params);
+    return this.relacionesService
+      .busRelacionesEquipEst(
+        paramsState.search,
+        paramsState.page,
+        paramsState.pageSize
+      )
+      .pipe(
+        tap(
+          (result) => {
+            const matcheos = result?.results.map((registro: any) => {
+              const relaciones = registro.estudios.map((item: any) => {
+                return {
+                  descripcion: item.descripcion,
+                  id: item.id,
+                  origen: item.origen.nombre,
+                  origenId: item.origen.id,
+                  idOrigen: item.idOrigen,
+                };
+              });
+              return {
+                idRelacion: registro.id,
+                registroGroup: { ...formatProf(registro.equipo) },
+                relaciones: relaciones,
+              };
+            });
+            delete result.results;
+            setState(
+              patch({
+                resultados: matcheos,
+                pagination: { ...result },
+              })
+            );
+          },
+          (err) => {
+            throw err.error?.error;
+          }
+        )
+      );
   }
   @Action(RelacionesActions.LoadRelacionesProfEsp)
   LoadRelacionesProfEsp({ setState }: StateContext<RelacionesStateModel>) {

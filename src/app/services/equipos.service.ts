@@ -27,6 +27,20 @@ export class EquiposService {
   unMatch(idMatch: number) {
     return this.http.get<any>(urls.removerEquipFromMaster + idMatch + '/');
   }
+  busAll(search: string, page = '1', pageSize = '25') {
+    return this.http.post<any>(
+      urls.BusEquiposAll,
+      {
+        equipo: search,
+      },
+      {
+        params: {
+          page,
+          perPage: pageSize,
+        },
+      }
+    );
+  }
   BusMatcheados(search: string, page = '1', pageSize = '25') {
     return this.http.post<any>(
       urls.equiposMatcheos,

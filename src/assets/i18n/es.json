@@ -26,7 +26,8 @@
     "home": "Home",
     "importacion": "Tareas de Importación",
     "relaciones": "Asociaciones relacionales",
-    "relacionesprofesp": "Profesionales y Especialidades"
+    "relacionesprofesp": "Profesionales y Especialidades",
+    "relacionesequipest": "Equipos y Estudios"
   },
   "ultimos":"Sin importaciones en los últimos 2 días",
   "login": {

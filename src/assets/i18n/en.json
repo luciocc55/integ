@@ -26,7 +26,8 @@
     "home": "Home",
     "importacion": "Import Tasks",
     "relaciones": "Relational associations",
-    "relacionesprofesp": "Professionals and Specialties"
+    "relacionesprofesp": "Professionals and Specialties",
+    "relacionesequipest": "Teams and Studies"
   },
   "ultimos": "No imports in the last 2 days",
   "login": {

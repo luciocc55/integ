@@ -27,6 +27,20 @@ export class EstudiosService {
   unMatch(idMatch: number) {
     return this.http.get<any>(urls.removerEstFromMaster + idMatch + '/');
   }
+  busAll(search: string, page = '1', pageSize = '25') {
+    return this.http.post<any>(
+      urls.BusEstudiosAll,
+      {
+        estudio: search,
+      },
+      {
+        params: {
+          page,
+          perPage: pageSize,
+        },
+      }
+    );
+  }
   BusMatcheados(search: string, page = '1', pageSize = '25') {
     return this.http.post<any>(
       urls.estudiosMatcheos,

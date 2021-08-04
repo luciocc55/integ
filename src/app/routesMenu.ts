@@ -132,6 +132,11 @@ export const menuData = [
         url: '/relaciones/profesionales-especialidades',
         icon: 'fact_check',
       },
+      {
+        title: 'relacionesequipest',
+        url: '/relaciones/equipos-estudios',
+        icon: 'fact_check',
+      },
     ],
   },
 ];

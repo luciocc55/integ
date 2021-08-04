@@ -1,0 +1,29 @@
+<div class="flex flex-1 space-y-4 py-4 flex-col px-8 mb-4">
+  <div
+    class="flex flex-1 border items-center rounded-md space-x-4 dark:border-primary-accent border-accent-accent p-3 shadow-sm">
+    <div class="flex flex-none  items-start justify-center ">
+      <div class="flex flex-none py-2 px-3 bg-primary-500 dark:bg-accent-500 rounded-md">
+        <mat-icon class="text-white text-5xl w-auto h-auto">fact_check</mat-icon>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <span class="text-2xl font-medium">{{'sidenav.relacionesequipest'|transloco}}</span>
+    </div>
+  </div>
+  <div class="flex flex-1">
+    <button (click)="nuevaRelacion()" class="w-full p-2 text-lg rounded-md bg-primary-500">{{'relaciones.nueva'|transloco}}</button>
+  </div>
+  <div class="flex flex-1">
+    <app-search-input></app-search-input>
+  </div>
+  <div class="flex flex-1">
+   <app-relaciones-table (deleteRelacion)='remover($event)'></app-relaciones-table>
+  </div>
+</div>
+
+<ng-template #modalNueva>
+  <div class="flex flex-1 flex-col">
+    <app-agregar-modal (eventoBuscar1)='buscarEquips()' (guardarRelaciones)='finalizarRelacion()' (eventoBuscar2)='buscarEsts()'></app-agregar-modal>
+    <button matRipple (click)="closeModal()" class="rounded-md p-2 self-end opacity-90">{{'cerrarModal'|transloco}}</button>
+  </div>
+</ng-template>

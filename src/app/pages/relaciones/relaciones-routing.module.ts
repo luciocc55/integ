@@ -15,6 +15,14 @@ const routes: Routes = [
             './profesionales-especialidades/profesionales-especialidades.module'
           ).then((m) => m.ProfesionalesEspecialidadesModule),
       },
+      {
+        path: 'equipos-estudios',
+        data: { state: 'equipos-estudios' },
+        loadChildren: () =>
+          import('./equipos-estudios/equipos-estudios.module').then(
+            (m) => m.EquiposEstudiosModule
+          ),
+      },
     ],
   },
 ];

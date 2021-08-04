@@ -48,6 +48,7 @@ export const agregarPermiso = environment.api + roles + 'agregar_permiso/';
 
 // Equipos
 export const Getequipos = environment.api + 'equipos/';
+export const BusEquiposAll = environment.api + 'bus_equipos_all/';
 export const busEquipos = environment.api + 'bus_equipos/';
 export const latestEquips = environment.api + 'latest_equipos/';
 export const mergeoEquipos = environment.api + 'matcheo_equipos/';
@@ -63,6 +64,7 @@ export const estadisticasEquip = environment.api + 'equipos_estadisticas_mergeo/
 
 // Estudios
 export const Getestudios = environment.api + 'estudios/';
+export const BusEstudiosAll = environment.api + 'bus_estudios_all/';
 export const mergeoEstudios = environment.api + 'matcheo_estudios/';
 export const busEstudios = environment.api + 'bus_estudios/';
 export const MasterEstCrear = environment.api + 'master_estudios_crear/';
@@ -140,3 +142,8 @@ export const busquedaProfEsp = environment.api + profEsp + 'busqueda/';
 export const removerProfEsp = environment.api + profEsp + 'delete/';
 export const agregarProfEsp = environment.api + profEsp + 'agregar/';
 
+
+export const equipEst = 'equipos-estudios/'
+export const busquedaEquipEst = environment.api + equipEst + 'busqueda/';
+export const removerEquipEst = environment.api + equipEst + 'delete/';
+export const agregarEquipEst = environment.api + equipEst + 'agregar/';
