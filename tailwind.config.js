@@ -63,5 +63,7 @@ module.exports = {
       backgroundColor: ['disabled']
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 };
